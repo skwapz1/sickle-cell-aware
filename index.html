@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #FFF6EC; -webkit-font-smoothing: antialiased; }
+  a { color: #D6273F; text-decoration: none; }
+  a:hover { color: #2A1220; }
+  input, textarea, select { font-family: Outfit, sans-serif; box-sizing: border-box; width: 100%; min-width: 0; }
+  @keyframes floaty { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(-4deg); } }
+  @keyframes floaty2 { 0%,100% { transform: translateY(0) rotate(6deg); } 50% { transform: translateY(-22px) rotate(-2deg); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes pulseRing { 0% { transform: scale(.9); opacity: .55; } 100% { transform: scale(1.5); opacity: 0; } }
+</style>
+</helmet>
+<div style="font-family: Outfit, system-ui, sans-serif; color: #2A1220; overflow-x: hidden;">
+
+  <header style="position: sticky; top: 0; z-index: 60; background: rgba(255,246,236,.94); backdrop-filter: blur(10px); border-bottom: 2px solid #2A1220;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 14px clamp(18px, 3vw, 32px); display: flex; align-items: center; gap: 14px 26px; flex-wrap: wrap;">
+      <div onClick="{{ goHome }}" style="cursor: pointer; display: flex; align-items: center; gap: 12px;">
+        <div style="width: 40px; height: 40px; border-radius: 50% 50% 50% 8px; background: #D6273F; border: 2px solid #2A1220; display: grid; place-items: center; flex: none;">
+          <div style="display: flex; gap: 5px;">
+            <div style="width: 5px; height: 5px; border-radius: 50%; background: #FFF6EC;"></div>
+            <div style="width: 5px; height: 5px; border-radius: 50%; background: #FFF6EC;"></div>
+          </div>
+        </div>
+        <div style="line-height: 1;">
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -.02em;">Sickle Cell Aware</div>
+          <div style="font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .6; margin-top: 3px;">by Kwapong Health CIC</div>
+        </div>
+      </div>
+      <nav style="margin-left: auto; display: flex; align-items: center; gap: 10px 18px; flex-wrap: wrap; font-size: 14.5px; font-weight: 600;">
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+          <div onClick="{{ n.go }}" style="cursor: pointer; padding-bottom: 3px; border-bottom: 2.5px solid {{ n.underline }}; color: {{ n.color }};">{{ n.label }}</div>
+        </sc-for>
+        <div onClick="{{ goDonate }}" style="cursor: pointer; background: #2A1220; color: #FFF6EC; padding: 11px 22px; border-radius: 999px; box-shadow: 3px 3px 0 #FFB627;">Donate</div>
+      </nav>
+    </div>
+  </header>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <section style="position: relative; padding: clamp(40px, 5.4vw, 74px) clamp(18px, 3vw, 32px) clamp(52px, 7vw, 90px);">
+      <div style="position: absolute; inset: 0; background: radial-gradient(600px 380px at 82% 22%, #FFE3C7 0%, rgba(255,227,199,0) 70%); pointer-events: none;"></div>
+      <div style="position: relative; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px 56px; align-items: center;">
+        <div style="animation: rise .7s cubic-bezier(.2,.8,.2,1) both;">
+          <div style="display: inline-flex; align-items: center; gap: 9px; background: #FFB627; border: 2px solid #2A1220; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 700; margin-bottom: 24px;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #D6273F;"></span>
+            1 in 4 people of African heritage carry the trait
+          </div>
+          <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(40px, 7.4vw, 76px); line-height: .98; letter-spacing: -.035em; margin: 0 0 22px;">
+            Sickle cell,<br />explained like<br />a <span style="color: #D6273F; position: relative;">human<span style="position: absolute; left: 0; right: 0; bottom: 6px; height: 12px; background: #FFB627; z-index: -1; border-radius: 3px;"></span></span> would.
+          </h1>
+          <p style="font-size: clamp(17px, 2vw, 19.5px); line-height: 1.55; max-width: 480px; margin: 0 0 32px; text-wrap: pretty; opacity: .82;">
+            Clear answers and practical support for young people living with sickle cell and the families beside them, in the UK and in Ghana. No jargon, no judgement.
+          </p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <div onClick="{{ goTrait }}" style="cursor: pointer; background: #D6273F; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 17px 30px; border-radius: 999px; border: 2px solid #2A1220; box-shadow: 4px 4px 0 #2A1220;">Do you know your trait?</div>
+            <div onClick="{{ goDonate }}" style="cursor: pointer; background: #FFF6EC; color: #2A1220; font-weight: 700; font-size: 16px; padding: 17px 30px; border-radius: 999px; border: 2px solid #2A1220;">Support our work</div>
+          </div>
+        </div>
+        <div style="position: relative; height: clamp(330px, 44vw, 470px);">
+          <div style="position: absolute; left: 6%; top: 8%; width: 250px; height: 250px; border-radius: 50%; background: #D6273F; border: 3px solid #2A1220; animation: floaty 6s ease-in-out infinite;">
+            <div style="position: absolute; inset: 34px; border-radius: 50%; background: #B31A31;"></div>
+            <div style="position: absolute; left: 62px; top: 96px; display: flex; gap: 26px;">
+              <div style="width: 20px; height: 26px; border-radius: 50%; background: #FFF6EC;"></div>
+              <div style="width: 20px; height: 26px; border-radius: 50%; background: #FFF6EC;"></div>
+            </div>
+            <div style="position: absolute; left: 92px; top: 138px; width: 62px; height: 30px; border-bottom-left-radius: 60px; border-bottom-right-radius: 60px; background: #2A1220;"></div>
+          </div>
+          <div style="position: absolute; right: 4%; top: 44%; width: 168px; height: 118px; border-radius: 60% 40% 55% 45% / 70% 60% 40% 30%; background: #FFB627; border: 3px solid #2A1220; animation: floaty2 7.5s ease-in-out infinite;">
+            <div style="position: absolute; left: 44px; top: 44px; display: flex; gap: 20px;">
+              <div style="width: 15px; height: 20px; border-radius: 50%; background: #2A1220;"></div>
+              <div style="width: 15px; height: 20px; border-radius: 50%; background: #2A1220;"></div>
+            </div>
+            <div style="position: absolute; left: 68px; top: 74px; width: 34px; height: 6px; border-radius: 4px; background: #2A1220;"></div>
+          </div>
+          <div style="position: absolute; left: 12%; bottom: 2%; width: 132px; height: 132px; border-radius: 50%; background: #0F9B8E; border: 3px solid #2A1220; animation: floaty 5.2s ease-in-out .8s infinite;">
+            <div style="position: absolute; left: 34px; top: 48px; display: flex; gap: 20px;">
+              <div style="width: 13px; height: 17px; border-radius: 50%; background: #FFF6EC;"></div>
+              <div style="width: 13px; height: 17px; border-radius: 50%; background: #FFF6EC;"></div>
+            </div>
+            <div style="position: absolute; left: 52px; top: 76px; width: 26px; height: 26px; border-radius: 50%; background: #FFF6EC;"></div>
+          </div>
+          <div style="position: absolute; right: 22%; top: 4%; width: 62px; height: 62px; border-radius: 50%; border: 3px solid #D6273F; animation: pulseRing 2.8s ease-out infinite;"></div>
+        </div>
+      </div>
+    </section>
+
+    <div style="background: #2A1220; overflow: hidden; padding: 15px 0;">
+      <div style="display: flex; width: 200%; animation: marquee 26s linear infinite; gap: 44px; white-space: nowrap; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; color: #FFF6EC;">
+        <span>SICKLE CELL IS NOT CONTAGIOUS ✳ KNOW YOUR TRAIT ✳ CRISIS IS REAL PAIN ✳ YOU ARE NOT ALONE ✳ TESTING IS FREE ✳</span>
+        <span>SICKLE CELL IS NOT CONTAGIOUS ✳ KNOW YOUR TRAIT ✳ CRISIS IS REAL PAIN ✳ YOU ARE NOT ALONE ✳ TESTING IS FREE ✳</span>
+      </div>
+    </div>
+
+    <section style="padding: clamp(52px, 7vw, 88px) clamp(18px, 3vw, 32px);">
+      <div style="max-width: 1240px; margin: 0 auto;">
+        <div data-reveal="1" style="display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 40px;">
+          <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 4.8vw, 46px); letter-spacing: -.03em; margin: 0; max-width: 620px; line-height: 1.05;">Myth or fact?</h2>
+          <p style="margin: 0; font-size: 16px; opacity: .7; max-width: 300px;">Half of what people "know" about sickle cell is wrong. Let's fix that.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); gap: 20px;">
+          <sc-for list="{{ myths }}" as="m" hint-placeholder-count="3">
+            <div data-reveal="1" style="background: #FFFFFF; border: 2.5px solid #2A1220; border-radius: 26px; padding: 30px 28px; min-height: 216px; box-shadow: 5px 5px 0 #2A1220; display: flex; flex-direction: column; gap: 14px;">
+              <div style="display: inline-flex; align-self: start; align-items: center; gap: 7px; padding: 6px 13px; border-radius: 999px; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; background: {{ m.chipBg }}; color: {{ m.chipFg }};">{{ m.chip }}</div>
+              <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.2; letter-spacing: -.02em;">{{ m.text }}</div>
+              <div style="margin-top: auto; font-size: 15.5px; line-height: 1.5; opacity: .8;">{{ m.body }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <sc-if value="{{ showQuiz }}" hint-placeholder-val="{{ true }}">
+    <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
+      <div data-reveal="1" style="max-width: 1240px; margin: 0 auto; background: #0F9B8E; border: 2.5px solid #2A1220; border-radius: 38px; padding: clamp(26px, 4.2vw, 56px); display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 36px 48px; align-items: center; box-shadow: 8px 8px 0 #2A1220;">
+        <div style="color: #FFF6EC;">
+          <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .8; margin-bottom: 14px;">2 minute quiz</div>
+          <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 4.6vw, 44px); line-height: 1.02; letter-spacing: -.03em; margin: 0 0 16px;">Do you know your trait?</h2>
+          <p style="font-size: 17.5px; line-height: 1.55; margin: 0 0 26px; opacity: .92; text-wrap: pretty;">If both parents carry sickle cell trait, there's a 1 in 4 chance their baby will be born with sickle cell disease. Most carriers have no idea.</p>
+          <div onClick="{{ goTrait }}" style="cursor: pointer; display: inline-block; background: #FFB627; color: #2A1220; font-weight: 700; font-size: 15.5px; padding: 15px 26px; border-radius: 999px; border: 2px solid #2A1220;">Try the inheritance calculator</div>
+        </div>
+        <div style="background: #FFF6EC; border: 2.5px solid #2A1220; border-radius: 26px; padding: clamp(22px, 3vw, 34px);">
+          <div style="font-size: 14px; font-weight: 700; opacity: .55; margin-bottom: 10px;">Question {{ qNum }} of 3</div>
+          <div style="height: 9px; background: #E8D9C8; border-radius: 999px; overflow: hidden; margin-bottom: 24px;">
+            <div style="height: 100%; background: #D6273F; border-radius: 999px; transition: width .4s cubic-bezier(.2,.8,.2,1); width: {{ qPct }};"></div>
+          </div>
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.22; letter-spacing: -.02em; margin-bottom: 22px;">{{ qText }}</div>
+          <div style="display: flex; flex-direction: column; gap: 11px;">
+            <sc-for list="{{ qOptions }}" as="o" hint-placeholder-count="3">
+              <div onClick="{{ o.pick }}" style="cursor: pointer; border: 2px solid #2A1220; border-radius: 16px; padding: 15px 18px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 12px; background: {{ o.bg }};" style-hover="background: #FFE3C7;">
+                <span style="width: 22px; height: 22px; border-radius: 50%; border: 2px solid #2A1220; display: grid; place-items: center; font-size: 12px; font-weight: 800; flex: none; background: {{ o.dotBg }}; color: {{ o.dotFg }};">{{ o.mark }}</span>
+                {{ o.label }}
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top: 20px; font-size: 15.5px; line-height: 1.5; min-height: 46px; border-radius: 14px; padding: {{ qFeedbackPad }}; background: {{ qFeedbackBg }};">{{ qFeedback }}</div>
+        </div>
+      </div>
+    </section>
+    </sc-if>
+
+    <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
+      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px;">
+        <sc-for list="{{ support }}" as="c" hint-placeholder-count="4">
+          <div data-reveal="1" style="background: {{ c.bg }}; border: 2.5px solid #2A1220; border-radius: 24px; padding: 28px 24px; min-height: 200px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(26px, 3.8vw, 34px); letter-spacing: -.03em;">{{ c.stat }}</div>
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 19px; line-height: 1.2;">{{ c.title }}</div>
+            <div style="font-size: 15px; line-height: 1.5; opacity: .78; margin-top: auto;">{{ c.body }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <section style="padding: clamp(38px, 5vw, 64px) clamp(18px, 3vw, 32px) clamp(32px, 4vw, 48px);">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #D6273F; margin-bottom: 16px;">The basics</div>
+        <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 6.4vw, 62px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 22px;">What sickle cell actually is</h1>
+        <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.55; opacity: .82; margin: 0; text-wrap: pretty;">Sickle cell disorder is an inherited condition affecting haemoglobin, the part of your red blood cells that carries oxygen. Instead of staying round and flexible, cells can turn stiff and crescent-shaped, getting stuck in small blood vessels.</p>
+      </div>
+    </section>
+
+    <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(44px, 6vw, 72px);">
+      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); gap: 20px;">
+        <sc-for list="{{ aboutCards }}" as="c" hint-placeholder-count="3">
+          <div data-reveal="1" style="background: {{ c.bg }}; border: 2.5px solid #2A1220; border-radius: 26px; padding: 32px 28px; box-shadow: 5px 5px 0 #2A1220;">
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.15; letter-spacing: -.02em; margin-bottom: 12px;">{{ c.title }}</div>
+            <div style="font-size: 15.5px; line-height: 1.6; opacity: .82;">{{ c.body }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <sc-if value="{{ showTriggers }}" hint-placeholder-val="{{ true }}">
+    <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(44px, 6vw, 72px);">
+      <div style="max-width: 1240px; margin: 0 auto;">
+        <h2 data-reveal="1" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(28px, 4.2vw, 40px); letter-spacing: -.03em; margin: 0 0 12px;">What can trigger a crisis</h2>
+        <p data-reveal="1" style="font-size: 17px; opacity: .72; margin: 0 0 30px; max-width: 620px;">A pain crisis can start with no warning at all, but these make one more likely.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px;">
+          <sc-for list="{{ triggers }}" as="t" hint-placeholder-count="5">
+            <div data-reveal="1" style="flex: 1 1 230px; background: #FFFFFF; border: 2.5px solid #2A1220; border-radius: 20px; padding: 20px 22px; display: flex; gap: 15px; align-items: start;">
+              <div style="width: 26px; height: 26px; border-radius: 50%; background: {{ t.dot }}; border: 2px solid #2A1220; flex: none; margin-top: 2px;"></div>
+              <div style="min-width: 0;">
+                <div style="font-weight: 700; font-size: 17px; margin-bottom: 5px;">{{ t.title }}</div>
+                <div style="font-size: 14.5px; line-height: 1.5; opacity: .75;">{{ t.body }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+    </sc-if>
+
+    <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
+      <div data-reveal="1" style="max-width: 1240px; margin: 0 auto; background: #FFE3C7; border: 2.5px solid #2A1220; border-radius: 32px; padding: clamp(26px, 3.6vw, 44px) clamp(24px, 3.8vw, 48px);">
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(26px, 3.8vw, 34px); letter-spacing: -.03em; margin: 0 0 26px;">Questions people ask us most</h2>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+            <div onClick="{{ f.toggle }}" style="cursor: pointer; background: #FFF6EC; border: 2px solid #2A1220; border-radius: 18px; padding: 20px 24px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+                <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -.015em;">{{ f.q }}</div>
+                <div style="font-size: 24px; font-weight: 700; line-height: 1;">{{ f.sign }}</div>
+              </div>
+              <div style="font-size: 16px; line-height: 1.6; opacity: .82; overflow: hidden; transition: max-height .3s ease, margin-top .3s ease; max-height: {{ f.maxH }}; margin-top: {{ f.mt }};">
+                <div>{{ f.a }}</div>
+                <a href="{{ f.link }}" target="_blank" rel="noopener" style="display: inline-block; margin-top: 12px; font-weight: 700; font-size: 15px;">{{ f.linkLabel }}</a>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isTrait }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <section style="padding: clamp(38px, 5vw, 64px) clamp(18px, 3vw, 32px) clamp(32px, 4vw, 48px);">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #D6273F; margin-bottom: 16px;">Know your trait</div>
+        <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 6.4vw, 62px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 22px;">One blood test. Answers for life.</h1>
+        <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.55; opacity: .82; margin: 0; text-wrap: pretty;">Carrying sickle cell trait does not make you ill, but if your partner carries it too, it changes what you'd want to know before starting a family. Testing is free on the NHS: ask your GP for a haemoglobinopathy screen.</p>
+      </div>
+    </section>
+
+    <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(44px, 6vw, 72px);">
+      <div data-reveal="1" style="max-width: 1240px; margin: 0 auto; background: #FFFFFF; border: 2.5px solid #2A1220; border-radius: 34px; padding: clamp(26px, 3.8vw, 48px); box-shadow: 8px 8px 0 #2A1220;">
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(27px, 4vw, 36px); letter-spacing: -.03em; margin: 0 0 8px;">Inheritance calculator</h2>
+        <p style="font-size: 16.5px; opacity: .74; margin: 0 0 34px;">Pick what each parent carries to see the odds for each pregnancy.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 38px;">
+          <sc-for list="{{ parents }}" as="p" hint-placeholder-count="2">
+            <div>
+              <div style="font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .6; margin-bottom: 12px;">{{ p.label }}</div>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <sc-for list="{{ p.options }}" as="o" hint-placeholder-count="3">
+                  <div onClick="{{ o.pick }}" style="cursor: pointer; border: 2px solid #2A1220; border-radius: 16px; padding: 16px 18px; display: flex; align-items: center; gap: 14px; background: {{ o.bg }}; color: {{ o.fg }};" style-hover="background: #FFE3C7;">
+                    <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; width: 44px; flex: none;">{{ o.code }}</span>
+                    <span style="font-size: 15.5px; font-weight: 600;">{{ o.name }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="border-top: 2px solid #2A1220; padding-top: 34px;">
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; margin-bottom: 20px;">Odds for each pregnancy</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); gap: 16px; margin-bottom: 22px;">
+            <sc-for list="{{ outcomes }}" as="o" hint-placeholder-count="3">
+              <div style="background: {{ o.bg }}; border: 2.5px solid #2A1220; border-radius: 22px; padding: 26px 24px;">
+                <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 4.6vw, 44px); letter-spacing: -.03em; line-height: 1; margin-bottom: 10px;">{{ o.pct }}</div>
+                <div style="font-weight: 700; font-size: 17px; margin-bottom: 5px;">{{ o.title }}</div>
+                <div style="font-size: 14.5px; line-height: 1.5; opacity: .78;">{{ o.body }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="font-size: 15.5px; line-height: 1.6; background: #FFE3C7; border: 2px solid #2A1220; border-radius: 16px; padding: 18px 20px;">{{ outcomeNote }}</div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
+      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); gap: 20px;">
+        <sc-for list="{{ testSteps }}" as="s" hint-placeholder-count="3">
+          <div data-reveal="1" style="background: {{ s.bg }}; border: 2.5px solid #2A1220; border-radius: 26px; padding: 32px 28px;">
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; opacity: .6; margin-bottom: 14px;">Step {{ s.n }}</div>
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.18; letter-spacing: -.02em; margin-bottom: 10px;">{{ s.title }}</div>
+            <div style="font-size: 15.5px; line-height: 1.6; opacity: .82;">{{ s.body }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isDonate }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <section style="padding: clamp(38px, 5vw, 64px) clamp(18px, 3vw, 32px) clamp(30px, 3.8vw, 44px);">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #D6273F; margin-bottom: 16px;">Donate</div>
+        <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 6.4vw, 62px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 22px;">Help us get this work off the ground.</h1>
+        <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.55; opacity: .82; margin: 0; text-wrap: pretty;">Kwapong Health CIC is newly formed. Donations go towards our three areas of work: practical support for families, sickle cell awareness, and activities that bring young people together.</p>
+      </div>
+    </section>
+
+    <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
+      <div style="max-width: 1240px; margin: 0 auto; background: #D6273F; border: 2.5px solid #2A1220; border-radius: 38px; padding: clamp(26px, 4vw, 52px); box-shadow: 8px 8px 0 #2A1220; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 36px 52px; align-items: stretch;">
+        <div style="color: #FFF6EC; align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; gap: 26px;">
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(24px, 3.4vw, 30px); letter-spacing: -.025em;">What your donation supports</div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+              <div style="background: rgba(255,246,236,.14); border: 2px solid rgba(255,246,236,.5); border-radius: 16px; padding: 16px 18px;">
+                <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 19px; margin-bottom: 4px;">{{ t.amt }}</div>
+                <div style="font-size: 15.5px; line-height: 1.45;">{{ t.what }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-for list="{{ reassure }}" as="r" hint-placeholder-count="3">
+              <div style="display: flex; gap: 12px; align-items: start; font-size: 15.5px; line-height: 1.5;">
+                <span style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #FFF6EC; flex: none; display: grid; place-items: center; font-size: 11px; font-weight: 800; margin-top: 1px;">✓</span>
+                <span>{{ r }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="background: #FFF6EC; border: 2.5px solid #2A1220; border-radius: 26px; padding: clamp(22px, 3vw, 34px);">
+          <div style="display: flex; gap: 8px; background: #E8D9C8; border: 2px solid #2A1220; border-radius: 999px; padding: 5px; margin-bottom: 22px;">
+            <sc-for list="{{ freqTabs }}" as="t" hint-placeholder-count="2">
+              <div onClick="{{ t.pick }}" style="flex: 1; text-align: center; cursor: pointer; padding: 11px; border-radius: 999px; font-size: 15px; font-weight: 700; background: {{ t.bg }}; color: {{ t.fg }};">{{ t.label }}</div>
+            </sc-for>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); gap: 10px; margin-bottom: 12px;">
+            <sc-for list="{{ amounts }}" as="a" hint-placeholder-count="6">
+              <div onClick="{{ a.pick }}" style="cursor: pointer; text-align: center; padding: 16px 8px; border: 2px solid #2A1220; border-radius: 16px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; background: {{ a.bg }};" style-hover="background: #FFE3C7;">{{ a.label }}</div>
+            </sc-for>
+          </div>
+          <input onChange="{{ setCustom }}" placeholder="Other amount (£)" style="font-size: 15.5px; padding: 14px 16px; border: 2px solid #2A1220; border-radius: 14px; background: #FFFFFF; outline: none; margin-bottom: 20px;" />
+
+          <div style="display: flex; flex-direction: column; gap: 11px; margin-bottom: 16px;">
+            <input placeholder="Full name" style="font-size: 15.5px; padding: 14px 16px; border: 2px solid #2A1220; border-radius: 14px; background: #FFFFFF; outline: none;" />
+            <input placeholder="Email address" style="font-size: 15.5px; padding: 14px 16px; border: 2px solid #2A1220; border-radius: 14px; background: #FFFFFF; outline: none;" />
+            <input placeholder="Card number" style="font-size: 15.5px; padding: 14px 16px; border: 2px solid #2A1220; border-radius: 14px; background: #FFFFFF; outline: none;" />
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 11px;">
+              <input placeholder="MM / YY" style="font-size: 15.5px; padding: 14px 16px; border: 2px solid #2A1220; border-radius: 14px; background: #FFFFFF; outline: none;" />
+              <input placeholder="CVC" style="font-size: 15.5px; padding: 14px 16px; border: 2px solid #2A1220; border-radius: 14px; background: #FFFFFF; outline: none;" />
+            </div>
+          </div>
+          <div onClick="{{ donate }}" style="cursor: pointer; text-align: center; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 17px; padding: 18px; border-radius: 999px; box-shadow: 4px 4px 0 #FFB627;">{{ donateLabel }}</div>
+          <div style="text-align: center; font-size: 12.5px; opacity: .6; margin-top: 14px;">{{ donateFootnote }}</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isOrg }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <section style="padding: clamp(38px, 5vw, 64px) clamp(18px, 3vw, 32px) clamp(32px, 4vw, 48px);">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #D6273F; margin-bottom: 16px;">About us</div>
+        <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 6.4vw, 62px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 22px;">Kwapong Health CIC</h1>
+        <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.55; opacity: .82; margin: 0; text-wrap: pretty;">A Community Interest Company supporting young people with sickle cell and their families, in the UK and Ghana. As a CIC our surplus goes back into the work, never to shareholders.</p>
+      </div>
+    </section>
+
+    <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(44px, 6vw, 72px);">
+      <div style="max-width: 1240px; margin: 0 auto;">
+        <h2 data-reveal="1" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(28px, 4.2vw, 40px); letter-spacing: -.03em; margin: 0 0 30px;">What we do</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); gap: 20px;">
+          <sc-for list="{{ objects }}" as="o" hint-placeholder-count="3">
+            <div data-reveal="1" style="background: {{ o.bg }}; border: 2.5px solid #2A1220; border-radius: 26px; padding: 32px 28px; box-shadow: 5px 5px 0 #2A1220; display: flex; flex-direction: column; gap: 14px;">
+              <div style="display: inline-flex; align-self: start; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: #2A1220; color: #FFF6EC; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px;">{{ o.letter }}</div>
+              <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.18; letter-spacing: -.02em;">{{ o.title }}</div>
+              <div style="font-size: 15.5px; line-height: 1.55; opacity: .82;">{{ o.body }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
+      <div data-reveal="1" style="max-width: 1240px; margin: 0 auto; background: #FFE3C7; border: 2.5px solid #2A1220; border-radius: 32px; padding: clamp(26px, 3.6vw, 44px) clamp(24px, 3.8vw, 48px);">
+        <div style="display: flex; gap: 26px; align-items: center; flex-wrap: wrap; margin-bottom: 26px;">
+          <img src="assets/sam-kwapong.png" alt="Sam Kwapong" style="width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 2.5px solid #2A1220; display: block; flex: none;" />
+          <div style="min-width: 220px; flex: 1;">
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(24px, 3.4vw, 30px); letter-spacing: -.025em; margin-bottom: 6px;">Sam Kwapong</div>
+            <div style="font-size: 16.5px; line-height: 1.55; opacity: .8;">Founder and director. Kwapong Health CIC files a community interest statement at Companies House.</div>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; padding-top: 22px; border-top: 2px solid rgba(42,18,32,.18);">
+          <sc-for list="{{ orgFacts }}" as="c" hint-placeholder-count="4">
+            <div style="background: #FFF6EC; border: 2px solid #2A1220; border-radius: 999px; padding: 9px 17px; font-size: 14px;">
+              <span style="font-weight: 700;">{{ c.label }}:</span> {{ c.value }}
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <section style="padding: clamp(38px, 5vw, 64px) clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
+      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 36px 52px; align-items: start;">
+        <div>
+          <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #D6273F; margin-bottom: 16px;">Contact</div>
+          <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 6vw, 58px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 20px;">Say hello, ask anything</h1>
+          <p style="font-size: 19px; line-height: 1.55; opacity: .82; margin: 0 0 30px; text-wrap: pretty;">Whether you want support, want to book a workshop, or want to share your story, a real person reads every message.</p>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-for list="{{ contactRows }}" as="c" hint-placeholder-count="3">
+              <div style="background: #FFFFFF; border: 2.5px solid #2A1220; border-radius: 20px; padding: 20px 24px;">
+                <div style="font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .55; margin-bottom: 6px;">{{ c.label }}</div>
+                <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px;">{{ c.value }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background: #FFE3C7; border: 2.5px solid #2A1220; border-radius: 30px; padding: clamp(24px, 3.2vw, 38px); box-shadow: 8px 8px 0 #2A1220;">
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(23px, 3.2vw, 28px); letter-spacing: -.025em; margin-bottom: 22px;">Send a message</div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <input placeholder="Your name" style="font-size: 15.5px; padding: 15px 17px; border: 2px solid #2A1220; border-radius: 14px; background: #FFF6EC; outline: none;" />
+            <input placeholder="Email address" style="font-size: 15.5px; padding: 15px 17px; border: 2px solid #2A1220; border-radius: 14px; background: #FFF6EC; outline: none;" />
+            <select style="font-size: 15.5px; padding: 15px 17px; border: 2px solid #2A1220; border-radius: 14px; background: #FFF6EC; outline: none; appearance: none;">
+              <option>I'd like support</option>
+              <option>Book a workshop</option>
+              <option>Share my story</option>
+              <option>Something else</option>
+            </select>
+            <textarea placeholder="Your message" rows="5" style="font-size: 15.5px; padding: 15px 17px; border: 2px solid #2A1220; border-radius: 14px; background: #FFF6EC; outline: none; resize: vertical;"></textarea>
+          </div>
+          <div onClick="{{ sendMessage }}" style="cursor: pointer; text-align: center; margin-top: 18px; background: #D6273F; color: #FFF6EC; font-weight: 700; font-size: 17px; padding: 17px; border-radius: 999px; border: 2px solid #2A1220; box-shadow: 4px 4px 0 #2A1220;">{{ sendLabel }}</div>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <div style="background: #FFB627; border-top: 2.5px solid #2A1220; padding: clamp(30px, 4vw, 44px) clamp(18px, 3vw, 32px);">
+    <div style="max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;">
+      <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(25px, 3.6vw, 32px); letter-spacing: -.03em; max-width: 620px; line-height: 1.1;">Awareness saves lives. Help us reach the next family.</div>
+      <div onClick="{{ goDonate }}" style="cursor: pointer; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 16.5px; padding: 17px 32px; border-radius: 999px; white-space: nowrap;">Donate now</div>
+    </div>
+  </div>
+
+  <footer style="background: #2A1220; color: #FFF6EC; padding: clamp(38px, 5vw, 56px) clamp(18px, 3vw, 32px) 40px;">
+    <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 32px;">
+      <div>
+        <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.02em; margin-bottom: 10px;">Sickle Cell Aware</div>
+        <div style="font-size: 15px; line-height: 1.6; opacity: .72;">The sickle cell awareness and support programme of Kwapong Health CIC, a Community Interest Company.</div>
+      </div>
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
+        <div>
+          <div style="font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .55; margin-bottom: 14px;">{{ col.title }}</div>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="4">
+              <div onClick="{{ l.go }}" style="cursor: pointer; font-size: 15px; opacity: .85;">{{ l.label }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="max-width: 1240px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,246,236,.2); font-size: 13px; opacity: .55;">© 2026 Kwapong Health CIC · Community Interest Company registered in England, company number 17271036 · Information here is not a substitute for medical advice</div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showQuiz&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Homepage&quot;},&quot;showTriggers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;About sickle cell&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'home', qi: 0, picked: null, open: {}, freq: 'monthly', amt: 12, custom: '', sent: false, pA: 'AS', pB: 'AS' };
+
+  componentDidMount() { this.observe(); }
+  componentDidUpdate(pp, ps) { if (ps.page !== this.state.page) { window.scrollTo(0, 0); this.observe(); } }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); }
+
+  observe() {
+    if (this._io) this._io.disconnect();
+    const els = document.querySelectorAll('[data-reveal]');
+    els.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; el.style.transition = 'opacity .6s cubic-bezier(.2,.8,.2,1), transform .6s cubic-bezier(.2,.8,.2,1)'; });
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; io.unobserve(e.target); }
+    }), { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+    this._io = io;
+  }
+
+  go(p) { return () => this.setState({ page: p, sent: false }); }
+
+  get quiz() {
+    return [
+      { q: 'If both parents carry sickle cell trait, what are the odds their baby has sickle cell disease?',
+        opts: ['1 in 2', '1 in 4', 'No chance at all'], correct: 1,
+        why: 'Correct. A 1 in 4 chance every pregnancy, and a 1 in 2 chance the baby carries the trait.' },
+      { q: 'Can you catch sickle cell from someone else?',
+        opts: ['Yes, through blood', 'Only in childhood', 'No, it is inherited'], correct: 2,
+        why: 'Right. Sickle cell is genetic. You are born with it and it can only be passed on through genes.' },
+      { q: 'Where can you get a free sickle cell trait test in the UK?',
+        opts: ['Your GP or a sickle cell centre', 'Only private clinics', 'You cannot be tested'], correct: 0,
+        why: 'Yes. Ask your GP for a haemoglobinopathy screen. Free on the NHS, one blood sample.' }
+    ];
+  }
+
+  genotypes() {
+    return [
+      { code: 'AA', name: 'No sickle gene' },
+      { code: 'AS', name: 'Sickle cell trait (carrier)' },
+      { code: 'SS', name: 'Sickle cell disease' }
+    ];
+  }
+
+  odds(a, b) {
+    const alleles = g => g.split('');
+    const counts = { AA: 0, AS: 0, SS: 0 };
+    alleles(a).forEach(x => alleles(b).forEach(y => {
+      const k = [x, y].sort().join('');
+      counts[k === 'AS' ? 'AS' : k] += 25;
+    }));
+    return counts;
+  }
+
+  renderVals() {
+    const p = this.state.page;
+    const pages = [
+      { key: 'about', label: 'About sickle cell' },
+      { key: 'trait', label: 'Know your trait' },
+      { key: 'org', label: 'About us' }
+    ];
+    const navItems = pages.map(n => ({
+      label: n.label,
+      go: this.go(n.key),
+      color: p === n.key ? '#D6273F' : '#2A1220',
+      underline: p === n.key ? '#D6273F' : 'transparent'
+    }));
+
+    const q = this.quiz[this.state.qi];
+    const picked = this.state.picked;
+    const qOptions = q.opts.map((label, i) => {
+      const isPicked = picked === i, right = i === q.correct;
+      let bg = '#FFFFFF', dotBg = '#FFF6EC', dotFg = '#2A1220', mark = '';
+      if (picked !== null && right) { bg = '#D8F3EF'; dotBg = '#0F9B8E'; dotFg = '#FFF6EC'; mark = '✓'; }
+      if (picked !== null && isPicked && !right) { bg = '#FFE3E6'; dotBg = '#D6273F'; dotFg = '#FFF6EC'; mark = '✕'; }
+      return { label, bg, dotBg, dotFg, mark, pick: () => {
+        if (this.state.picked !== null) return;
+        this.setState({ picked: i });
+        setTimeout(() => this.setState(s => ({ qi: (s.qi + 1) % 3, picked: null })), 2500);
+      } };
+    });
+
+    const geno = this.genotypes();
+    const parents = [
+      { label: 'Parent one carries', key: 'pA' },
+      { label: 'Parent two carries', key: 'pB' }
+    ].map(pr => ({
+      label: pr.label,
+      options: geno.map(g => ({
+        code: g.code, name: g.name,
+        bg: this.state[pr.key] === g.code ? '#2A1220' : '#FFF6EC',
+        fg: this.state[pr.key] === g.code ? '#FFF6EC' : '#2A1220',
+        pick: () => this.setState({ [pr.key]: g.code })
+      }))
+    }));
+    const o = this.odds(this.state.pA, this.state.pB);
+    const outcomes = [
+      { pct: o.AA + '%', title: 'No sickle gene', body: 'Unaffected and not a carrier.', bg: '#D8F3EF' },
+      { pct: o.AS + '%', title: 'Carries the trait', body: 'Healthy carrier, can pass it on.', bg: '#FFF0B8' },
+      { pct: o.SS + '%', title: 'Sickle cell disease', body: 'Would live with the condition.', bg: '#FFD9DE' }
+    ];
+    const outcomeNote = o.SS > 0
+      ? 'These odds apply to every pregnancy independently. If both of you carry a sickle gene, ask your GP or midwife about genetic counselling.'
+      : 'No chance of sickle cell disease with this combination, but a child may still carry the trait and pass it on. Testing is still worth doing.';
+
+    const presets = [5, 12, 25, 50, 100, 250];
+    const amt = this.state.custom !== '' ? Number(this.state.custom) || 0 : this.state.amt;
+    const amounts = presets.map(v => ({
+      label: '£' + v,
+      bg: this.state.custom === '' && this.state.amt === v ? '#FFB627' : '#FFFFFF',
+      pick: () => this.setState({ amt: v, custom: '' })
+    }));
+    const freqTabs = [{ key: 'once', label: 'Give once' }, { key: 'monthly', label: 'Give monthly' }].map(t => ({
+      label: t.label,
+      bg: this.state.freq === t.key ? '#2A1220' : 'transparent',
+      fg: this.state.freq === t.key ? '#FFF6EC' : '#2A1220',
+      pick: () => this.setState({ freq: t.key })
+    }));
+
+    return {
+      navItems,
+      isHome: p === 'home', isAbout: p === 'about', isTrait: p === 'trait',
+      isDonate: p === 'donate',
+      isOrg: p === 'org', isContact: p === 'contact',
+      goHome: this.go('home'), goDonate: this.go('donate'), goTrait: this.go('trait'),
+      goContact: this.go('contact'),
+
+      myths: [
+        { chip: 'Myth', text: 'Sickle cell only affects Black people.', body: 'It is most common in African and Caribbean heritage, but also affects South Asian, Middle Eastern and Mediterranean families.', chipBg: '#FFB627', chipFg: '#2A1220' },
+        { chip: 'Fact', text: 'A crisis is genuine, severe pain.', body: 'Sickled cells block blood vessels. The pain is severe, and it is too often disbelieved in A&E.', chipBg: '#D6273F', chipFg: '#FFF6EC' },
+        { chip: 'Myth', text: 'Carrying the trait means you are ill.', body: 'Thousands of people carry sickle cell trait with no symptoms at all. It matters most when planning a family.', chipBg: '#FFB627', chipFg: '#2A1220' }
+      ],
+      qNum: this.state.qi + 1,
+      qPct: ((this.state.qi + (picked !== null ? 1 : 0)) / 3 * 100) + '%',
+      qText: q.q, qOptions,
+      qFeedback: picked === null ? '' : q.why,
+      qFeedbackBg: picked === null ? 'transparent' : '#FFE3C7',
+      qFeedbackPad: picked === null ? '0' : '14px 16px',
+
+      support: [
+        { stat: '1 in 4', title: 'Trait odds', body: 'When both parents carry the trait, every pregnancy carries a 1 in 4 chance.', bg: '#FFE3C7' },
+        { stat: '17,000+', title: 'Living with it in the UK', body: 'And around 250 babies born with a sickle cell disorder each year.', bg: '#D8F3EF' },
+        { stat: 'Free', title: 'NHS trait testing', body: 'Ask your GP for a haemoglobinopathy screen. One blood sample.', bg: '#FFD9DE' },
+        { stat: 'Peer', title: 'Support that gets it', body: 'Young people and carers who understand, on the other end of the line.', bg: '#FFF0B8' }
+      ],
+
+      aboutCards: [
+        { title: 'It is inherited, never caught', body: 'You get one haemoglobin gene from each parent. Two sickle genes means sickle cell disease; one means you carry the trait. Nothing you did causes it.', bg: '#FFE3C7' },
+        { title: 'A crisis is a medical emergency', body: 'Stiff, crescent-shaped cells jam in blood vessels and starve tissue of oxygen. The pain is severe and needs proper pain relief, fast.', bg: '#FFD9DE' },
+        { title: 'People live full lives with it', body: 'With good care, vaccinations, hydration and the right support, people work, study, travel and raise families. It shapes life; it does not define it.', bg: '#D8F3EF' }
+      ],
+      triggers: [
+        { title: 'Cold & damp', body: 'Sudden temperature drops, cold water, air conditioning.', dot: '#0F9B8E' },
+        { title: 'Dehydration', body: 'Thick blood flows badly. Water is medicine.', dot: '#FFB627' },
+        { title: 'Infection', body: 'Even a mild bug can tip things over.', dot: '#D6273F' },
+        { title: 'Stress & exhaustion', body: 'Poor sleep and high stress raise crisis risk.', dot: '#B31A31' },
+        { title: 'Over-exertion', body: 'Hard exercise without rest or fluids.', dot: '#7A5AA0' }
+      ],
+      faqs: [
+        { q: 'Is sickle cell contagious?', a: 'No. It is entirely genetic, passed from parents to child through haemoglobin genes. You cannot catch it from someone, give it to someone, or develop it later in life. A child inherits one haemoglobin gene from each parent: two sickle genes means sickle cell disease, one means they carry the trait and are healthy. Nothing either parent did caused it.', link: 'https://www.nhs.uk/conditions/sickle-cell-disease/causes/', linkLabel: 'How sickle cell is inherited (NHS)' },
+        { q: 'Can it be cured?', a: 'For most people it is managed rather than cured, but that is changing. A stem cell transplant can be curative where a matched donor is available. Since January 2025 the NHS in England also offers a one-off gene-editing therapy, exa-cel (Casgevy), through a managed access scheme for people aged 12 and over with severe sickle cell who have no matched donor. In trials, most participants stopped having pain crises. It is not suitable or available for everyone, so speak to your specialist team about whether you are eligible.', link: 'https://www.england.nhs.uk/2025/01/revolutionary-gene-editing-therapy-for-sickle-cell/', linkLabel: 'Read the NHS England announcement' },
+        { q: 'Should my child be tested?', a: 'In the UK every newborn is offered blood spot screening at around five days old, and sickle cell is one of the conditions it looks for, so most children born here are already screened. If your child was born abroad, or you are unsure whether the result was ever explained to you, ask your GP. Older children and adults can be tested at any age with a single blood sample. It is worth doing before starting a family, because two carriers have a one in four chance of a child with sickle cell disease in every pregnancy.', link: 'https://www.nhs.uk/conditions/baby/newborn-screening/blood-spot-test/', linkLabel: 'About NHS newborn blood spot screening' },
+        { q: 'What should I do during a crisis?', a: 'Start early rather than waiting to see if it passes. Take your prescribed pain relief at the first sign, drink plenty of fluids, keep warm and rest. Many people manage milder crises at home with a written care plan agreed with their team. Go to hospital if the pain is not controlled, or straight away if there is a fever, chest pain, breathlessness, sudden weakness, severe headache or a change in vision. On arrival, say clearly that you have sickle cell disease and are in a pain crisis, and ask for your care plan to be followed. Sickle cell pain is frequently underestimated, so it is reasonable to be firm about the relief you normally need.', link: 'https://www.nhs.uk/conditions/sickle-cell-disease/', linkLabel: 'NHS overview of sickle cell disease' },
+        { q: 'How is it treated day to day?', a: 'Most care is about preventing crises rather than reacting to them. That usually means staying well hydrated, keeping warm, taking folic acid, keeping up with vaccinations and penicillin where prescribed, and attending annual review with a specialist team. Many people take hydroxyurea, a daily medicine that reduces how often crises happen. Some have regular blood transfusions. Children are offered scans to check the risk of stroke. None of this is optional extra: consistent routine care is what protects organs over a lifetime.', link: 'https://www.nhs.uk/conditions/sickle-cell-disease/treatment/', linkLabel: 'NHS guide to sickle cell treatment' },
+        { q: 'What should a school or employer know?', a: 'That sickle cell is a fluctuating condition, not a run of unexplained absences. Practical adjustments make a real difference: easy access to water and the toilet, staying warm, avoiding sudden temperature changes, rest after exertion, catching up on missed work without penalty, and flexibility around hospital appointments. In the UK, sickle cell disease is generally treated as a disability under the Equality Act 2010, so reasonable adjustments are a legal duty rather than a favour. We are happy to talk to a school or employer directly.', link: 'https://www.gov.uk/definition-of-disability-under-equality-act-2010', linkLabel: 'Disability under the Equality Act 2010' }
+      ].map((f, i) => ({
+        ...f,
+        sign: this.state.open[i] ? '−' : '+',
+        maxH: this.state.open[i] ? '760px' : '0px',
+        mt: this.state.open[i] ? '12px' : '0px',
+        toggle: () => this.setState(s => ({ open: { ...s.open, [i]: !s.open[i] } }))
+      })),
+
+      parents, outcomes, outcomeNote,
+      testSteps: [
+        { n: '1', title: 'Ask your GP', body: 'Request a haemoglobinopathy screen and say you want to know your sickle cell status. It is free.', bg: '#FFE3C7' },
+        { n: '2', title: 'One blood sample', body: 'A single blood draw at the surgery or a sickle cell and thalassaemia centre. No fasting, no fuss.', bg: '#D8F3EF' },
+        { n: '3', title: 'Results in days', body: 'You will be told whether you carry the trait. If you and your partner both do, ask for genetic counselling.', bg: '#FFD9DE' }
+      ],
+
+      packList: ['Phone charger + long cable', 'Heat pads', 'Own blanket & socks', 'Big water bottle', 'Written care plan', 'Snacks that survive', 'Eye mask & earplugs', 'List of your usual meds'],
+
+
+      tiers: [
+        { amt: 'Practical support', what: 'Advice and help for young people with sickle cell and the families caring for them.' },
+        { amt: 'Awareness', what: 'Clear information and sessions that cut the stigma around sickle cell.' },
+        { amt: 'Belonging', what: 'Bringing young people together so nobody manages this alone.' }
+      ],
+      reassure: [
+        'Our asset lock means surplus goes back into the work, never to shareholders.',
+        'Give once or monthly, and cancel a regular gift whenever you need to.'
+      ],
+      showQuiz: this.props.showQuiz ?? true,
+      showTriggers: this.props.showTriggers ?? true,
+      freqTabs, amounts,
+      setCustom: e => this.setState({ custom: e.target.value.replace(/[^0-9]/g, '') }),
+      donate: () => {},
+      donateLabel: amt > 0
+        ? (this.state.freq === 'monthly' ? 'Give £' + amt + ' a month' : 'Give £' + amt + ' now')
+        : 'Choose an amount',
+      donateFootnote: 'Kwapong Health CIC · Community Interest Company no. 17271036',
+
+      objects: [
+        { letter: '1', title: 'Practical support', bg: '#FFD9DE', body: 'Advice, comfort packs and help with hospital transport for young people and the families caring for them.' },
+        { letter: '2', title: 'Awareness and education', bg: '#FFE3C7', body: 'Workshops in schools and youth settings, and campaigning to cut the stigma around sickle cell.' },
+        { letter: '3', title: 'Belonging', bg: '#D8F3EF', body: 'Peer groups, mentoring and activities that break the isolation of living with a long-term condition.' }
+      ],
+      orgFacts: [
+        { label: 'Legal form', value: 'Community Interest Company' },
+        { label: 'Company number', value: '17271036' },
+        { label: 'Incorporated', value: '9 June 2026' },
+        { label: 'Where we work', value: 'United Kingdom & Ghana' }
+      ],
+      contactRows: [
+        { label: 'Email', value: 'hello@kwaponghealth.org' },
+        { label: 'Where we work', value: 'United Kingdom & Ghana' },
+        { label: 'Company number', value: '17271036' }
+      ],
+      sendMessage: () => this.setState({ sent: true }),
+      sendLabel: this.state.sent ? 'Message sent, thank you' : 'Send message',
+
+      footerCols: [
+        { title: 'Learn', links: [
+          { label: 'What is sickle cell?', go: this.go('about') },
+          { label: 'Know your trait', go: this.go('trait') },
+          { label: 'Crisis triggers', go: this.go('about') },
+          { label: 'Myths & facts', go: this.go('home') }
+        ] },
+        { title: 'Support', links: [
+          { label: 'Get in touch', go: this.go('contact') },
+          { label: 'Book a workshop', go: this.go('contact') },
+          { label: 'Crisis triggers', go: this.go('about') }
+        ] },
+        { title: 'Get involved', links: [
+          { label: 'Donate', go: this.go('donate') },
+          { label: 'About us', go: this.go('org') }
+        ] }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>
