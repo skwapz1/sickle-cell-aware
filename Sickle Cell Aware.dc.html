@@ -577,8 +577,31 @@ class Component extends DCLogic {
       label: t.label,
       bg: this.state.freq === t.key ? '#2A1220' : 'transparent',
       fg: this.state.freq === t.key ? '#FFF6EC' : '#2A1220',
-      pick: () => this.setState({ freq: t.key })
+      pick: () => this.setState({ freq: t.key, custom: t.key === 'monthly' ? '' : this.state.custom })
     }));
+
+    const donationLinks = {
+      once: {
+        5: 'https://donate.stripe.com/test_00waEXbjB9m1bG94mDaIM00',
+        12: 'https://donate.stripe.com/test_6oUfZhfzR7dTeSl5qHaIM01',
+        25: 'https://donate.stripe.com/test_cNi28r9btcyd7pT9GXaIM02',
+        50: 'https://donate.stripe.com/test_8x2dR9cnFeGlcKd4mDaIM03',
+        100: 'https://donate.stripe.com/test_7sY4gzbjBfKpdOhaL1aIM04',
+        250: 'https://donate.stripe.com/test_dRm00jdrJdCh6lPdXdaIM05'
+      },
+      monthly: {
+        5: 'https://donate.stripe.com/test_aFaeVdfzR9m1eSl06naIM06',
+        12: 'https://donate.stripe.com/test_7sYdR9bjBcydh0t4mDaIM07',
+        25: 'https://donate.stripe.com/test_6oU6oH4Vd55LdOh06naIM08',
+        50: 'https://donate.stripe.com/test_8x2eVd0EX69P6lPaL1aIM09',
+        100: 'https://donate.stripe.com/test_eVq7sLcnFdChh0t9GXaIM0a',
+        250: 'https://donate.stripe.com/test_4gM14ncnFgOtdOh7yPaIM0b'
+      },
+      customOnce: 'https://donate.stripe.com/test_8x28wPevNfKp9y1bP5aIM0c'
+    };
+    const donationUrl = this.state.custom !== ''
+      ? donationLinks.customOnce
+      : (donationLinks[this.state.freq] || donationLinks.once)[this.state.amt];
 
     return {
       navItems,
@@ -656,12 +679,15 @@ class Component extends DCLogic {
       showQuiz: this.props.showQuiz ?? true,
       showTriggers: this.props.showTriggers ?? true,
       freqTabs, amounts,
-      setCustom: e => this.setState({ custom: e.target.value.replace(/[^0-9]/g, '') }),
-      donate: () => {},
+      setCustom: e => {
+        const v = e.target.value.replace(/[^0-9]/g, '');
+        this.setState({ custom: v, freq: v !== '' ? 'once' : this.state.freq });
+      },
+      donate: () => { if (donationUrl) window.open(donationUrl, '_blank', 'noopener'); },
       donateLabel: amt > 0
         ? (this.state.freq === 'monthly' ? 'Give £' + amt + ' a month' : 'Give £' + amt + ' now')
         : 'Choose an amount',
-      donateFootnote: 'Kwapong Health CIC · Community Interest Company no. 17271036',
+      donateFootnote: 'Kwapong Health CIC · Community Interest Company no. 17271036 · Test mode — no real charge will be made.',
 
       objects: [
         { letter: '1', title: 'Practical support', bg: '#FFD9DE', body: 'Advice, comfort packs and help with hospital transport for young people and the families caring for them.' },
