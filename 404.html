@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Redirecting…</title>
+<script>
+(function () {
+  // GitHub Pages has no server-side rewrite: a direct hit or refresh on a deep
+  // route (e.g. /sickle-cell-aware/donate) 404s because no such file exists.
+  // Stash the intended route, bounce back to the real index.html, and let the
+  // app's own router (see the data-dc-script in Sickle Cell Aware.dc.html)
+  // restore it from sessionStorage on load.
+  var SUFFIX_ROUTES = {
+    '/about-sickle-cell': 'about',
+    '/know-your-trait': 'trait',
+    '/donate': 'donate',
+    '/about-us': 'org',
+    '/contact': 'contact'
+  };
+  var path = window.location.pathname.replace(/\/$/, '');
+  var suffix = Object.keys(SUFFIX_ROUTES).find(function (s) { return path.slice(-s.length) === s; });
+  var base = suffix ? path.slice(0, path.length - suffix.length) : path;
+  try { sessionStorage.setItem('sca_route', suffix ? SUFFIX_ROUTES[suffix] : 'home'); } catch (e) {}
+  window.location.replace((base || '/') + window.location.search + window.location.hash);
+})();
+</script>
+</head>
+<body></body>
+</html>

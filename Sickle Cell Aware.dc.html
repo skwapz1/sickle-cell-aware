@@ -454,12 +454,51 @@
 
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showQuiz&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Homepage&quot;},&quot;showTriggers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;About sickle cell&quot;}}">
+const ROUTE_SUFFIXES = {
+  home: '/', about: '/about-sickle-cell', trait: '/know-your-trait',
+  donate: '/donate', org: '/about-us', contact: '/contact'
+};
+const SUFFIX_ROUTES = Object.fromEntries(Object.entries(ROUTE_SUFFIXES).map(([k, v]) => [v, k]));
+// GitHub Pages serves this repo under /sickle-cell-aware/, Render serves it at /.
+// Detect which by resolving support.js's own script tag rather than hardcoding either.
+function detectBase() {
+  const s = document.querySelector('script[src$="support.js"]');
+  if (!s) return '';
+  return new URL(s.src, window.location.href).pathname.replace(/support\.js$/, '').replace(/\/$/, '');
+}
+const BASE = detectBase();
+function pageUrl(p) {
+  const suffix = ROUTE_SUFFIXES[p] || '/';
+  return suffix === '/' ? (BASE || '/') : BASE + suffix;
+}
+function currentRoute() {
+  let path = window.location.pathname;
+  if (BASE && path.startsWith(BASE)) path = path.slice(BASE.length) || '/';
+  path = path.replace(/\/$/, '') || '/';
+  return SUFFIX_ROUTES[path] || 'home';
+}
+
 class Component extends DCLogic {
   state = { page: 'home', qi: 0, picked: null, open: {}, freq: 'monthly', amt: 12, custom: '', sent: false, pA: 'AS', pB: 'AS' };
 
-  componentDidMount() { this.observe(); }
+  componentDidMount() {
+    this.observe();
+    // 404.html (GitHub Pages fallback for a direct hit on a deep route) stashes the
+    // intended route here before bouncing back to the real index.html.
+    let stashed = null;
+    try { stashed = sessionStorage.getItem('sca_route'); sessionStorage.removeItem('sca_route'); } catch (e) {}
+    const initial = stashed || currentRoute();
+    if (initial !== this.state.page) this.setState({ page: initial });
+    window.history.replaceState({ page: initial }, '', pageUrl(initial));
+    window.addEventListener('popstate', this.handlePopState);
+  }
   componentDidUpdate(pp, ps) { if (ps.page !== this.state.page) { window.scrollTo(0, 0); this.observe(); } }
-  componentWillUnmount() { if (this._io) this._io.disconnect(); }
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    window.removeEventListener('popstate', this.handlePopState);
+  }
+
+  handlePopState = () => { this.setState({ page: currentRoute() }); };
 
   observe() {
     if (this._io) this._io.disconnect();
@@ -472,7 +511,13 @@ class Component extends DCLogic {
     this._io = io;
   }
 
-  go(p) { return () => this.setState({ page: p, sent: false }); }
+  go(p) {
+    return () => {
+      const url = pageUrl(p);
+      if (window.location.pathname !== url) window.history.pushState({ page: p }, '', url);
+      this.setState({ page: p, sent: false });
+    };
+  }
 
   get quiz() {
     return [
