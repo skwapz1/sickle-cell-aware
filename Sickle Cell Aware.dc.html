@@ -95,7 +95,7 @@ window.__resources = {
         <div style="animation: rise .7s cubic-bezier(.2,.8,.2,1) both;">
           <div style="display: inline-flex; align-items: center; gap: 9px; background: #FFB627; border: 2px solid #2A1220; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 700; margin-bottom: 24px;">
             <span style="width: 8px; height: 8px; border-radius: 50%; background: #D6273F;"></span>
-            1 in 4 people of African heritage carry the trait
+            Anyone can carry sickle cell trait. Testing is free on the NHS
           </div>
           <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(40px, 7.4vw, 76px); line-height: .98; letter-spacing: -.035em; margin: 0 0 22px;">
             Sickle cell,<br />explained like<br />a <span style="color: #D6273F; position: relative;">human<span style="position: absolute; left: 0; right: 0; bottom: 6px; height: 12px; background: #FFB627; z-index: -1; border-radius: 3px;"></span></span> would.
@@ -140,7 +140,7 @@ window.__resources = {
       <div style="max-width: 1240px; margin: 0 auto;">
         <div data-reveal="1" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); align-items: end; gap: 16px 32px; margin-bottom: 40px;">
           <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 4.8vw, 46px); letter-spacing: -.03em; margin: 0; max-width: 620px; line-height: 1.05;">Myth or fact?</h2>
-          <p style="margin: 0; font-size: 16px; opacity: .7; max-width: 300px;">Half of what people "know" about sickle cell is wrong. Let's fix that.</p>
+          <p style="margin: 0; font-size: 16px; opacity: .7; max-width: 300px;">Plenty of what people "know" about sickle cell is wrong. Let's fix that.</p>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(262px, 100%), 1fr)); gap: 20px;">
           <sc-for list="{{ myths }}" as="m" hint-placeholder-count="3">
@@ -160,7 +160,7 @@ window.__resources = {
         <div style="color: #FFF6EC;">
           <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .95; margin-bottom: 14px;">2 minute quiz</div>
           <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 4.6vw, 44px); line-height: 1.02; letter-spacing: -.03em; margin: 0 0 16px;">Do you know your trait?</h2>
-          <p style="font-size: 17.5px; line-height: 1.55; margin: 0 0 26px; opacity: .97; text-wrap: pretty;">If both parents carry sickle cell trait, there's a 1 in 4 chance their baby will be born with sickle cell disease. Most carriers have no idea.</p>
+          <p style="font-size: 17.5px; line-height: 1.55; margin: 0 0 26px; opacity: .97; text-wrap: pretty;">If both parents carry sickle cell trait, there's a 1 in 4 chance their baby will be born with sickle cell disease. Many carriers never find out.</p>
           <a href="{{ hrefTrait }}" onClick="{{ goTrait }}" style="text-decoration: none; cursor: pointer; display: inline-block; background: #FFB627; color: #2A1220; font-weight: 700; font-size: 15.5px; padding: 15px 26px; border-radius: 999px; border: 2px solid #2A1220;">Try the inheritance calculator</a>
         </div>
         <div style="background: #FFF6EC; border: 2.5px solid #2A1220; border-radius: 26px; padding: clamp(22px, 3vw, 34px);">
@@ -208,6 +208,7 @@ window.__resources = {
           </div>
         </sc-for>
       </div>
+      <p style="max-width: 1240px; margin: 22px auto 0; font-size: 13.5px; line-height: 1.6; opacity: .78;">Sources: <a href="https://www.england.nhs.uk/2025/01/revolutionary-gene-editing-therapy-for-sickle-cell/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">NHS England, 31 January 2025</a> (people living with sickle cell disease in England and new cases a year). The NHS website on <a href="https://www.nhs.uk/conditions/sickle-cell-disease/carriers/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">sickle cell carriers</a> and <a href="https://www.nhs.uk/pregnancy/your-pregnancy-care/screening-for-sickle-cell-and-thalassaemia/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">screening</a> (who can carry the trait, carrier health, inheritance odds and free testing). <a href="https://www.nice.org.uk/guidance/qs58/chapter/quality-statement-1-timely-assessment-and-analgesia" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">National Institute for Health and Care Excellence (NICE), Sickle cell disease quality standard QS58</a> (pain relief within 30 minutes of arriving at hospital).</p>
     </section>
   </div>
   </sc-if>
@@ -562,8 +563,8 @@ const QUIZ_POOL = [
     opts: ['Yes, it causes regular pain crises', 'No, most carriers are healthy', 'Yes, but only in winter'], correct: 1,
     why: 'Right. Most people with the trait are healthy and have no symptoms, but they can pass the gene on to their children.' },
   { q: 'Which family backgrounds is sickle cell most common in?',
-    opts: ['Only Northern European', 'African and Caribbean, and also Middle Eastern, Mediterranean and South Asian', 'Only East Asian'], correct: 1,
-    why: 'Yes. It is most common in people with African or Caribbean family backgrounds, and is found in other families too. Anyone can ask to be tested.' },
+    opts: ['Only Northern European', 'African and Caribbean, and also Mediterranean, Middle Eastern and South and Southeast Asian', 'Only East Asian'], correct: 1,
+    why: 'Yes. The NHS says it is most common in people with African or Caribbean family backgrounds, and more likely if your family is from the Mediterranean, the Middle East, or south and southeast Asia. Anyone can ask to be tested.' },
   { q: 'What is a sickle cell crisis?',
     opts: ['A sudden episode of severe pain when sickle-shaped cells block small blood vessels', 'A panic attack caused by stress', 'A type of blood test result'], correct: 0,
     why: 'Yes. Sickle-shaped cells can get stuck in small blood vessels, causing sudden, severe pain that needs prompt medical attention.' },
@@ -720,7 +721,7 @@ class Component extends DCLogic {
     const qRestart = () => this.setState({ deck: buildDeck(), qi: 0, picked: null, score: 0, quizDone: false });
     const score = this.state.score;
     const qResultNote = score === total
-      ? 'Full marks. Share what you know: most carriers have no idea they carry the trait.'
+      ? 'Full marks. Share what you know: many carriers never find out they carry the trait.'
       : 'Sickle cell is easy to get wrong when nobody ever explains it. Have another go, or read the basics on our About sickle cell page.';
 
     const geno = this.genotypes();
@@ -810,9 +811,9 @@ class Component extends DCLogic {
       isPrivacy: p === 'privacy',
 
       myths: [
-        { chip: 'Myth', text: 'Sickle cell only affects Black people.', body: 'It is most common in African and Caribbean heritage, but also affects South Asian, Middle Eastern and Mediterranean families.', chipBg: '#FFB627', chipFg: '#2A1220' },
-        { chip: 'Fact', text: 'A crisis is genuine, severe pain.', body: 'Sickled cells block blood vessels. The pain is severe, and it is too often disbelieved in A&E.', chipBg: '#D6273F', chipFg: '#FFF6EC' },
-        { chip: 'Myth', text: 'Carrying the trait means you are ill.', body: 'Thousands of people carry sickle cell trait with no symptoms at all. It matters most when planning a family.', chipBg: '#FFB627', chipFg: '#2A1220' }
+        { chip: 'Myth', text: 'Sickle cell only affects Black people.', body: 'Anyone can be a carrier, but the NHS says it is more likely if your family background is African, Caribbean, Mediterranean, Middle Eastern, or South or Southeast Asian.', chipBg: '#FFB627', chipFg: '#2A1220' },
+        { chip: 'Fact', text: 'A crisis is genuine, severe pain.', body: 'Sickled cells block blood vessels and the pain is severe. NICE says people arriving at hospital in a sickle cell pain crisis should have pain relief within 30 minutes.', chipBg: '#D6273F', chipFg: '#FFF6EC' },
+        { chip: 'Myth', text: 'Carrying the trait means you are ill.', body: 'The NHS says people who carry the trait can lead a completely normal and healthy life. It matters most when planning a family.', chipBg: '#FFB627', chipFg: '#2A1220' }
       ],
       qActive: !this.state.quizDone, qDone: this.state.quizDone,
       qNum: this.state.qi + 1, qTotal: total,
@@ -825,9 +826,9 @@ class Component extends DCLogic {
       qFeedbackPad: picked === null ? '0' : '14px 16px',
 
       support: [
-        { stat: '1 in 4', title: 'Trait odds', body: 'When both parents carry the trait, every pregnancy carries a 1 in 4 chance.', bg: '#FFE3C7' },
-        { stat: '17,000+', title: 'Living with it in the UK', body: 'And around 250 babies born with a sickle cell disorder each year.', bg: '#D8F3EF' },
-        { stat: 'Free', title: 'NHS trait testing', body: 'Ask your GP for a haemoglobinopathy screen. One blood sample.', bg: '#FFD9DE' },
+        { stat: '1 in 4', title: 'Trait odds', body: 'When both parents carry the trait, every pregnancy carries a 1 in 4 chance of sickle cell disease (NHS).', bg: '#FFE3C7' },
+        { stat: '15,000', title: 'Living with it in England', body: 'Around 15,000 people, with about 250 new cases a year (NHS England).', bg: '#D8F3EF' },
+        { stat: 'Free', title: 'NHS trait testing', body: 'Ask your GP or a sickle cell and thalassaemia centre for a free blood test (NHS).', bg: '#FFD9DE' },
         { stat: 'Soon', title: 'Community support', body: 'We are working towards peer support for young people and families. If you would like to help shape it, get in touch.', bg: '#FFF0B8' }
       ],
 
@@ -845,11 +846,11 @@ class Component extends DCLogic {
       ],
       faqs: [
         { q: 'Is sickle cell contagious?', a: 'No. It is entirely genetic, passed from parents to child through haemoglobin genes. You cannot catch it from someone, give it to someone, or develop it later in life. A child inherits one haemoglobin gene from each parent: two sickle genes means sickle cell disease, one means they carry the trait and are healthy. Nothing either parent did caused it.', link: 'https://www.nhs.uk/conditions/sickle-cell-disease/causes/', linkLabel: 'How sickle cell is inherited (NHS)' },
-        { q: 'Can it be cured?', a: 'For most people it is managed rather than cured, but that is changing. A stem cell transplant can be curative where a matched donor is available. Since January 2025 the NHS in England also offers a one-off gene-editing therapy, exa-cel (Casgevy), through a managed access scheme for people aged 12 and over with severe sickle cell who have no matched donor. In trials, most participants stopped having pain crises. It is not suitable or available for everyone, so speak to your specialist team about whether you are eligible.', link: 'https://www.england.nhs.uk/2025/01/revolutionary-gene-editing-therapy-for-sickle-cell/', linkLabel: 'Read the NHS England announcement' },
-        { q: 'Should my child be tested?', a: 'In the UK every newborn is offered blood spot screening at around five days old, and sickle cell is one of the conditions it looks for, so most children born here are already screened. If your child was born abroad, or you are unsure whether the result was ever explained to you, ask your GP. Older children and adults can be tested at any age with a single blood sample. It is worth doing before starting a family, because two carriers have a one in four chance of a child with sickle cell disease in every pregnancy.', link: 'https://www.nhs.uk/conditions/baby/newborn-screening/blood-spot-test/', linkLabel: 'About NHS newborn blood spot screening' },
-        { q: 'What should I do during a crisis?', a: 'Start early rather than waiting to see if it passes. Take your prescribed pain relief at the first sign, drink plenty of fluids, keep warm and rest. Many people manage milder crises at home with a written care plan agreed with their team. Go to hospital if the pain is not controlled, or straight away if there is a fever, chest pain, breathlessness, sudden weakness, severe headache or a change in vision. On arrival, say clearly that you have sickle cell disease and are in a pain crisis, and ask for your care plan to be followed. Sickle cell pain is frequently underestimated, so it is reasonable to be firm about the relief you normally need.', link: 'https://www.nhs.uk/conditions/sickle-cell-disease/', linkLabel: 'NHS overview of sickle cell disease' },
+        { q: 'Can it be cured?', a: 'For most people it is managed rather than cured, but that is changing. A stem cell transplant can be curative where a matched donor is available. Since January 2025 the NHS in England also offers a one-off gene-editing therapy, exa-cel (Casgevy), to people aged 12 and over who have recurrent sickle cell crises and would be suitable for a stem cell transplant but have no available donor. In the trial, researchers reported a \'functional cure\' in 96.6% of participants who received it. It is not suitable or available for everyone, so speak to your specialist team about whether you are eligible.', link: 'https://www.england.nhs.uk/2025/01/revolutionary-gene-editing-therapy-for-sickle-cell/', linkLabel: 'Read the NHS England announcement' },
+        { q: 'Should my child be tested?', a: 'In the UK every newborn is offered blood spot screening at around five days old, and sickle cell is one of the conditions it looks for, so most children born here are already screened. If your child was born abroad, or you are unsure whether the result was ever explained to you, ask your GP. Older children and adults can be tested at any age with a single blood sample. It is worth doing before starting a family, because two carriers have a one in four chance of a child with sickle cell disease in every pregnancy.', link: 'https://www.nhs.uk/baby/newborn-screening/blood-spot-test/', linkLabel: 'About NHS newborn blood spot screening' },
+        { q: 'What should I do during a crisis?', a: 'Start early rather than waiting to see if it passes. Take your prescribed pain relief at the first sign, drink plenty of fluids, keep warm and rest. Many people manage milder crises at home with a written care plan agreed with their team. Go to hospital if the pain is not controlled, or straight away if there is a fever, chest pain, breathlessness, sudden weakness, severe headache or a change in vision. On arrival, say clearly that you have sickle cell disease and are in a pain crisis, and ask for your care plan to be followed. NICE says people arriving at hospital with a painful sickle cell episode should be assessed and given appropriate pain relief within 30 minutes, so it is reasonable to ask for the relief you normally need.', link: 'https://www.nhs.uk/conditions/sickle-cell-disease/', linkLabel: 'NHS overview of sickle cell disease' },
         { q: 'How is it treated day to day?', a: 'Most care is about preventing crises rather than reacting to them. That usually means staying well hydrated, keeping warm, taking folic acid, keeping up with vaccinations and penicillin where prescribed, and attending annual review with a specialist team. Many people take hydroxyurea, a daily medicine that reduces how often crises happen. Some have regular blood transfusions. Children are offered scans to check the risk of stroke. None of this is optional extra: consistent routine care is what protects organs over a lifetime.', link: 'https://www.nhs.uk/conditions/sickle-cell-disease/treatment/', linkLabel: 'NHS guide to sickle cell treatment' },
-        { q: 'What should a school or employer know?', a: 'That sickle cell is a fluctuating condition, not a run of unexplained absences. Practical adjustments make a real difference: easy access to water and the toilet, staying warm, avoiding sudden temperature changes, rest after exertion, catching up on missed work without penalty, and flexibility around hospital appointments. In the UK, sickle cell disease is generally treated as a disability under the Equality Act 2010, so reasonable adjustments are a legal duty rather than a favour. As we grow, we hope to support schools and employers directly.', link: 'https://www.gov.uk/definition-of-disability-under-equality-act-2010', linkLabel: 'Disability under the Equality Act 2010' }
+        { q: 'What should a school or employer know?', a: 'That sickle cell is a fluctuating condition, not a run of unexplained absences. Practical adjustments make a real difference: easy access to water and the toilet, staying warm, avoiding sudden temperature changes, rest after exertion, catching up on missed work without penalty, and flexibility around hospital appointments. In the UK, sickle cell disease is generally treated as a disability under the Equality Act 2010, so reasonable adjustments are a legal duty rather than a favour. As we grow, we hope to support schools and employers directly.', link: 'https://www.gov.uk/definition-of-disability-under-equality-act-2010', linkLabel: 'Disability under the Equality Act 2010 (GOV.UK)' }
       ].map((f, i) => ({
         ...f,
         sign: this.state.open[i] ? '−' : '+',
