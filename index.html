@@ -52,7 +52,7 @@
   <div>
     <section style="position: relative; padding: clamp(40px, 5.4vw, 74px) clamp(18px, 3vw, 32px) clamp(52px, 7vw, 90px);">
       <div style="position: absolute; inset: 0; background: radial-gradient(600px 380px at 82% 22%, #FFE3C7 0%, rgba(255,227,199,0) 70%); pointer-events: none;"></div>
-      <div style="position: relative; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px 56px; align-items: center;">
+      <div style="position: relative; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 40px 56px; align-items: center;">
         <div style="animation: rise .7s cubic-bezier(.2,.8,.2,1) both;">
           <div style="display: inline-flex; align-items: center; gap: 9px; background: #FFB627; border: 2px solid #2A1220; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 700; margin-bottom: 24px;">
             <span style="width: 8px; height: 8px; border-radius: 50%; background: #D6273F;"></span>
@@ -62,7 +62,7 @@
             Sickle cell,<br />explained like<br />a <span style="color: #D6273F; position: relative;">human<span style="position: absolute; left: 0; right: 0; bottom: 6px; height: 12px; background: #FFB627; z-index: -1; border-radius: 3px;"></span></span> would.
           </h1>
           <p style="font-size: clamp(17px, 2vw, 19.5px); line-height: 1.55; max-width: 480px; margin: 0 0 32px; text-wrap: pretty; opacity: .82;">
-            Clear answers and practical support for young people living with sickle cell and the families beside them, in the UK and in Ghana. No jargon, no judgement.
+            Clear answers and practical support for young people living with sickle cell and the families beside them, across the UK. No jargon, no judgement.
           </p>
           <div style="display: flex; gap: 14px; flex-wrap: wrap;">
             <div onClick="{{ goTrait }}" style="cursor: pointer; background: #D6273F; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 17px 30px; border-radius: 999px; border: 2px solid #2A1220; box-shadow: 4px 4px 0 #2A1220;">Do you know your trait?</div>
@@ -106,11 +106,11 @@
 
     <section style="padding: clamp(52px, 7vw, 88px) clamp(18px, 3vw, 32px);">
       <div style="max-width: 1240px; margin: 0 auto;">
-        <div data-reveal="1" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items: end; gap: 16px 32px; margin-bottom: 40px;">
+        <div data-reveal="1" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); align-items: end; gap: 16px 32px; margin-bottom: 40px;">
           <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 4.8vw, 46px); letter-spacing: -.03em; margin: 0; max-width: 620px; line-height: 1.05;">Myth or fact?</h2>
           <p style="margin: 0; font-size: 16px; opacity: .7; max-width: 300px;">Half of what people "know" about sickle cell is wrong. Let's fix that.</p>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); gap: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(262px, 100%), 1fr)); gap: 20px;">
           <sc-for list="{{ myths }}" as="m" hint-placeholder-count="3">
             <div data-reveal="1" style="background: #FFFFFF; border: 2.5px solid #2A1220; border-radius: 26px; padding: 30px 28px; min-height: 216px; box-shadow: 5px 5px 0 #2A1220; display: flex; flex-direction: column; gap: 14px;">
               <div style="display: inline-flex; align-self: start; align-items: center; gap: 7px; padding: 6px 13px; border-radius: 999px; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; background: {{ m.chipBg }}; color: {{ m.chipFg }};">{{ m.chip }}</div>
@@ -124,7 +124,7 @@
 
     <sc-if value="{{ showQuiz }}" hint-placeholder-val="{{ true }}">
     <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
-      <div data-reveal="1" style="max-width: 1240px; margin: 0 auto; background: #0F9B8E; border: 2.5px solid #2A1220; border-radius: 38px; padding: clamp(26px, 4.2vw, 56px); display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 36px 48px; align-items: center; box-shadow: 8px 8px 0 #2A1220;">
+      <div data-reveal="1" style="max-width: 1240px; margin: 0 auto; background: #0F9B8E; border: 2.5px solid #2A1220; border-radius: 38px; padding: clamp(26px, 4.2vw, 56px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 36px 48px; align-items: center; box-shadow: 8px 8px 0 #2A1220;">
         <div style="color: #FFF6EC;">
           <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .8; margin-bottom: 14px;">2 minute quiz</div>
           <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 4.6vw, 44px); line-height: 1.02; letter-spacing: -.03em; margin: 0 0 16px;">Do you know your trait?</h2>
@@ -132,27 +132,42 @@
           <div onClick="{{ goTrait }}" style="cursor: pointer; display: inline-block; background: #FFB627; color: #2A1220; font-weight: 700; font-size: 15.5px; padding: 15px 26px; border-radius: 999px; border: 2px solid #2A1220;">Try the inheritance calculator</div>
         </div>
         <div style="background: #FFF6EC; border: 2.5px solid #2A1220; border-radius: 26px; padding: clamp(22px, 3vw, 34px);">
-          <div style="font-size: 14px; font-weight: 700; opacity: .55; margin-bottom: 10px;">Question {{ qNum }} of 3</div>
-          <div style="height: 9px; background: #E8D9C8; border-radius: 999px; overflow: hidden; margin-bottom: 24px;">
-            <div style="height: 100%; background: #D6273F; border-radius: 999px; transition: width .4s cubic-bezier(.2,.8,.2,1); width: {{ qPct }};"></div>
+          <sc-if value="{{ qActive }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="font-size: 14px; font-weight: 700; opacity: .55; margin-bottom: 10px;">Question {{ qNum }} of {{ qTotal }}</div>
+            <div style="height: 9px; background: #E8D9C8; border-radius: 999px; overflow: hidden; margin-bottom: 24px;">
+              <div style="height: 100%; background: #D6273F; border-radius: 999px; transition: width .4s cubic-bezier(.2,.8,.2,1); width: {{ qPct }};"></div>
+            </div>
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(21px, 5.6vw, 25px); line-height: 1.22; letter-spacing: -.02em; margin-bottom: 22px;">{{ qText }}</div>
+            <div style="display: flex; flex-direction: column; gap: 11px;">
+              <sc-for list="{{ qOptions }}" as="o" hint-placeholder-count="3">
+                <div onClick="{{ o.pick }}" style="cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; min-height: 52px; box-sizing: border-box; border: 2px solid #2A1220; border-radius: 16px; padding: 14px 18px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 12px; background: {{ o.bg }};">
+                  <span style="width: 22px; height: 22px; border-radius: 50%; border: 2px solid #2A1220; display: grid; place-items: center; font-size: 12px; font-weight: 800; flex: none; background: {{ o.dotBg }}; color: {{ o.dotFg }};">{{ o.mark }}</span>
+                  <span style="min-width: 0;">{{ o.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top: 20px; font-size: 15.5px; line-height: 1.5; min-height: 46px; border-radius: 14px; padding: {{ qFeedbackPad }}; background: {{ qFeedbackBg }};">{{ qFeedback }}</div>
+            <sc-if value="{{ qAnswered }}" hint-placeholder-val="{{ false }}">
+              <div onClick="{{ qNext }}" style="cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; margin-top: 16px; min-height: 52px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 14px 26px; border-radius: 999px;">{{ qNextLabel }}</div>
+            </sc-if>
           </div>
-          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.22; letter-spacing: -.02em; margin-bottom: 22px;">{{ qText }}</div>
-          <div style="display: flex; flex-direction: column; gap: 11px;">
-            <sc-for list="{{ qOptions }}" as="o" hint-placeholder-count="3">
-              <div onClick="{{ o.pick }}" style="cursor: pointer; border: 2px solid #2A1220; border-radius: 16px; padding: 15px 18px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 12px; background: {{ o.bg }};" style-hover="background: #FFE3C7;">
-                <span style="width: 22px; height: 22px; border-radius: 50%; border: 2px solid #2A1220; display: grid; place-items: center; font-size: 12px; font-weight: 800; flex: none; background: {{ o.dotBg }}; color: {{ o.dotFg }};">{{ o.mark }}</span>
-                {{ o.label }}
-              </div>
-            </sc-for>
+          </sc-if>
+          <sc-if value="{{ qDone }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="font-size: 14px; font-weight: 700; opacity: .55; margin-bottom: 10px;">Quiz complete</div>
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 8vw, 40px); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 14px;">You got {{ qScore }} of {{ qTotal }}</div>
+            <div style="font-size: 16px; line-height: 1.55; margin-bottom: 24px; opacity: .85;">{{ qResultNote }}</div>
+            <div onClick="{{ qRestart }}" style="cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; min-height: 52px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #D6273F; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 14px 26px; border-radius: 999px; border: 2px solid #2A1220;">Try new questions</div>
           </div>
-          <div style="margin-top: 20px; font-size: 15.5px; line-height: 1.5; min-height: 46px; border-radius: 14px; padding: {{ qFeedbackPad }}; background: {{ qFeedbackBg }};">{{ qFeedback }}</div>
+          </sc-if>
         </div>
       </div>
     </section>
     </sc-if>
 
     <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
-      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px;">
+      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr)); gap: 18px;">
         <sc-for list="{{ support }}" as="c" hint-placeholder-count="4">
           <div data-reveal="1" style="background: {{ c.bg }}; border: 2.5px solid #2A1220; border-radius: 24px; padding: 28px 24px; min-height: 200px; display: flex; flex-direction: column; gap: 10px;">
             <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(26px, 3.8vw, 34px); letter-spacing: -.03em;">{{ c.stat }}</div>
@@ -176,7 +191,7 @@
     </section>
 
     <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(44px, 6vw, 72px);">
-      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); gap: 20px;">
+      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(262px, 100%), 1fr)); gap: 20px;">
         <sc-for list="{{ aboutCards }}" as="c" hint-placeholder-count="3">
           <div data-reveal="1" style="background: {{ c.bg }}; border: 2.5px solid #2A1220; border-radius: 26px; padding: 32px 28px; box-shadow: 5px 5px 0 #2A1220;">
             <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.15; letter-spacing: -.02em; margin-bottom: 12px;">{{ c.title }}</div>
@@ -242,7 +257,7 @@
       <div data-reveal="1" style="max-width: 1240px; margin: 0 auto; background: #FFFFFF; border: 2.5px solid #2A1220; border-radius: 34px; padding: clamp(26px, 3.8vw, 48px); box-shadow: 8px 8px 0 #2A1220;">
         <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(27px, 4vw, 36px); letter-spacing: -.03em; margin: 0 0 8px;">Inheritance calculator</h2>
         <p style="font-size: 16.5px; opacity: .74; margin: 0 0 34px;">Pick what each parent carries to see the odds for each pregnancy.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 38px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 30px; margin-bottom: 38px;">
           <sc-for list="{{ parents }}" as="p" hint-placeholder-count="2">
             <div>
               <div style="font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .6; margin-bottom: 12px;">{{ p.label }}</div>
@@ -259,7 +274,7 @@
         </div>
         <div style="border-top: 2px solid #2A1220; padding-top: 34px;">
           <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; margin-bottom: 20px;">Odds for each pregnancy</div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); gap: 16px; margin-bottom: 22px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(262px, 100%), 1fr)); gap: 16px; margin-bottom: 22px;">
             <sc-for list="{{ outcomes }}" as="o" hint-placeholder-count="3">
               <div style="background: {{ o.bg }}; border: 2.5px solid #2A1220; border-radius: 22px; padding: 26px 24px;">
                 <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 4.6vw, 44px); letter-spacing: -.03em; line-height: 1; margin-bottom: 10px;">{{ o.pct }}</div>
@@ -274,7 +289,7 @@
     </section>
 
     <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
-      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); gap: 20px;">
+      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(262px, 100%), 1fr)); gap: 20px;">
         <sc-for list="{{ testSteps }}" as="s" hint-placeholder-count="3">
           <div data-reveal="1" style="background: {{ s.bg }}; border: 2.5px solid #2A1220; border-radius: 26px; padding: 32px 28px;">
             <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; opacity: .6; margin-bottom: 14px;">Step {{ s.n }}</div>
@@ -328,14 +343,14 @@
       <div style="max-width: 900px; margin: 0 auto;">
         <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #D6273F; margin-bottom: 16px;">About us</div>
         <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 6.4vw, 62px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 22px;">Kwapong Health CIC</h1>
-        <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.55; opacity: .82; margin: 0; text-wrap: pretty;">A Community Interest Company supporting young people with sickle cell and their families, in the UK and Ghana. As a CIC our surplus goes back into the work, never to shareholders.</p>
+        <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.55; opacity: .82; margin: 0; text-wrap: pretty;">A Community Interest Company supporting young people with sickle cell and their families, across the UK. As a CIC our surplus goes back into the work, never to shareholders.</p>
       </div>
     </section>
 
     <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(44px, 6vw, 72px);">
       <div style="max-width: 1240px; margin: 0 auto;">
         <h2 data-reveal="1" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(28px, 4.2vw, 40px); letter-spacing: -.03em; margin: 0 0 30px;">What we do</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); gap: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(262px, 100%), 1fr)); gap: 20px;">
           <sc-for list="{{ objects }}" as="o" hint-placeholder-count="3">
             <div data-reveal="1" style="background: {{ o.bg }}; border: 2.5px solid #2A1220; border-radius: 26px; padding: 32px 28px; box-shadow: 5px 5px 0 #2A1220; display: flex; flex-direction: column; gap: 14px;">
               <div style="display: inline-flex; align-self: start; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: #2A1220; color: #FFF6EC; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px;">{{ o.letter }}</div>
@@ -371,7 +386,7 @@
   <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
   <div>
     <section style="padding: clamp(38px, 5vw, 64px) clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
-      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 36px 52px; align-items: start;">
+      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 36px 52px; align-items: start;">
         <div>
           <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #D6273F; margin-bottom: 16px;">Contact</div>
           <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 6vw, 58px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 20px;">Say hello, ask anything</h1>
@@ -413,7 +428,7 @@
   </div>
 
   <footer style="background: #2A1220; color: #FFF6EC; padding: clamp(38px, 5vw, 56px) clamp(18px, 3vw, 32px) 40px;">
-    <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 32px;">
+    <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(175px, 100%), 1fr)); gap: 32px;">
       <div>
         <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.02em; margin-bottom: 10px;">Sickle Cell Aware</div>
         <div style="font-size: 15px; line-height: 1.6; opacity: .72;">The sickle cell awareness and support programme of Kwapong Health CIC, a Community Interest Company.</div>
@@ -459,8 +474,45 @@ function currentRoute() {
   return SUFFIX_ROUTES[path] || 'home';
 }
 
+const QUIZ_POOL = [
+  { q: 'If both parents carry sickle cell trait, what are the odds their baby has sickle cell disease?',
+    opts: ['1 in 2', '1 in 4', 'No chance at all'], correct: 1,
+    why: 'Correct. A 1 in 4 chance every pregnancy, and a 1 in 2 chance the baby carries the trait.' },
+  { q: 'Can you catch sickle cell from someone else?',
+    opts: ['Yes, through blood', 'Only in childhood', 'No, it is inherited'], correct: 2,
+    why: 'Right. Sickle cell is genetic. You are born with it and it can only be passed on through genes.' },
+  { q: 'Where can you get a free sickle cell trait test in the UK?',
+    opts: ['Your GP or a sickle cell centre', 'Only private clinics', 'You cannot be tested'], correct: 0,
+    why: 'Yes. Ask your GP for a haemoglobinopathy screen. Free on the NHS, one blood sample.' },
+  { q: 'Who is offered sickle cell screening as part of routine NHS care in England?',
+    opts: ['Every newborn baby, through the heel prick test', 'Only adults over 40', 'Nobody, you have to ask a private clinic'], correct: 0,
+    why: 'Yes. Every baby in England is offered screening through the newborn blood spot (heel prick) test, and pregnant women are offered screening too.' },
+  { q: 'Does having sickle cell trait usually mean you will be unwell?',
+    opts: ['Yes, it causes regular pain crises', 'No, most carriers are healthy', 'Yes, but only in winter'], correct: 1,
+    why: 'Right. Most people with the trait are healthy and have no symptoms, but they can pass the gene on to their children.' },
+  { q: 'Which family backgrounds is sickle cell most common in?',
+    opts: ['Only Northern European', 'African and Caribbean, and also Middle Eastern, Mediterranean and South Asian', 'Only East Asian'], correct: 1,
+    why: 'Yes. It is most common in people with African or Caribbean family backgrounds, and is found in other families too. Anyone can ask to be tested.' }
+];
+const QUIZ_LENGTH = 3;
+function shuffle(list) {
+  const a = list.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+// A fresh random pick of questions, each with its answers in a random order.
+function buildDeck() {
+  return shuffle(QUIZ_POOL).slice(0, QUIZ_LENGTH).map(q => {
+    const order = shuffle(q.opts.map((_, i) => i));
+    return { q: q.q, why: q.why, opts: order.map(i => q.opts[i]), correct: order.indexOf(q.correct) };
+  });
+}
+
 class Component extends DCLogic {
-  state = { page: 'home', qi: 0, picked: null, open: {}, freq: 'monthly', amt: 12, sent: false, pA: 'AS', pB: 'AS' };
+  state = { page: 'home', deck: buildDeck(), qi: 0, picked: null, score: 0, quizDone: false, open: {}, freq: 'monthly', amt: 12, sent: false, pA: 'AS', pB: 'AS' };
 
   componentDidMount() {
     this.observe();
@@ -500,20 +552,6 @@ class Component extends DCLogic {
     };
   }
 
-  get quiz() {
-    return [
-      { q: 'If both parents carry sickle cell trait, what are the odds their baby has sickle cell disease?',
-        opts: ['1 in 2', '1 in 4', 'No chance at all'], correct: 1,
-        why: 'Correct. A 1 in 4 chance every pregnancy, and a 1 in 2 chance the baby carries the trait.' },
-      { q: 'Can you catch sickle cell from someone else?',
-        opts: ['Yes, through blood', 'Only in childhood', 'No, it is inherited'], correct: 2,
-        why: 'Right. Sickle cell is genetic. You are born with it and it can only be passed on through genes.' },
-      { q: 'Where can you get a free sickle cell trait test in the UK?',
-        opts: ['Your GP or a sickle cell centre', 'Only private clinics', 'You cannot be tested'], correct: 0,
-        why: 'Yes. Ask your GP for a haemoglobinopathy screen. Free on the NHS, one blood sample.' }
-    ];
-  }
-
   genotypes() {
     return [
       { code: 'AA', name: 'No sickle gene' },
@@ -546,7 +584,8 @@ class Component extends DCLogic {
       underline: p === n.key ? '#D6273F' : 'transparent'
     }));
 
-    const q = this.quiz[this.state.qi];
+    const total = this.state.deck.length;
+    const q = this.state.deck[this.state.qi];
     const picked = this.state.picked;
     const qOptions = q.opts.map((label, i) => {
       const isPicked = picked === i, right = i === q.correct;
@@ -555,10 +594,17 @@ class Component extends DCLogic {
       if (picked !== null && isPicked && !right) { bg = '#FFE3E6'; dotBg = '#D6273F'; dotFg = '#FFF6EC'; mark = '✕'; }
       return { label, bg, dotBg, dotFg, mark, pick: () => {
         if (this.state.picked !== null) return;
-        this.setState({ picked: i });
-        setTimeout(() => this.setState(s => ({ qi: (s.qi + 1) % 3, picked: null })), 2500);
+        this.setState(s => ({ picked: i, score: s.score + (i === q.correct ? 1 : 0) }));
       } };
     });
+    const qNext = () => this.setState(s => s.qi + 1 >= s.deck.length
+      ? { quizDone: true }
+      : { qi: s.qi + 1, picked: null });
+    const qRestart = () => this.setState({ deck: buildDeck(), qi: 0, picked: null, score: 0, quizDone: false });
+    const score = this.state.score;
+    const qResultNote = score === total
+      ? 'Full marks. Share what you know: most carriers have no idea they carry the trait.'
+      : 'Sickle cell is easy to get wrong when nobody ever explains it. Have another go, or read the basics on our About sickle cell page.';
 
     const geno = this.genotypes();
     const parents = [
@@ -658,8 +704,11 @@ class Component extends DCLogic {
         { chip: 'Fact', text: 'A crisis is genuine, severe pain.', body: 'Sickled cells block blood vessels. The pain is severe, and it is too often disbelieved in A&E.', chipBg: '#D6273F', chipFg: '#FFF6EC' },
         { chip: 'Myth', text: 'Carrying the trait means you are ill.', body: 'Thousands of people carry sickle cell trait with no symptoms at all. It matters most when planning a family.', chipBg: '#FFB627', chipFg: '#2A1220' }
       ],
-      qNum: this.state.qi + 1,
-      qPct: ((this.state.qi + (picked !== null ? 1 : 0)) / 3 * 100) + '%',
+      qActive: !this.state.quizDone, qDone: this.state.quizDone,
+      qNum: this.state.qi + 1, qTotal: total,
+      qPct: ((this.state.qi + (picked !== null ? 1 : 0)) / total * 100) + '%',
+      qAnswered: picked !== null, qNext, qRestart, qScore: score, qResultNote,
+      qNextLabel: this.state.qi + 1 >= total ? 'See my score' : 'Next question',
       qText: q.q, qOptions,
       qFeedback: picked === null ? '' : q.why,
       qFeedbackBg: picked === null ? 'transparent' : '#FFE3C7',
@@ -728,11 +777,11 @@ class Component extends DCLogic {
         { label: 'Legal form', value: 'Community Interest Company' },
         { label: 'Company number', value: '17271036' },
         { label: 'Incorporated', value: '9 June 2026' },
-        { label: 'Where we work', value: 'United Kingdom & Ghana' }
+        { label: 'Where we work', value: 'United Kingdom' }
       ],
       contactRows: [
         { label: 'Email', value: 'hello@kwaponghealth.org' },
-        { label: 'Where we work', value: 'United Kingdom & Ghana' },
+        { label: 'Where we work', value: 'United Kingdom' },
         { label: 'Company number', value: '17271036' }
       ],
       sendMessage: () => this.setState({ sent: true }),
