@@ -208,7 +208,7 @@ window.__resources = {
           </div>
         </sc-for>
       </div>
-      <p style="max-width: 1240px; margin: 22px auto 0; font-size: 13.5px; line-height: 1.6; opacity: .78;">Sources: <a href="https://www.england.nhs.uk/2025/01/revolutionary-gene-editing-therapy-for-sickle-cell/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">NHS England, 31 January 2025</a> (people living with sickle cell disease in England and new cases a year). The NHS website on <a href="https://www.nhs.uk/conditions/sickle-cell-disease/carriers/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">sickle cell carriers</a> and <a href="https://www.nhs.uk/pregnancy/your-pregnancy-care/screening-for-sickle-cell-and-thalassaemia/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">screening</a> (who can carry the trait, carrier health, inheritance odds and free testing). <a href="https://www.nice.org.uk/guidance/qs58/chapter/quality-statement-1-timely-assessment-and-analgesia" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">National Institute for Health and Care Excellence (NICE), Sickle cell disease quality standard QS58</a> (pain relief within 30 minutes of arriving at hospital).</p>
+      <p style="max-width: 1240px; margin: 22px auto 0; font-size: 13.5px; line-height: 1.6; opacity: .78;">Sources: the NHS website on <a href="https://www.nhs.uk/conditions/sickle-cell-disease/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">sickle cell disease</a>, <a href="https://www.nhs.uk/conditions/sickle-cell-disease/symptoms/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">symptoms</a>, <a href="https://www.nhs.uk/conditions/sickle-cell-disease/causes/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">causes</a>, <a href="https://www.nhs.uk/conditions/sickle-cell-disease/treatment/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">treatment</a>, <a href="https://www.nhs.uk/conditions/sickle-cell-disease/carriers/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">carriers</a>, <a href="https://www.nhs.uk/pregnancy/your-pregnancy-care/screening-for-sickle-cell-and-thalassaemia/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">screening in pregnancy</a> and the <a href="https://www.nhs.uk/baby/newborn-screening/blood-spot-test/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">newborn blood spot test</a>. NHS England: <a href="https://www.england.nhs.uk/2025/01/revolutionary-gene-editing-therapy-for-sickle-cell/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">gene-editing therapy announcement, 31 January 2025</a> (people living with sickle cell disease in England, new cases a year) and <a href="https://www.england.nhs.uk/blog/understanding-sickle-cell-trait-why-knowledge-matters/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Understanding sickle cell trait, December 2025</a>. <a href="https://www.nice.org.uk/guidance/qs58/chapter/quality-statement-1-timely-assessment-and-analgesia" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">National Institute for Health and Care Excellence (NICE), Sickle cell disease quality standard QS58</a> (pain relief within 30 minutes of arriving at hospital).</p>
     </section>
   </div>
   </sc-if>
@@ -610,8 +610,49 @@ function buildDeck() {
   });
 }
 
+// Myths and facts. Every entry names its source and is worded to match it.
+const MYTH_POOL = [
+  { chip: 'Myth', text: 'Sickle cell only affects Black people.', body: 'Anyone can be a carrier, but the NHS says it is more likely if your family background is African, Caribbean, Mediterranean, Middle Eastern, or South or Southeast Asian.' },
+  { chip: 'Myth', text: 'You can catch sickle cell from someone who has it.', body: 'The NHS is clear: you cannot catch it. Sickle cell disease is caused by inheriting the sickle cell gene.' },
+  { chip: 'Myth', text: 'Carrying the trait means you are ill.', body: 'The NHS says people who carry the trait can lead a completely normal and healthy life. It matters most when planning a family.' },
+  { chip: 'Myth', text: 'Sickle cell trait can turn into sickle cell disease.', body: 'The NHS says you are not at risk of developing sickle cell disease if you carry the sickle cell trait.' },
+  { chip: 'Myth', text: 'Only pregnant women can be tested.', body: 'Screening is offered to everyone who is pregnant, but the NHS says anyone can ask for a free blood test to find out if they are a carrier, at any point.' },
+  { chip: 'Myth', text: 'One parent with the trait means the child will have the disease.', body: 'The NHS says a child needs to inherit the sickle cell gene from both parents to have the disease. It can only happen if the other parent also carries the gene or has the disease.' },
+  { chip: 'Myth', text: 'If your first child is unaffected, the next one will be too.', body: 'When both parents carry the gene, the NHS gives the odds for each child: 1 in 4 for the disease, 1 in 2 for being a carrier and 1 in 4 for neither. An earlier child does not change them.' },
+  { chip: 'Myth', text: 'There is no cure.', body: 'The NHS says a stem cell or bone marrow transplant can cure sickle cell disease, though it is not done often because of the risks. NHS England has also offered gene therapy to some people since January 2025.' },
+  { chip: 'Myth', text: 'A sickle cell crisis always has an obvious cause.', body: 'The NHS says it is not always clear what triggers pain, though weather, dehydration, stress or strenuous exercise can sometimes be behind it.' },
+  { chip: 'Myth', text: 'Everyone with sickle cell has the same symptoms.', body: 'The NHS says some people may have a painful episode every week, while others have less than one a year.' },
+  { chip: 'Myth', text: 'Sickle cell is rare in the UK.', body: 'NHS England says sickle cell disease is the most common inherited condition in the UK, yet it is generally misunderstood by the public.' },
+  { chip: 'Fact', text: 'A crisis is genuine, severe pain.', body: 'The NHS says sickle cell crises are one of the most common and distressing symptoms. The pain can be severe and last for several days or weeks.' },
+  { chip: 'Fact', text: 'Hospital pain relief should not be delayed.', body: 'NICE says people who arrive at hospital with a painful sickle cell episode should have a pain assessment and appropriate pain relief within 30 minutes.' },
+  { chip: 'Fact', text: 'Testing for the trait is free on the NHS.', body: 'The NHS says you can ask your GP or nearest sickle cell and thalassaemia centre for a free blood test, and they will talk through the result with you.' },
+  { chip: 'Fact', text: 'Newborn babies are screened for sickle cell.', body: 'The NHS recommends the newborn blood spot test for all babies. It usually happens at 5 days old and checks for sickle cell disease among 10 conditions.' },
+  { chip: 'Fact', text: 'Screening in pregnancy is your choice.', body: 'The NHS says screening for sickle cell and thalassaemia is offered to everyone who is pregnant, but it is your choice whether to have it.' },
+  { chip: 'Fact', text: 'Sickle cell disease is lifelong.', body: 'The NHS describes it as a serious and lifelong health condition that affects the red blood cells.' },
+  { chip: 'Fact', text: 'Symptoms can start within months.', body: 'The NHS says symptoms can start from a few months of age, though many children have few or no symptoms if treatment starts early.' },
+  { chip: 'Fact', text: 'Water and warmth really help.', body: 'NHS advice includes drinking plenty of fluids to avoid dehydration, wearing warm clothing and avoiding sudden temperature changes.' },
+  { chip: 'Fact', text: 'Infections are a real risk, so daily antibiotics are common.', body: 'The NHS says sickle cell disease raises the risk of serious infections, and most people take a daily antibiotic, usually penicillin, often for life.' },
+  { chip: 'Fact', text: 'Extra vaccinations can be part of care.', body: 'The NHS says children should have their routine vaccinations, and possibly extra ones such as the annual flu vaccine and the hepatitis B vaccine.' },
+  { chip: 'Fact', text: 'Medicine can help with recurring pain.', body: 'The NHS says hydroxycarbamide (also called hydroxyurea) may be recommended for people who keep having painful episodes.' },
+  { chip: 'Fact', text: 'Tiredness can be part of it.', body: 'The NHS says anaemia is a symptom of sickle cell disease and can cause tiredness and shortness of breath.' },
+  { chip: 'Fact', text: 'Blood transfusions are part of care for some people.', body: 'The NHS says blood transfusions or hydroxycarbamide may be needed for complications such as stroke risk or acute chest syndrome.' },
+  { chip: 'Fact', text: 'The trait may protect against malaria.', body: 'NHS England says people with the trait have a degree of protection against a type of malaria, which helped ancient communities survive it.' },
+  { chip: 'Fact', text: 'Two carriers can have a child without the disease.', body: 'The NHS says when both parents carry the gene, there is a 1 in 4 chance a child inherits no sickle cell genes and a 1 in 2 chance they are a carrier.' }
+];
+const MYTH_COUNT = 3;
+// A fresh random set of three, always with at least one myth and one fact.
+function pickMyths() {
+  const all = shuffle(MYTH_POOL);
+  const myth = all.find(m => m.chip === 'Myth');
+  const fact = all.find(m => m.chip === 'Fact');
+  const rest = all.filter(m => m !== myth && m !== fact).slice(0, MYTH_COUNT - 2);
+  return shuffle([myth, fact, ...rest]).map(m => m.chip === 'Myth'
+    ? { ...m, chipBg: '#FFB627', chipFg: '#2A1220' }
+    : { ...m, chipBg: '#D6273F', chipFg: '#FFF6EC' });
+}
+
 class Component extends DCLogic {
-  state = { page: 'home', deck: buildDeck(), qi: 0, picked: null, score: 0, quizDone: false, open: {}, freq: 'monthly', amt: 12, pA: 'AS', pB: 'AS' };
+  state = { page: 'home', myths: pickMyths(), deck: buildDeck(), qi: 0, picked: null, score: 0, quizDone: false, open: {}, freq: 'monthly', amt: 12, pA: 'AS', pB: 'AS' };
 
   componentDidMount() {
     this.observe();
@@ -810,11 +851,7 @@ class Component extends DCLogic {
       hrefHome: pageUrl('home'), hrefDonate: pageUrl('donate'), hrefTrait: pageUrl('trait'), hrefPrivacy: pageUrl('privacy'),
       isPrivacy: p === 'privacy',
 
-      myths: [
-        { chip: 'Myth', text: 'Sickle cell only affects Black people.', body: 'Anyone can be a carrier, but the NHS says it is more likely if your family background is African, Caribbean, Mediterranean, Middle Eastern, or South or Southeast Asian.', chipBg: '#FFB627', chipFg: '#2A1220' },
-        { chip: 'Fact', text: 'A crisis is genuine, severe pain.', body: 'Sickled cells block blood vessels and the pain is severe. NICE says people arriving at hospital in a sickle cell pain crisis should have pain relief within 30 minutes.', chipBg: '#D6273F', chipFg: '#FFF6EC' },
-        { chip: 'Myth', text: 'Carrying the trait means you are ill.', body: 'The NHS says people who carry the trait can lead a completely normal and healthy life. It matters most when planning a family.', chipBg: '#FFB627', chipFg: '#2A1220' }
-      ],
+      myths: this.state.myths,
       qActive: !this.state.quizDone, qDone: this.state.quizDone,
       qNum: this.state.qi + 1, qTotal: total,
       qPct: ((this.state.qi + (picked !== null ? 1 : 0)) / total * 100) + '%',

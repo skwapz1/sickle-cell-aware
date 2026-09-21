@@ -6,7 +6,7 @@ A sickle cell awareness and support website for **Kwapong Health CIC** (Communit
 
 Home, About sickle cell, Know your trait, Donate, About us, Contact, Privacy — all client-side routed in a single file, with real per-page URLs via the History API (`/donate`, `/about-sickle-cell`, etc).
 
-Features: trait inheritance calculator, awareness quiz (3 random questions from a pool of 15, on the home page), expandable FAQ with NHS and gov.uk sources, and a donation flow (one-off/monthly, preset and custom amounts).
+Features: trait inheritance calculator, awareness quiz (3 random questions from a pool of 15, on the home page), a myth-or-fact section (3 random entries from a bank of 26, each sourced to the NHS, NHS England or NICE), expandable FAQ with NHS and gov.uk sources, and a donation flow (one-off/monthly, preset and custom amounts).
 
 ## Running it
 
