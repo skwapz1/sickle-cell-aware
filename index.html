@@ -1,17 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+// Self-host React so the site makes no third-party requests (see the privacy notice).
+// support.js looks these URLs up in window.__resources before falling back to unpkg.
+window.__resources = {
+  "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "./assets/vendor/react.production.min.js",
+  "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "./assets/vendor/react-dom.production.min.js"
+};
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<title>Sickle Cell Aware | Kwapong Health CIC</title>
+<meta name="description" content="Clear, honest answers about sickle cell for young people and families in the UK. Learn about sickle cell, check your trait, and support Kwapong Health CIC." />
+<meta name="theme-color" content="#FFF6EC" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:site_name" content="Sickle Cell Aware" />
+<meta property="og:title" content="Sickle Cell Aware | Kwapong Health CIC" />
+<meta property="og:description" content="Clear, honest answers about sickle cell for young people and families in the UK." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4a28 28 0 1 1-24.2 14.2A28 28 0 0 1 32 4z' fill='%23D6273F' stroke='%232A1220' stroke-width='4'/%3E%3Ccircle cx='24' cy='30' r='4' fill='%23FFF6EC'/%3E%3Ccircle cx='40' cy='30' r='4' fill='%23FFF6EC'/%3E%3C/svg%3E" />
+<link rel="preload" href="assets/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin="" />
+<link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin="" />
 <style>
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 400 800; font-display: swap;
+    src: url(assets/fonts/bricolage-latin-ext.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 400 800; font-display: swap;
+    src: url(assets/fonts/bricolage-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Outfit'; font-style: normal; font-weight: 400 700; font-display: swap;
+    src: url(assets/fonts/outfit-latin-ext.woff2) format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: 'Outfit'; font-style: normal; font-weight: 400 700; font-display: swap;
+    src: url(assets/fonts/outfit-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  button { font: inherit; color: inherit; text-align: left; margin: 0; padding: 0; background: none; border: 0; box-sizing: border-box; -webkit-appearance: none; appearance: none; cursor: pointer; }
+  a:focus-visible, button:focus-visible { outline: 3px solid #2A1220; outline-offset: 3px; border-radius: 6px; }
+  footer a:focus-visible { outline-color: #FFB627; }
+  .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .skip { position: absolute; left: 12px; top: -80px; z-index: 100; background: #2A1220; color: #FFF6EC; padding: 12px 18px; border-radius: 999px; font-weight: 700; }
+  .skip:focus { top: 12px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
   body { margin: 0; background: #FFF6EC; -webkit-font-smoothing: antialiased; }
   a { color: #D6273F; text-decoration: none; }
   a:hover { color: #2A1220; }
@@ -24,9 +61,11 @@
 </helmet>
 <div style="font-family: Outfit, system-ui, sans-serif; color: #2A1220; overflow-x: hidden;">
 
+  <a class="skip" href="#main">Skip to main content</a>
+
   <header style="position: sticky; top: 0; z-index: 60; background: rgba(255,246,236,.94); backdrop-filter: blur(10px); border-bottom: 2px solid #2A1220;">
     <div style="max-width: 1240px; margin: 0 auto; padding: 14px clamp(18px, 3vw, 32px); display: flex; align-items: center; gap: 14px 26px; flex-wrap: wrap;">
-      <div onClick="{{ goHome }}" style="cursor: pointer; display: flex; align-items: center; gap: 12px;">
+      <a href="{{ hrefHome }}" onClick="{{ goHome }}" style="text-decoration: none; color: inherit; cursor: pointer; display: flex; align-items: center; gap: 12px;">
         <div style="width: 40px; height: 40px; border-radius: 50% 50% 50% 8px; background: #D6273F; border: 2px solid #2A1220; display: grid; place-items: center; flex: none;">
           <div style="display: flex; gap: 5px;">
             <div style="width: 5px; height: 5px; border-radius: 50%; background: #FFF6EC;"></div>
@@ -35,18 +74,19 @@
         </div>
         <div style="line-height: 1;">
           <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -.02em;">Sickle Cell Aware</div>
-          <div style="font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .6; margin-top: 3px;">by Kwapong Health CIC</div>
+          <div style="font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .72; margin-top: 3px;">by Kwapong Health CIC</div>
         </div>
-      </div>
+      </a>
       <nav style="margin-left: auto; display: flex; align-items: center; gap: 10px 18px; flex-wrap: wrap; font-size: 14.5px; font-weight: 600;">
         <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
-          <div onClick="{{ n.go }}" style="cursor: pointer; padding-bottom: 3px; border-bottom: 2.5px solid {{ n.underline }}; color: {{ n.color }};">{{ n.label }}</div>
+          <a href="{{ n.href }}" onClick="{{ n.go }}" aria-current="{{ n.current }}" style="display: block; text-decoration: none; cursor: pointer; padding-bottom: 3px; border-bottom: 2.5px solid {{ n.underline }}; color: {{ n.color }};">{{ n.label }}</a>
         </sc-for>
-        <div onClick="{{ goDonate }}" style="cursor: pointer; background: #2A1220; color: #FFF6EC; padding: 11px 22px; border-radius: 999px; box-shadow: 3px 3px 0 #FFB627;">Donate</div>
+        <a href="{{ hrefDonate }}" onClick="{{ goDonate }}" style="display: block; text-decoration: none; cursor: pointer; background: #2A1220; color: #FFF6EC; padding: 11px 22px; border-radius: 999px; box-shadow: 3px 3px 0 #FFB627;">Donate</a>
       </nav>
     </div>
   </header>
 
+  <main id="main" tabindex="-1" style="outline: none;">
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
   <div>
     <section style="position: relative; padding: clamp(40px, 5.4vw, 74px) clamp(18px, 3vw, 32px) clamp(52px, 7vw, 90px);">
@@ -61,11 +101,11 @@
             Sickle cell,<br />explained like<br />a <span style="color: #D6273F; position: relative;">human<span style="position: absolute; left: 0; right: 0; bottom: 6px; height: 12px; background: #FFB627; z-index: -1; border-radius: 3px;"></span></span> would.
           </h1>
           <p style="font-size: clamp(17px, 2vw, 19.5px); line-height: 1.55; max-width: 480px; margin: 0 0 32px; text-wrap: pretty; opacity: .82;">
-            Clear answers and practical support for young people living with sickle cell and the families beside them, across the UK. No jargon, no judgement.
+            Clear, honest answers about sickle cell, and a community we are building for young people living with it and the families beside them, across the UK. No jargon, no judgement.
           </p>
           <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-            <div onClick="{{ goTrait }}" style="cursor: pointer; background: #D6273F; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 17px 30px; border-radius: 999px; border: 2px solid #2A1220; box-shadow: 4px 4px 0 #2A1220;">Do you know your trait?</div>
-            <div onClick="{{ goDonate }}" style="cursor: pointer; background: #FFF6EC; color: #2A1220; font-weight: 700; font-size: 16px; padding: 17px 30px; border-radius: 999px; border: 2px solid #2A1220;">Support our work</div>
+            <a href="{{ hrefTrait }}" onClick="{{ goTrait }}" style="display: block; text-decoration: none; cursor: pointer; background: #D6273F; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 17px 30px; border-radius: 999px; border: 2px solid #2A1220; box-shadow: 4px 4px 0 #2A1220;">Do you know your trait?</a>
+            <a href="{{ hrefDonate }}" onClick="{{ goDonate }}" style="display: block; text-decoration: none; cursor: pointer; background: #FFF6EC; color: #2A1220; font-weight: 700; font-size: 16px; padding: 17px 30px; border-radius: 999px; border: 2px solid #2A1220;">Support our work</a>
           </div>
         </div>
         <div style="position: relative; height: clamp(330px, 44vw, 470px); max-width: 470px; width: 100%; margin: 0 auto;">
@@ -116,41 +156,41 @@
 
     <sc-if value="{{ showQuiz }}" hint-placeholder-val="{{ true }}">
     <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
-      <div data-reveal="1" style="max-width: 1240px; margin: 0 auto; background: #0F9B8E; border: 2.5px solid #2A1220; border-radius: 38px; padding: clamp(26px, 4.2vw, 56px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 36px 48px; align-items: center; box-shadow: 8px 8px 0 #2A1220;">
+      <div data-reveal="1" style="max-width: 1240px; margin: 0 auto; background: #087068; border: 2.5px solid #2A1220; border-radius: 38px; padding: clamp(26px, 4.2vw, 56px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 36px 48px; align-items: center; box-shadow: 8px 8px 0 #2A1220;">
         <div style="color: #FFF6EC;">
-          <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .8; margin-bottom: 14px;">2 minute quiz</div>
+          <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .95; margin-bottom: 14px;">2 minute quiz</div>
           <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 4.6vw, 44px); line-height: 1.02; letter-spacing: -.03em; margin: 0 0 16px;">Do you know your trait?</h2>
-          <p style="font-size: 17.5px; line-height: 1.55; margin: 0 0 26px; opacity: .92; text-wrap: pretty;">If both parents carry sickle cell trait, there's a 1 in 4 chance their baby will be born with sickle cell disease. Most carriers have no idea.</p>
-          <div onClick="{{ goTrait }}" style="cursor: pointer; display: inline-block; background: #FFB627; color: #2A1220; font-weight: 700; font-size: 15.5px; padding: 15px 26px; border-radius: 999px; border: 2px solid #2A1220;">Try the inheritance calculator</div>
+          <p style="font-size: 17.5px; line-height: 1.55; margin: 0 0 26px; opacity: .97; text-wrap: pretty;">If both parents carry sickle cell trait, there's a 1 in 4 chance their baby will be born with sickle cell disease. Most carriers have no idea.</p>
+          <a href="{{ hrefTrait }}" onClick="{{ goTrait }}" style="text-decoration: none; cursor: pointer; display: inline-block; background: #FFB627; color: #2A1220; font-weight: 700; font-size: 15.5px; padding: 15px 26px; border-radius: 999px; border: 2px solid #2A1220;">Try the inheritance calculator</a>
         </div>
         <div style="background: #FFF6EC; border: 2.5px solid #2A1220; border-radius: 26px; padding: clamp(22px, 3vw, 34px);">
           <sc-if value="{{ qActive }}" hint-placeholder-val="{{ true }}">
           <div>
-            <div style="font-size: 14px; font-weight: 700; opacity: .55; margin-bottom: 10px;">Question {{ qNum }} of {{ qTotal }}</div>
+            <div style="font-size: 14px; font-weight: 700; opacity: .72; margin-bottom: 10px;">Question {{ qNum }} of {{ qTotal }}</div>
             <div style="height: 9px; background: #E8D9C8; border-radius: 999px; overflow: hidden; margin-bottom: 24px;">
               <div style="height: 100%; background: #D6273F; border-radius: 999px; transition: width .4s cubic-bezier(.2,.8,.2,1); width: {{ qPct }};"></div>
             </div>
             <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(21px, 5.6vw, 25px); line-height: 1.22; letter-spacing: -.02em; margin-bottom: 22px;">{{ qText }}</div>
             <div style="display: flex; flex-direction: column; gap: 11px;">
               <sc-for list="{{ qOptions }}" as="o" hint-placeholder-count="3">
-                <div onClick="{{ o.pick }}" style="cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; min-height: 52px; box-sizing: border-box; border: 2px solid #2A1220; border-radius: 16px; padding: 14px 18px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 12px; background: {{ o.bg }};">
+                <button type="button" onClick="{{ o.pick }}" style="width: 100%; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; min-height: 52px; box-sizing: border-box; border: 2px solid #2A1220; border-radius: 16px; padding: 14px 18px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 12px; background: {{ o.bg }};">
                   <span style="width: 22px; height: 22px; border-radius: 50%; border: 2px solid #2A1220; display: grid; place-items: center; font-size: 12px; font-weight: 800; flex: none; background: {{ o.dotBg }}; color: {{ o.dotFg }};">{{ o.mark }}</span>
-                  <span style="min-width: 0;">{{ o.label }}</span>
-                </div>
+                  <span style="min-width: 0;">{{ o.label }}<span class="sr-only">{{ o.srState }}</span></span>
+                </button>
               </sc-for>
             </div>
-            <div style="margin-top: 20px; font-size: 15.5px; line-height: 1.5; min-height: 46px; border-radius: 14px; padding: {{ qFeedbackPad }}; background: {{ qFeedbackBg }};">{{ qFeedback }}</div>
+            <div role="status" aria-live="polite" style="margin-top: 20px; font-size: 15.5px; line-height: 1.5; min-height: 46px; border-radius: 14px; padding: {{ qFeedbackPad }}; background: {{ qFeedbackBg }};">{{ qFeedback }}</div>
             <sc-if value="{{ qAnswered }}" hint-placeholder-val="{{ false }}">
-              <div onClick="{{ qNext }}" style="cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; margin-top: 16px; min-height: 52px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 14px 26px; border-radius: 999px;">{{ qNextLabel }}</div>
+              <button type="button" onClick="{{ qNext }}" style="width: 100%; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; margin-top: 16px; min-height: 52px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 14px 26px; border-radius: 999px;">{{ qNextLabel }}</button>
             </sc-if>
           </div>
           </sc-if>
           <sc-if value="{{ qDone }}" hint-placeholder-val="{{ false }}">
           <div>
-            <div style="font-size: 14px; font-weight: 700; opacity: .55; margin-bottom: 10px;">Quiz complete</div>
+            <div style="font-size: 14px; font-weight: 700; opacity: .72; margin-bottom: 10px;">Quiz complete</div>
             <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 8vw, 40px); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 14px;">You got {{ qScore }} of {{ qTotal }}</div>
             <div style="font-size: 16px; line-height: 1.55; margin-bottom: 24px; opacity: .85;">{{ qResultNote }}</div>
-            <div onClick="{{ qRestart }}" style="cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; min-height: 52px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #D6273F; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 14px 26px; border-radius: 999px; border: 2px solid #2A1220;">Try new questions</div>
+            <button type="button" onClick="{{ qRestart }}" style="width: 100%; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; min-height: 52px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #D6273F; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 14px 26px; border-radius: 999px; border: 2px solid #2A1220;">Try new questions</button>
           </div>
           </sc-if>
         </div>
@@ -218,13 +258,15 @@
         <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(26px, 3.8vw, 34px); letter-spacing: -.03em; margin: 0 0 26px;">Questions people ask us most</h2>
         <div style="display: flex; flex-direction: column; gap: 12px;">
           <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
-            <div onClick="{{ f.toggle }}" style="cursor: pointer; background: #FFF6EC; border: 2px solid #2A1220; border-radius: 18px; padding: 20px 24px;">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px;">
-                <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -.015em;">{{ f.q }}</div>
-                <div style="font-size: 24px; font-weight: 700; line-height: 1;">{{ f.sign }}</div>
-              </div>
-              <div style="font-size: 16px; line-height: 1.6; opacity: .82; overflow: hidden; transition: max-height .3s ease, margin-top .3s ease; max-height: {{ f.maxH }}; margin-top: {{ f.mt }};">
-                <div>{{ f.a }}</div>
+            <div style="background: #FFF6EC; border: 2px solid #2A1220; border-radius: 18px; padding: 0 24px;">
+              <h3 style="margin: 0; font: inherit;">
+                <button type="button" onClick="{{ f.toggle }}" aria-expanded="{{ f.expanded }}" aria-controls="{{ f.panelId }}" id="{{ f.btnId }}" style="display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 0; text-align: left;">
+                  <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -.015em;">{{ f.q }}</span>
+                  <span aria-hidden="true" style="font-size: 24px; font-weight: 700; line-height: 1; flex: none;">{{ f.sign }}</span>
+                </button>
+              </h3>
+              <div id="{{ f.panelId }}" role="region" aria-labelledby="{{ f.btnId }}" style="font-size: 16px; line-height: 1.6; overflow: hidden; transition: max-height .3s ease, padding-bottom .3s ease; max-height: {{ f.maxH }}; padding-bottom: {{ f.pb }}; visibility: {{ f.vis }};">
+                <div style="opacity: .86;">{{ f.a }}</div>
                 <a href="{{ f.link }}" target="_blank" rel="noopener" style="display: inline-block; margin-top: 12px; font-weight: 700; font-size: 15px;">{{ f.linkLabel }}</a>
               </div>
             </div>
@@ -252,13 +294,13 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 30px; margin-bottom: 38px;">
           <sc-for list="{{ parents }}" as="p" hint-placeholder-count="2">
             <div>
-              <div style="font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .6; margin-bottom: 12px;">{{ p.label }}</div>
+              <div style="font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .72; margin-bottom: 12px;">{{ p.label }}</div>
               <div style="display: flex; flex-direction: column; gap: 10px;">
                 <sc-for list="{{ p.options }}" as="o" hint-placeholder-count="3">
-                  <div onClick="{{ o.pick }}" style="cursor: pointer; border: 2px solid #2A1220; border-radius: 16px; padding: 16px 18px; display: flex; align-items: center; gap: 14px; background: {{ o.bg }}; color: {{ o.fg }};" style-hover="background: #FFE3C7;">
+                  <button type="button" onClick="{{ o.pick }}" aria-pressed="{{ o.pressed }}" style="width: 100%; cursor: pointer; border: 2px solid #2A1220; border-radius: 16px; padding: 16px 18px; display: flex; align-items: center; gap: 14px; background: {{ o.bg }}; color: {{ o.fg }};" style-hover="background: #FFE3C7;">
                     <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; width: 44px; flex: none;">{{ o.code }}</span>
                     <span style="font-size: 15.5px; font-weight: 600;">{{ o.name }}</span>
-                  </div>
+                  </button>
                 </sc-for>
               </div>
             </div>
@@ -266,7 +308,7 @@
         </div>
         <div style="border-top: 2px solid #2A1220; padding-top: 34px;">
           <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; margin-bottom: 20px;">Odds for each pregnancy</div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(262px, 100%), 1fr)); gap: 16px; margin-bottom: 22px;">
+          <div role="group" aria-label="Odds for each pregnancy" aria-live="polite" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(262px, 100%), 1fr)); gap: 16px; margin-bottom: 22px;">
             <sc-for list="{{ outcomes }}" as="o" hint-placeholder-count="3">
               <div style="background: {{ o.bg }}; border: 2.5px solid #2A1220; border-radius: 22px; padding: 26px 24px;">
                 <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 4.6vw, 44px); letter-spacing: -.03em; line-height: 1; margin-bottom: 10px;">{{ o.pct }}</div>
@@ -275,7 +317,7 @@
               </div>
             </sc-for>
           </div>
-          <div style="font-size: 15.5px; line-height: 1.6; background: #FFE3C7; border: 2px solid #2A1220; border-radius: 16px; padding: 18px 20px;">{{ outcomeNote }}</div>
+          <div aria-live="polite" style="font-size: 15.5px; line-height: 1.6; background: #FFE3C7; border: 2px solid #2A1220; border-radius: 16px; padding: 18px 20px;">{{ outcomeNote }}</div>
         </div>
       </div>
     </section>
@@ -284,7 +326,7 @@
       <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(262px, 100%), 1fr)); gap: 20px;">
         <sc-for list="{{ testSteps }}" as="s" hint-placeholder-count="3">
           <div data-reveal="1" style="background: {{ s.bg }}; border: 2.5px solid #2A1220; border-radius: 26px; padding: 32px 28px;">
-            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; opacity: .6; margin-bottom: 14px;">Step {{ s.n }}</div>
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; opacity: .72; margin-bottom: 14px;">Step {{ s.n }}</div>
             <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.18; letter-spacing: -.02em; margin-bottom: 10px;">{{ s.title }}</div>
             <div style="font-size: 15.5px; line-height: 1.6; opacity: .82;">{{ s.body }}</div>
           </div>
@@ -300,7 +342,7 @@
       <div style="max-width: 900px; margin: 0 auto;">
         <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #D6273F; margin-bottom: 16px;">Donate</div>
         <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 6.4vw, 62px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 22px;">Help us get this work off the ground.</h1>
-        <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.55; opacity: .82; margin: 0; text-wrap: pretty;">Kwapong Health CIC is newly formed. Every gift funds practical support, awareness and community for people living with sickle cell.</p>
+        <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.55; opacity: .82; margin: 0; text-wrap: pretty;">Kwapong Health CIC is newly formed. Your gift helps us get started on our aims: practical support, awareness and community for people living with sickle cell.</p>
       </div>
     </section>
 
@@ -308,22 +350,21 @@
       <div style="max-width: 460px; margin: 0 auto; background: #FFFFFF; border: 2.5px solid #2A1220; border-radius: 30px; padding: clamp(24px, 4vw, 34px); box-shadow: 8px 8px 0 #2A1220;">
         <div style="display: flex; gap: 8px; background: #E8D9C8; border: 2px solid #2A1220; border-radius: 999px; padding: 5px; margin-bottom: 20px;">
           <sc-for list="{{ freqTabs }}" as="t" hint-placeholder-count="2">
-            <div onClick="{{ t.pick }}" style="flex: 1; text-align: center; cursor: pointer; padding: 11px; border-radius: 999px; font-size: 15px; font-weight: 700; background: {{ t.bg }}; color: {{ t.fg }};">{{ t.label }}</div>
+            <button type="button" onClick="{{ t.pick }}" aria-pressed="{{ t.pressed }}" style="display: block; width: 100%; flex: 1; text-align: center; cursor: pointer; padding: 11px; border-radius: 999px; font-size: 15px; font-weight: 700; background: {{ t.bg }}; color: {{ t.fg }};">{{ t.label }}</button>
           </sc-for>
         </div>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px;">
           <sc-for list="{{ amounts }}" as="a" hint-placeholder-count="3">
-            <div onClick="{{ a.pick }}" style="cursor: pointer; text-align: center; padding: 14px 6px; border: 2px solid #2A1220; border-radius: 16px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 19px; background: {{ a.bg }};" style-hover="background: #FFE3C7;">{{ a.label }}</div>
+            <button type="button" onClick="{{ a.pick }}" aria-pressed="{{ a.pressed }}" style="display: block; width: 100%; cursor: pointer; text-align: center; padding: 14px 6px; border: 2px solid #2A1220; border-radius: 16px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 19px; background: {{ a.bg }};" style-hover="background: #FFE3C7;">{{ a.label }}</button>
           </sc-for>
         </div>
-        <div style="min-height: 20px; font-size: 14px; line-height: 1.45; color: #2A1220; opacity: .68; margin-bottom: 18px;">{{ impactLine }}</div>
-        <div onClick="{{ donate }}" style="cursor: pointer; text-align: center; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 17px; padding: 18px; border-radius: 999px; box-shadow: 4px 4px 0 #FFB627;">{{ donateLabel }}</div>
+        <a href="{{ donationUrl }}" target="_blank" rel="noopener" style="display: block; text-decoration: none; cursor: pointer; text-align: center; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 17px; padding: 18px; border-radius: 999px; box-shadow: 4px 4px 0 #FFB627;">{{ donateLabel }}</a>
         <sc-if value="{{ showCustomLink }}" hint-placeholder-val="{{ true }}">
-        <div onClick="{{ chooseOwnAmount }}" style="cursor: pointer; text-align: center; font-size: 14.5px; font-weight: 700; color: #D6273F; margin-top: 16px;">Or choose your own amount →</div>
+        <a href="{{ customUrl }}" target="_blank" rel="noopener" style="display: block; text-decoration: none; cursor: pointer; text-align: center; font-size: 14.5px; font-weight: 700; color: #D6273F; margin-top: 16px;">Or choose your own amount →</a>
         </sc-if>
-        <div style="text-align: center; font-size: 12.5px; opacity: .6; margin-top: 14px;">{{ donateFootnote }}</div>
+        <div style="text-align: center; font-size: 12.5px; opacity: .72; margin-top: 14px;">{{ donateFootnote }}</div>
       </div>
-      <div style="max-width: 460px; margin: 16px auto 0; text-align: center; font-size: 13.5px; opacity: .62; line-height: 1.5;">Secure payment via Stripe. As a CIC, every penny goes back into our work — cancel a monthly gift any time.</div>
+      <div style="max-width: 460px; margin: 16px auto 0; text-align: center; font-size: 13.5px; opacity: .74; line-height: 1.5;">Payments are processed securely by Stripe. Kwapong Health CIC is a Community Interest Company, so donations are not eligible for Gift Aid. Read our <a href="{{ hrefPrivacy }}" onClick="{{ goPrivacy }}" style="text-decoration: underline; color: inherit; font-weight: 700;">privacy notice</a>.</div>
     </section>
 
   </div>
@@ -335,13 +376,13 @@
       <div style="max-width: 900px; margin: 0 auto;">
         <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #D6273F; margin-bottom: 16px;">About us</div>
         <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 6.4vw, 62px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 22px;">Kwapong Health CIC</h1>
-        <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.55; opacity: .82; margin: 0; text-wrap: pretty;">A Community Interest Company supporting young people with sickle cell and their families, across the UK. As a CIC our surplus goes back into the work, never to shareholders.</p>
+        <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.55; opacity: .82; margin: 0; text-wrap: pretty;">A Community Interest Company set up to support young people with sickle cell and their families across the UK. As a CIC, our assets are protected by an asset lock and must be used for the benefit of the community.</p>
       </div>
     </section>
 
     <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(44px, 6vw, 72px);">
       <div style="max-width: 1240px; margin: 0 auto;">
-        <h2 data-reveal="1" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(28px, 4.2vw, 40px); letter-spacing: -.03em; margin: 0 0 30px;">What we do</h2>
+        <h2 data-reveal="1" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(28px, 4.2vw, 40px); letter-spacing: -.03em; margin: 0 0 30px;">What we aim to do</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(262px, 100%), 1fr)); gap: 20px;">
           <sc-for list="{{ objects }}" as="o" hint-placeholder-count="3">
             <div data-reveal="1" style="background: {{ o.bg }}; border: 2.5px solid #2A1220; border-radius: 26px; padding: 32px 28px; box-shadow: 5px 5px 0 #2A1220; display: flex; flex-direction: column; gap: 14px;">
@@ -360,7 +401,7 @@
           <img src="assets/sam-kwapong.png" alt="Sam Kwapong" style="width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 2.5px solid #2A1220; display: block; flex: none;" />
           <div style="min-width: 220px; flex: 1;">
             <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(24px, 3.4vw, 30px); letter-spacing: -.025em; margin-bottom: 6px;">Sam Kwapong</div>
-            <div style="font-size: 16.5px; line-height: 1.55; opacity: .8;">Founder and director. Kwapong Health CIC files a community interest statement at Companies House.</div>
+            <div style="font-size: 16.5px; line-height: 1.55; opacity: .8;">Founder and director of Kwapong Health CIC, a Community Interest Company registered at Companies House.</div>
           </div>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 10px; padding-top: 22px; border-top: 2px solid rgba(42,18,32,.18);">
@@ -384,9 +425,13 @@
           <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 6vw, 58px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 20px;">Say hello, ask anything</h1>
           <p style="font-size: 19px; line-height: 1.55; opacity: .82; margin: 0 0 30px; text-wrap: pretty;">Whether you want support or want to share your story, drop us an email and a real person will read it.</p>
           <div style="display: flex; flex-direction: column; gap: 12px;">
+            <a href="{{ mailHref }}" style="display: block; text-decoration: none; color: #2A1220; background: #FFFFFF; border: 2.5px solid #2A1220; border-radius: 20px; padding: 20px 24px;">
+              <div style="font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .72; margin-bottom: 6px;">Email</div>
+              <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere;">{{ contactEmail }}</div>
+            </a>
             <sc-for list="{{ contactRows }}" as="c" hint-placeholder-count="3">
               <div style="background: #FFFFFF; border: 2.5px solid #2A1220; border-radius: 20px; padding: 20px 24px;">
-                <div style="font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .55; margin-bottom: 6px;">{{ c.label }}</div>
+                <div style="font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .72; margin-bottom: 6px;">{{ c.label }}</div>
                 <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px;">{{ c.value }}</div>
               </div>
             </sc-for>
@@ -397,25 +442,64 @@
   </div>
   </sc-if>
 
-  <div style="background: #FFB627; border-top: 2.5px solid #2A1220; padding: clamp(30px, 4vw, 44px) clamp(18px, 3vw, 32px);">
+  <sc-if value="{{ isPrivacy }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <section style="padding: clamp(38px, 5vw, 64px) clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
+      <div style="max-width: 760px; margin: 0 auto; font-size: 17px; line-height: 1.65;">
+        <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #D6273F; margin-bottom: 16px;">Privacy</div>
+        <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 6vw, 58px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 14px;">Privacy notice</h1>
+        <p style="margin: 0 0 30px; opacity: .74;">Last updated 21 September 2026</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Who we are</h2>
+        <p style="margin: 0 0 14px;">This website, Sickle Cell Aware, is run by Kwapong Health CIC, a Community Interest Company (company number 17271036). We are responsible for the personal data described here. You can reach us at <a href="{{ mailHref }}" style="text-decoration: underline;">{{ contactEmail }}</a>.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Browsing this website</h2>
+        <p style="margin: 0 0 14px;">We do not use cookies, analytics or advertising trackers, and this site does not load fonts, scripts or images from other companies. Like any website, our hosting provider may keep standard server logs, such as your IP address and the pages requested, to keep the site secure and running. We do not use these logs to identify you.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Donations</h2>
+        <p style="margin: 0 0 14px;">When you choose an amount and press the donate button, you leave this website and go to a payment page run by Stripe. Stripe collects your payment details, name and email address. We never see or store your card number.</p>
+        <p style="margin: 0 0 14px;">Stripe tells us your name, email address, the amount, the date and whether the gift is monthly. We use this to record and thank you for your donation and to keep our accounts. We keep financial records for six years, as the law requires. Stripe also uses your data for its own purposes, such as preventing fraud, and explains this in its <a href="https://stripe.com/gb/privacy" target="_blank" rel="noopener" style="text-decoration: underline;">privacy policy</a>. Stripe may process data outside the UK, with safeguards in place.</p>
+        <p style="margin: 0 0 14px;">Donations to a Community Interest Company are not eligible for Gift Aid, so we do not collect the details Gift Aid needs.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">If you email us</h2>
+        <p style="margin: 0 0 14px;">We use your email address and what you tell us only to reply and to deal with your message. We keep it for as long as we need to do that, and then delete it. Please think before sending health details by email. If you choose to, we will treat them as sensitive and use them only to respond to you.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Why we are allowed to use your data</h2>
+        <p style="margin: 0 0 14px;">To process a donation we rely on contract, and on our legal duty to keep accounts. To answer your emails and keep the site secure we rely on our legitimate interests, which do not override your rights. We do not sell your data, and we will not use it for marketing unless you have clearly asked us to.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Who we share it with</h2>
+        <p style="margin: 0 0 14px;">Only the people who help us run the work: Stripe for payments, our email and hosting providers, and our accountants. We may also share data where the law requires it.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Your rights</h2>
+        <p style="margin: 0 0 14px;">You can ask us for a copy of your data, ask us to correct or delete it, ask us to limit how we use it, or object to how we use it. Email us at the address above and we will respond within one month. If you are unhappy with how we handle your data, you can complain to the Information Commissioner's Office at <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noopener" style="text-decoration: underline;">ico.org.uk</a> or on 0303 123 1113.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Changes</h2>
+        <p style="margin: 0;">If we change how we use personal data, we will update this page and the date at the top.</p>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+  </main>
+
+  <section aria-label="Support our work" style="background: #FFB627; border-top: 2.5px solid #2A1220; padding: clamp(30px, 4vw, 44px) clamp(18px, 3vw, 32px);">
     <div style="max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;">
       <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(25px, 3.6vw, 32px); letter-spacing: -.03em; max-width: 620px; line-height: 1.1;">Awareness saves lives. Help us reach the next family.</div>
-      <div onClick="{{ goDonate }}" style="cursor: pointer; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 16.5px; padding: 17px 32px; border-radius: 999px; white-space: nowrap;">Donate now</div>
+      <a href="{{ hrefDonate }}" onClick="{{ goDonate }}" style="display: block; text-decoration: none; cursor: pointer; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 16.5px; padding: 17px 32px; border-radius: 999px; white-space: nowrap;">Donate now</a>
     </div>
-  </div>
+  </section>
 
   <footer style="background: #2A1220; color: #FFF6EC; padding: clamp(38px, 5vw, 56px) clamp(18px, 3vw, 32px) 40px;">
     <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(175px, 100%), 1fr)); gap: 32px;">
       <div>
         <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.02em; margin-bottom: 10px;">Sickle Cell Aware</div>
-        <div style="font-size: 15px; line-height: 1.6; opacity: .72;">The sickle cell awareness and support programme of Kwapong Health CIC, a Community Interest Company.</div>
+        <div style="font-size: 15px; line-height: 1.6; opacity: .72;">A sickle cell awareness project by Kwapong Health CIC, a Community Interest Company.</div>
       </div>
       <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
         <div>
           <div style="font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .55; margin-bottom: 14px;">{{ col.title }}</div>
           <div style="display: flex; flex-direction: column; gap: 9px;">
             <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="4">
-              <div onClick="{{ l.go }}" style="cursor: pointer; font-size: 15px; opacity: .85;">{{ l.label }}</div>
+              <a href="{{ l.href }}" onClick="{{ l.go }}" style="display: block; text-decoration: none; color: inherit; cursor: pointer; font-size: 15px; opacity: .85;">{{ l.label }}</a>
             </sc-for>
           </div>
         </div>
@@ -429,7 +513,17 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;showQuiz&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Homepage&quot;},&quot;showTriggers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;About sickle cell&quot;}}">
 const ROUTE_SUFFIXES = {
   home: '/', about: '/about-sickle-cell', trait: '/know-your-trait',
-  donate: '/donate', org: '/about-us', contact: '/contact'
+  donate: '/donate', org: '/about-us', contact: '/contact', privacy: '/privacy'
+};
+const CONTACT_EMAIL = 'hello@kwaponghealth.org'; // placeholder: replace with a monitored address
+const PAGE_TITLES = {
+  home: 'Sickle Cell Aware | Kwapong Health CIC',
+  about: 'About sickle cell | Sickle Cell Aware',
+  trait: 'Know your trait | Sickle Cell Aware',
+  donate: 'Donate | Sickle Cell Aware',
+  org: 'About us | Sickle Cell Aware',
+  contact: 'Contact | Sickle Cell Aware',
+  privacy: 'Privacy notice | Sickle Cell Aware'
 };
 const SUFFIX_ROUTES = Object.fromEntries(Object.entries(ROUTE_SUFFIXES).map(([k, v]) => [v, k]));
 // GitHub Pages serves this repo under /sickle-cell-aware/, Render serves it at /.
@@ -525,11 +619,24 @@ class Component extends DCLogic {
     let stashed = null;
     try { stashed = sessionStorage.getItem('sca_route'); sessionStorage.removeItem('sca_route'); } catch (e) {}
     const initial = stashed || currentRoute();
+    this._page = initial;
     if (initial !== this.state.page) this.setState({ page: initial });
     window.history.replaceState({ page: initial }, '', pageUrl(initial));
+    document.title = PAGE_TITLES[initial] || PAGE_TITLES.home;
     window.addEventListener('popstate', this.handlePopState);
   }
-  componentDidUpdate(pp, ps) { if (ps.page !== this.state.page) { window.scrollTo(0, 0); this.observe(); } }
+  // The runtime passes only prevProps here (no prevState), so track the page ourselves.
+  componentDidUpdate() {
+    if (this._page !== this.state.page) {
+      this._page = this.state.page;
+      window.scrollTo(0, 0);
+      this.observe();
+      document.title = PAGE_TITLES[this.state.page] || PAGE_TITLES.home;
+      // Move focus to the new page so keyboard and screen reader users start at the top of it.
+      const main = document.getElementById('main');
+      if (main) main.focus({ preventScroll: true });
+    }
+  }
   componentWillUnmount() {
     if (this._io) this._io.disconnect();
     window.removeEventListener('popstate', this.handlePopState);
@@ -549,7 +656,10 @@ class Component extends DCLogic {
   }
 
   go(p) {
-    return () => {
+    return (e) => {
+      // Let the browser handle open-in-new-tab and modified clicks on real links.
+      if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1)) return;
+      if (e && e.preventDefault) e.preventDefault();
       const url = pageUrl(p);
       if (window.location.pathname !== url) window.history.pushState({ page: p }, '', url);
       this.setState({ page: p });
@@ -584,6 +694,8 @@ class Component extends DCLogic {
     const navItems = pages.map(n => ({
       label: n.label,
       go: this.go(n.key),
+      href: pageUrl(n.key),
+      current: p === n.key ? 'page' : 'false',
       color: p === n.key ? '#D6273F' : '#2A1220',
       underline: p === n.key ? '#D6273F' : 'transparent'
     }));
@@ -594,9 +706,10 @@ class Component extends DCLogic {
     const qOptions = q.opts.map((label, i) => {
       const isPicked = picked === i, right = i === q.correct;
       let bg = '#FFFFFF', dotBg = '#FFF6EC', dotFg = '#2A1220', mark = '';
-      if (picked !== null && right) { bg = '#D8F3EF'; dotBg = '#0F9B8E'; dotFg = '#FFF6EC'; mark = '✓'; }
+      if (picked !== null && right) { bg = '#D8F3EF'; dotBg = '#087068'; dotFg = '#FFF6EC'; mark = '✓'; }
       if (picked !== null && isPicked && !right) { bg = '#FFE3E6'; dotBg = '#D6273F'; dotFg = '#FFF6EC'; mark = '✕'; }
-      return { label, bg, dotBg, dotFg, mark, pick: () => {
+      const srState = picked === null ? '' : (right ? ', correct answer' : (isPicked ? ', your answer, incorrect' : ''));
+      return { label, bg, dotBg, dotFg, mark, srState, pick: () => {
         if (this.state.picked !== null) return;
         this.setState(s => ({ picked: i, score: s.score + (i === q.correct ? 1 : 0) }));
       } };
@@ -620,6 +733,7 @@ class Component extends DCLogic {
         code: g.code, name: g.name,
         bg: this.state[pr.key] === g.code ? '#2A1220' : '#FFF6EC',
         fg: this.state[pr.key] === g.code ? '#FFF6EC' : '#2A1220',
+        pressed: String(this.state[pr.key] === g.code),
         pick: () => this.setState({ [pr.key]: g.code })
       }))
     }));
@@ -637,29 +751,19 @@ class Component extends DCLogic {
     // than a sustainable monthly ask. Custom amounts are one-off only — Stripe
     // doesn't support a donor-chosen amount on a recurring price.
     const PRESETS = { once: [12, 25, 50], monthly: [5, 12, 25] };
-    const IMPACT = {
-      once: {
-        12: 'Funds a comfort pack for someone in a pain crisis.',
-        25: 'Supports a family in the weeks after a new diagnosis.',
-        50: 'Helps run an awareness session in a school or community group.'
-      },
-      monthly: {
-        5: 'Sustains our awareness work in schools and communities.',
-        12: 'Provides ongoing practical support for a family affected by sickle cell.',
-        25: 'Helps bring young people together so nobody manages this alone.'
-      }
-    };
     const presets = PRESETS[this.state.freq] || PRESETS.once;
     const amt = this.state.amt;
     const amounts = presets.map(v => ({
       label: '£' + v,
       bg: this.state.amt === v ? '#FFB627' : '#FFFFFF',
+      pressed: String(this.state.amt === v),
       pick: () => this.setState({ amt: v })
     }));
     const freqTabs = [{ key: 'once', label: 'Give once' }, { key: 'monthly', label: 'Give monthly' }].map(t => ({
       label: t.label,
       bg: this.state.freq === t.key ? '#2A1220' : 'transparent',
       fg: this.state.freq === t.key ? '#FFF6EC' : '#2A1220',
+      pressed: String(this.state.freq === t.key),
       pick: () => {
         const set = PRESETS[t.key];
         const nextAmt = set.includes(this.state.amt) ? this.state.amt : set[1];
@@ -672,7 +776,6 @@ class Component extends DCLogic {
     // let anyone rewrite the price). So this is a plain link, not a local
     // input we'd have to pretend to forward.
     const showCustomLink = this.state.freq !== 'monthly';
-    const impactLine = (IMPACT[this.state.freq] || {})[amt] || '';
 
     const donationLinks = {
       once: {
@@ -702,6 +805,9 @@ class Component extends DCLogic {
       isOrg: p === 'org', isContact: p === 'contact',
       goHome: this.go('home'), goDonate: this.go('donate'), goTrait: this.go('trait'),
       goContact: this.go('contact'),
+      goPrivacy: this.go('privacy'),
+      hrefHome: pageUrl('home'), hrefDonate: pageUrl('donate'), hrefTrait: pageUrl('trait'), hrefPrivacy: pageUrl('privacy'),
+      isPrivacy: p === 'privacy',
 
       myths: [
         { chip: 'Myth', text: 'Sickle cell only affects Black people.', body: 'It is most common in African and Caribbean heritage, but also affects South Asian, Middle Eastern and Mediterranean families.', chipBg: '#FFB627', chipFg: '#2A1220' },
@@ -722,7 +828,7 @@ class Component extends DCLogic {
         { stat: '1 in 4', title: 'Trait odds', body: 'When both parents carry the trait, every pregnancy carries a 1 in 4 chance.', bg: '#FFE3C7' },
         { stat: '17,000+', title: 'Living with it in the UK', body: 'And around 250 babies born with a sickle cell disorder each year.', bg: '#D8F3EF' },
         { stat: 'Free', title: 'NHS trait testing', body: 'Ask your GP for a haemoglobinopathy screen. One blood sample.', bg: '#FFD9DE' },
-        { stat: 'Peer', title: 'Support that gets it', body: 'Young people and carers who understand, on the other end of the line.', bg: '#FFF0B8' }
+        { stat: 'Soon', title: 'Community support', body: 'We are working towards peer support for young people and families. If you would like to help shape it, get in touch.', bg: '#FFF0B8' }
       ],
 
       aboutCards: [
@@ -743,12 +849,16 @@ class Component extends DCLogic {
         { q: 'Should my child be tested?', a: 'In the UK every newborn is offered blood spot screening at around five days old, and sickle cell is one of the conditions it looks for, so most children born here are already screened. If your child was born abroad, or you are unsure whether the result was ever explained to you, ask your GP. Older children and adults can be tested at any age with a single blood sample. It is worth doing before starting a family, because two carriers have a one in four chance of a child with sickle cell disease in every pregnancy.', link: 'https://www.nhs.uk/conditions/baby/newborn-screening/blood-spot-test/', linkLabel: 'About NHS newborn blood spot screening' },
         { q: 'What should I do during a crisis?', a: 'Start early rather than waiting to see if it passes. Take your prescribed pain relief at the first sign, drink plenty of fluids, keep warm and rest. Many people manage milder crises at home with a written care plan agreed with their team. Go to hospital if the pain is not controlled, or straight away if there is a fever, chest pain, breathlessness, sudden weakness, severe headache or a change in vision. On arrival, say clearly that you have sickle cell disease and are in a pain crisis, and ask for your care plan to be followed. Sickle cell pain is frequently underestimated, so it is reasonable to be firm about the relief you normally need.', link: 'https://www.nhs.uk/conditions/sickle-cell-disease/', linkLabel: 'NHS overview of sickle cell disease' },
         { q: 'How is it treated day to day?', a: 'Most care is about preventing crises rather than reacting to them. That usually means staying well hydrated, keeping warm, taking folic acid, keeping up with vaccinations and penicillin where prescribed, and attending annual review with a specialist team. Many people take hydroxyurea, a daily medicine that reduces how often crises happen. Some have regular blood transfusions. Children are offered scans to check the risk of stroke. None of this is optional extra: consistent routine care is what protects organs over a lifetime.', link: 'https://www.nhs.uk/conditions/sickle-cell-disease/treatment/', linkLabel: 'NHS guide to sickle cell treatment' },
-        { q: 'What should a school or employer know?', a: 'That sickle cell is a fluctuating condition, not a run of unexplained absences. Practical adjustments make a real difference: easy access to water and the toilet, staying warm, avoiding sudden temperature changes, rest after exertion, catching up on missed work without penalty, and flexibility around hospital appointments. In the UK, sickle cell disease is generally treated as a disability under the Equality Act 2010, so reasonable adjustments are a legal duty rather than a favour. We are happy to talk to a school or employer directly.', link: 'https://www.gov.uk/definition-of-disability-under-equality-act-2010', linkLabel: 'Disability under the Equality Act 2010' }
+        { q: 'What should a school or employer know?', a: 'That sickle cell is a fluctuating condition, not a run of unexplained absences. Practical adjustments make a real difference: easy access to water and the toilet, staying warm, avoiding sudden temperature changes, rest after exertion, catching up on missed work without penalty, and flexibility around hospital appointments. In the UK, sickle cell disease is generally treated as a disability under the Equality Act 2010, so reasonable adjustments are a legal duty rather than a favour. As we grow, we hope to support schools and employers directly.', link: 'https://www.gov.uk/definition-of-disability-under-equality-act-2010', linkLabel: 'Disability under the Equality Act 2010' }
       ].map((f, i) => ({
         ...f,
         sign: this.state.open[i] ? '−' : '+',
         maxH: this.state.open[i] ? '760px' : '0px',
-        mt: this.state.open[i] ? '12px' : '0px',
+        pb: this.state.open[i] ? '20px' : '0px',
+        vis: this.state.open[i] ? 'visible' : 'hidden',
+        expanded: String(!!this.state.open[i]),
+        panelId: 'faq-panel-' + i,
+        btnId: 'faq-btn-' + i,
         toggle: () => this.setState(s => ({ open: { ...s.open, [i]: !s.open[i] } }))
       })),
 
@@ -764,18 +874,18 @@ class Component extends DCLogic {
 
       showQuiz: this.props.showQuiz ?? true,
       showTriggers: this.props.showTriggers ?? true,
-      freqTabs, amounts, showCustomLink, impactLine,
-      donate: () => { if (donationUrl) window.open(donationUrl, '_blank', 'noopener'); },
-      chooseOwnAmount: () => window.open(donationLinks.customOnce, '_blank', 'noopener'),
+      freqTabs, amounts, showCustomLink,
+      donationUrl: donationUrl || pageUrl('donate'),
+      customUrl: donationLinks.customOnce,
       donateLabel: amt > 0
         ? (this.state.freq === 'monthly' ? 'Give £' + amt + ' a month' : 'Give £' + amt + ' now')
         : 'Choose an amount',
       donateFootnote: 'Kwapong Health CIC · Community Interest Company no. 17271036 · Test mode — no real charge will be made.',
 
       objects: [
-        { letter: '1', title: 'Practical support', bg: '#FFD9DE', body: 'Advice, comfort packs and help with hospital transport for young people and the families caring for them.' },
-        { letter: '2', title: 'Awareness and education', bg: '#FFE3C7', body: 'Workshops in schools and youth settings, and campaigning to cut the stigma around sickle cell.' },
-        { letter: '3', title: 'Belonging', bg: '#D8F3EF', body: 'Peer groups, mentoring and activities that break the isolation of living with a long-term condition.' }
+        { letter: '1', title: 'Practical support', bg: '#FFD9DE', body: 'We aim to offer clear advice and practical help for young people and the families caring for them.' },
+        { letter: '2', title: 'Awareness and education', bg: '#FFE3C7', body: 'We plan to run workshops in schools and youth settings, and to campaign to cut the stigma around sickle cell.' },
+        { letter: '3', title: 'Belonging', bg: '#D8F3EF', body: 'We want to build peer groups, mentoring and activities that break the isolation of living with a long-term condition.' }
       ],
       orgFacts: [
         { label: 'Legal form', value: 'Community Interest Company' },
@@ -783,19 +893,17 @@ class Component extends DCLogic {
         { label: 'Incorporated', value: '9 June 2026' },
         { label: 'Where we work', value: 'United Kingdom' }
       ],
+      contactEmail: CONTACT_EMAIL, mailHref: 'mailto:' + CONTACT_EMAIL,
       contactRows: [
-        { label: 'Email', value: 'hello@kwaponghealth.org' },
         { label: 'Where we work', value: 'United Kingdom' },
         { label: 'Company number', value: '17271036' }
       ],
 
       footerCols: [
         { title: 'Explore', links: [
-          { label: 'About sickle cell', go: this.go('about') },
-          { label: 'Know your trait', go: this.go('trait') },
-          { label: 'About us', go: this.go('org') },
-          { label: 'Contact', go: this.go('contact') }
-        ] }
+          ['about', 'About sickle cell'], ['trait', 'Know your trait'], ['org', 'About us'],
+          ['contact', 'Contact'], ['privacy', 'Privacy notice']
+        ].map(([k, label]) => ({ label, go: this.go(k), href: pageUrl(k) })) }
       ]
     };
   }

@@ -15,7 +15,8 @@
     '/know-your-trait': 'trait',
     '/donate': 'donate',
     '/about-us': 'org',
-    '/contact': 'contact'
+    '/contact': 'contact',
+    '/privacy': 'privacy'
   };
   var path = window.location.pathname.replace(/\/$/, '');
   var suffix = Object.keys(SUFFIX_ROUTES).find(function (s) { return path.slice(-s.length) === s; });

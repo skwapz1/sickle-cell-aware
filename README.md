@@ -4,7 +4,7 @@ A sickle cell awareness and support website for **Kwapong Health CIC** (Communit
 
 ## Pages
 
-Home, About sickle cell, Know your trait, Donate, About us, Contact — all client-side routed in a single file, with real per-page URLs via the History API (`/donate`, `/about-sickle-cell`, etc).
+Home, About sickle cell, Know your trait, Donate, About us, Contact, Privacy — all client-side routed in a single file, with real per-page URLs via the History API (`/donate`, `/about-sickle-cell`, etc).
 
 Features: trait inheritance calculator, awareness quiz (3 random questions from a pool of 15, on the home page), expandable FAQ with NHS and gov.uk sources, and a donation flow (one-off/monthly, preset and custom amounts).
 
@@ -23,12 +23,20 @@ python3 -m http.server
 | `index.html` | The site (entry point, for GitHub Pages) |
 | `Sickle Cell Aware.dc.html` | Source of truth — edit this |
 | `support.js` | Runtime required by both |
-| `assets/` | Images |
+| `assets/` | Images, self-hosted fonts (`fonts/`) and React (`vendor/`) |
 | `Homepage A.dc.html`, `Homepage B.dc.html` | Early design explorations, kept for reference |
 | `404.html` | GitHub Pages only — has no server-side rewrite, so a direct hit on a deep route (e.g. `/donate`) 404s. This stashes the intended route and bounces back to `index.html`, which restores it. Not needed on Render. |
 | `_redirects` | Render only — rewrites every path to `index.html` (200) so the client-side router can take over. Not used by GitHub Pages. |
 
 `index.html` is a copy of `Sickle Cell Aware.dc.html`. After editing the source, re-copy it over `index.html` (and `404.html`, if editing routes).
+
+## No third-party requests
+
+The site loads nothing from other companies: fonts (Bricolage Grotesque and Outfit, SIL Open Font License) and React 18.3.1 are served from `assets/`. `window.__resources` in the page head points `support.js` at the local React files, whose hashes match the pinned SRI values in `support.js`. The privacy notice says the site makes no third-party requests, so keep that true: if you add analytics, embeds or a CDN, update the notice first.
+
+## Accessibility
+
+Navigation and CTAs are real `<a href>` links, actions are `<button>`s, the FAQ uses `aria-expanded`, and focus moves to `<main>` on each page change. Keep it that way when adding UI: never use a clickable `<div>`.
 
 ## GitHub Pages
 
@@ -36,7 +44,7 @@ Settings → Pages → Deploy from branch → `main` / root.
 
 ## Still to replace before going live
 
-- `hello@kwaponghealth.org` is a placeholder email address
+- `hello@kwaponghealth.org` is a placeholder email address (set `CONTACT_EMAIL` at the top of the script; the contact page and privacy notice both use it)
 - Donation buttons are wired to Stripe Payment Links in **test mode** — switch to live-mode Products/Prices/Payment Links before accepting real donations (see the donate footnote, which says "Test mode" until then)
 - Photography placeholders throughout
 
