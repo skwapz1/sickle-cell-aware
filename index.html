@@ -299,6 +299,50 @@
         </sc-for>
       </div>
     </section>
+
+    <sc-if value="{{ showQuiz }}" hint-placeholder-val="{{ true }}">
+    <section style="padding: 0 clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
+      <div data-reveal="1" style="max-width: 1240px; margin: 0 auto; background: #0F9B8E; border: 2.5px solid #2A1220; border-radius: 38px; padding: clamp(26px, 4.2vw, 56px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 36px 48px; align-items: center; box-shadow: 8px 8px 0 #2A1220;">
+        <div style="color: #FFF6EC;">
+          <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .8; margin-bottom: 14px;">2 minute quiz</div>
+          <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 4.6vw, 44px); line-height: 1.02; letter-spacing: -.03em; margin: 0 0 16px;">Test what you know</h2>
+          <p style="font-size: 17.5px; line-height: 1.55; margin: 0 0 26px; opacity: .92; text-wrap: pretty;">Three quick questions drawn from a bigger set, so you get a different mix each time. Learn the answers, then share them with someone you care about.</p>
+          <div onClick="{{ goAbout }}" style="cursor: pointer; display: inline-block; background: #FFB627; color: #2A1220; font-weight: 700; font-size: 15.5px; padding: 15px 26px; border-radius: 999px; border: 2px solid #2A1220;">Read the basics first</div>
+        </div>
+        <div style="background: #FFF6EC; border: 2.5px solid #2A1220; border-radius: 26px; padding: clamp(22px, 3vw, 34px);">
+          <sc-if value="{{ qActive }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="font-size: 14px; font-weight: 700; opacity: .55; margin-bottom: 10px;">Question {{ qNum }} of {{ qTotal }}</div>
+            <div style="height: 9px; background: #E8D9C8; border-radius: 999px; overflow: hidden; margin-bottom: 24px;">
+              <div style="height: 100%; background: #D6273F; border-radius: 999px; transition: width .4s cubic-bezier(.2,.8,.2,1); width: {{ qPct }};"></div>
+            </div>
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(21px, 5.6vw, 25px); line-height: 1.22; letter-spacing: -.02em; margin-bottom: 22px;">{{ qText }}</div>
+            <div style="display: flex; flex-direction: column; gap: 11px;">
+              <sc-for list="{{ qOptions }}" as="o" hint-placeholder-count="3">
+                <div onClick="{{ o.pick }}" style="cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; min-height: 52px; box-sizing: border-box; border: 2px solid #2A1220; border-radius: 16px; padding: 14px 18px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 12px; background: {{ o.bg }};">
+                  <span style="width: 22px; height: 22px; border-radius: 50%; border: 2px solid #2A1220; display: grid; place-items: center; font-size: 12px; font-weight: 800; flex: none; background: {{ o.dotBg }}; color: {{ o.dotFg }};">{{ o.mark }}</span>
+                  <span style="min-width: 0;">{{ o.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top: 20px; font-size: 15.5px; line-height: 1.5; min-height: 46px; border-radius: 14px; padding: {{ qFeedbackPad }}; background: {{ qFeedbackBg }};">{{ qFeedback }}</div>
+            <sc-if value="{{ qAnswered }}" hint-placeholder-val="{{ false }}">
+              <div onClick="{{ qNext }}" style="cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; margin-top: 16px; min-height: 52px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 14px 26px; border-radius: 999px;">{{ qNextLabel }}</div>
+            </sc-if>
+          </div>
+          </sc-if>
+          <sc-if value="{{ qDone }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="font-size: 14px; font-weight: 700; opacity: .55; margin-bottom: 10px;">Quiz complete</div>
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 8vw, 40px); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 14px;">You got {{ qScore }} of {{ qTotal }}</div>
+            <div style="font-size: 16px; line-height: 1.55; margin-bottom: 24px; opacity: .85;">{{ qResultNote }}</div>
+            <div onClick="{{ qRestart }}" style="cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; min-height: 52px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #D6273F; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 14px 26px; border-radius: 999px; border: 2px solid #2A1220;">Try new questions</div>
+          </div>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+    </sc-if>
   </div>
   </sc-if>
 
@@ -386,11 +430,11 @@
   <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
   <div>
     <section style="padding: clamp(38px, 5vw, 64px) clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
-      <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 36px 52px; align-items: start;">
+      <div style="max-width: 760px; margin: 0 auto;">
         <div>
           <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #D6273F; margin-bottom: 16px;">Contact</div>
           <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 6vw, 58px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 20px;">Say hello, ask anything</h1>
-          <p style="font-size: 19px; line-height: 1.55; opacity: .82; margin: 0 0 30px; text-wrap: pretty;">Whether you want support, want to book a workshop, or want to share your story, a real person reads every message.</p>
+          <p style="font-size: 19px; line-height: 1.55; opacity: .82; margin: 0 0 30px; text-wrap: pretty;">Whether you want support or want to share your story, drop us an email and a real person will read it.</p>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <sc-for list="{{ contactRows }}" as="c" hint-placeholder-count="3">
               <div style="background: #FFFFFF; border: 2.5px solid #2A1220; border-radius: 20px; padding: 20px 24px;">
@@ -399,21 +443,6 @@
               </div>
             </sc-for>
           </div>
-        </div>
-        <div style="background: #FFE3C7; border: 2.5px solid #2A1220; border-radius: 30px; padding: clamp(24px, 3.2vw, 38px); box-shadow: 8px 8px 0 #2A1220;">
-          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(23px, 3.2vw, 28px); letter-spacing: -.025em; margin-bottom: 22px;">Send a message</div>
-          <div style="display: flex; flex-direction: column; gap: 12px;">
-            <input placeholder="Your name" style="font-size: 15.5px; padding: 15px 17px; border: 2px solid #2A1220; border-radius: 14px; background: #FFF6EC; outline: none;" />
-            <input placeholder="Email address" style="font-size: 15.5px; padding: 15px 17px; border: 2px solid #2A1220; border-radius: 14px; background: #FFF6EC; outline: none;" />
-            <select style="font-size: 15.5px; padding: 15px 17px; border: 2px solid #2A1220; border-radius: 14px; background: #FFF6EC; outline: none; appearance: none;">
-              <option>I'd like support</option>
-              <option>Book a workshop</option>
-              <option>Share my story</option>
-              <option>Something else</option>
-            </select>
-            <textarea placeholder="Your message" rows="5" style="font-size: 15.5px; padding: 15px 17px; border: 2px solid #2A1220; border-radius: 14px; background: #FFF6EC; outline: none; resize: vertical;"></textarea>
-          </div>
-          <div onClick="{{ sendMessage }}" style="cursor: pointer; text-align: center; margin-top: 18px; background: #D6273F; color: #FFF6EC; font-weight: 700; font-size: 17px; padding: 17px; border-radius: 999px; border: 2px solid #2A1220; box-shadow: 4px 4px 0 #2A1220;">{{ sendLabel }}</div>
         </div>
       </div>
     </section>
@@ -492,7 +521,34 @@ const QUIZ_POOL = [
     why: 'Right. Most people with the trait are healthy and have no symptoms, but they can pass the gene on to their children.' },
   { q: 'Which family backgrounds is sickle cell most common in?',
     opts: ['Only Northern European', 'African and Caribbean, and also Middle Eastern, Mediterranean and South Asian', 'Only East Asian'], correct: 1,
-    why: 'Yes. It is most common in people with African or Caribbean family backgrounds, and is found in other families too. Anyone can ask to be tested.' }
+    why: 'Yes. It is most common in people with African or Caribbean family backgrounds, and is found in other families too. Anyone can ask to be tested.' },
+  { q: 'What is a sickle cell crisis?',
+    opts: ['A sudden episode of severe pain when sickle-shaped cells block small blood vessels', 'A panic attack caused by stress', 'A type of blood test result'], correct: 0,
+    why: 'Yes. Sickle-shaped cells can get stuck in small blood vessels, causing sudden, severe pain that needs prompt medical attention.' },
+  { q: 'Which of these can help trigger a sickle cell crisis?',
+    opts: ['Dehydration and getting very cold', 'Eating vegetables', 'Getting a good night of sleep'], correct: 0,
+    why: 'Yes. Dehydration, cold, infections and stress are common triggers, so staying warm and drinking plenty of water really helps.' },
+  { q: 'What does sickle cell disease do to red blood cells?',
+    opts: ['Makes them stiff and crescent-shaped', 'Turns them white', 'Makes the body produce far too many of them'], correct: 0,
+    why: 'Right. Cells can turn stiff and curved like a crescent, so they get stuck in small blood vessels and break down faster than normal.' },
+  { q: 'One parent carries sickle cell trait and the other has no sickle gene. Can their child have sickle cell disease?',
+    opts: ['No, but each child has a 1 in 2 chance of carrying the trait', 'Yes, a 1 in 4 chance', 'Yes, every child will'], correct: 0,
+    why: 'Right. To have the disease a child needs a sickle gene from both parents. Here, each child has a 1 in 2 chance of being a carrier.' },
+  { q: 'If both parents have sickle cell disease, what will their children have?',
+    opts: ['A 1 in 4 chance of the disease', 'Sickle cell disease, every child', 'No chance of the disease'], correct: 1,
+    why: 'Yes. Each parent can only pass on a sickle gene, so every child would have sickle cell disease.' },
+  { q: 'Can sickle cell trait turn into sickle cell disease later in life?',
+    opts: ['Yes, it gets worse with age', 'Yes, but only after 40', 'No, trait stays trait for life'], correct: 2,
+    why: 'Right. Trait and disease are different. Carrying the trait is lifelong and does not develop into the disease.' },
+  { q: 'Two carriers both plan to have a baby. Who should they speak to?',
+    opts: ['Their GP or midwife, who can arrange genetic counselling', 'No one, there is nothing they can do', 'Only a private fertility clinic'], correct: 0,
+    why: 'Yes. Your GP or midwife can refer you for genetic counselling, so you understand your options before or during pregnancy.' },
+  { q: 'Two carriers already have a child without sickle cell disease. Are the odds lower for their next baby?',
+    opts: ['Yes, the next baby is safe', 'No, the odds are the same every pregnancy', 'Yes, but only for a girl'], correct: 1,
+    why: 'Right. Every pregnancy starts fresh, with the same 1 in 4 chance of sickle cell disease, whatever happened before.' },
+  { q: 'Which of these are common signs of sickle cell disease?',
+    opts: ['A rash on the hands only', 'Loss of hearing in childhood', 'Tiredness from anaemia and episodes of severe pain'], correct: 2,
+    why: 'Yes. Anaemia causes tiredness, and blocked blood vessels cause episodes of severe pain. Symptoms vary a lot from person to person.' }
 ];
 const QUIZ_LENGTH = 3;
 function shuffle(list) {
@@ -512,7 +568,7 @@ function buildDeck() {
 }
 
 class Component extends DCLogic {
-  state = { page: 'home', deck: buildDeck(), qi: 0, picked: null, score: 0, quizDone: false, open: {}, freq: 'monthly', amt: 12, sent: false, pA: 'AS', pB: 'AS' };
+  state = { page: 'home', deck: buildDeck(), qi: 0, picked: null, score: 0, quizDone: false, open: {}, freq: 'monthly', amt: 12, pA: 'AS', pB: 'AS' };
 
   componentDidMount() {
     this.observe();
@@ -548,7 +604,7 @@ class Component extends DCLogic {
     return () => {
       const url = pageUrl(p);
       if (window.location.pathname !== url) window.history.pushState({ page: p }, '', url);
-      this.setState({ page: p, sent: false });
+      this.setState({ page: p });
     };
   }
 
@@ -696,7 +752,7 @@ class Component extends DCLogic {
       isHome: p === 'home', isAbout: p === 'about', isTrait: p === 'trait',
       isDonate: p === 'donate',
       isOrg: p === 'org', isContact: p === 'contact',
-      goHome: this.go('home'), goDonate: this.go('donate'), goTrait: this.go('trait'),
+      goHome: this.go('home'), goDonate: this.go('donate'), goTrait: this.go('trait'), goAbout: this.go('about'),
       goContact: this.go('contact'),
 
       myths: [
@@ -784,8 +840,6 @@ class Component extends DCLogic {
         { label: 'Where we work', value: 'United Kingdom' },
         { label: 'Company number', value: '17271036' }
       ],
-      sendMessage: () => this.setState({ sent: true }),
-      sendLabel: this.state.sent ? 'Message sent, thank you' : 'Send message',
 
       footerCols: [
         { title: 'Learn', links: [
@@ -796,7 +850,6 @@ class Component extends DCLogic {
         ] },
         { title: 'Support', links: [
           { label: 'Get in touch', go: this.go('contact') },
-          { label: 'Book a workshop', go: this.go('contact') },
           { label: 'Crisis triggers', go: this.go('about') }
         ] },
         { title: 'Get involved', links: [
