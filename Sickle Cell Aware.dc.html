@@ -3,14 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0GBTRDHRVG"></script>
+<!-- Google tag (gtag.js) — only loaded after cookie consent; see the banner script in <body>. -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-0GBTRDHRVG');
+  window.__GA_ID = 'G-0GBTRDHRVG';
+  window.__loadGA = function () {
+    if (window.__gaLoaded) return;
+    window.__gaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', window.__GA_ID);
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.__GA_ID;
+    document.head.appendChild(s);
+  };
 </script>
 <!-- Static fallback for crawlers that don't run JS (WhatsApp, iMessage, Slack, Facebook, LinkedIn...).
      The <helmet> block below duplicates/overrides these client-side for real browsers; keep both in sync. -->
@@ -43,6 +50,45 @@ window.__resources = {
 <script src="./support.js"></script>
 </head>
 <body>
+<div id="sca-cookie-banner" hidden style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; padding: 16px; box-sizing: border-box;">
+  <div style="max-width: 620px; margin: 0 auto; background: #FFFFFF; border: 2.5px solid #2A1220; border-radius: 26px; box-shadow: 5px 5px 0 #2A1220; padding: 24px 26px; font-family: Outfit, system-ui, sans-serif; color: #2A1220;">
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px; margin-bottom: 8px;">We use a cookie for analytics</div>
+    <div style="font-size: 14.5px; line-height: 1.5; opacity: .82; margin-bottom: 18px;">We'd like to use Google Analytics to see how people use this site. It sets a cookie and isn't on until you say yes &mdash; see our <a href="/privacy" style="text-decoration: underline; color: inherit;">privacy notice</a> for details. You can change your mind any time from the link in the footer.</div>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <button id="sca-cookie-accept" type="button" style="font: inherit; cursor: pointer; background: #D6273F; color: #FFF6EC; font-weight: 700; font-size: 14.5px; padding: 12px 22px; border-radius: 999px; border: 2px solid #2A1220; box-shadow: 3px 3px 0 #2A1220;">Accept analytics</button>
+      <button id="sca-cookie-reject" type="button" style="font: inherit; cursor: pointer; background: #FFF6EC; color: #2A1220; font-weight: 700; font-size: 14.5px; padding: 12px 22px; border-radius: 999px; border: 2px solid #2A1220;">Reject</button>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var KEY = 'sca_consent';
+  var banner = document.getElementById('sca-cookie-banner');
+  function show() { banner.hidden = false; }
+  function hide() { banner.hidden = true; }
+  function apply(choice) {
+    try { localStorage.setItem(KEY, choice); } catch (e) {}
+    if (choice === 'granted' && window.__loadGA) window.__loadGA();
+    hide();
+  }
+  window.__scaReopenCookieBanner = function () {
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    show();
+  };
+  // The "Cookie preferences" link lives in the footer, rendered later by the app —
+  // delegate from document so this works regardless of when it mounts.
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest('#sca-cookie-manage');
+    if (t) window.__scaReopenCookieBanner();
+  });
+  document.getElementById('sca-cookie-accept').addEventListener('click', function () { apply('granted'); });
+  document.getElementById('sca-cookie-reject').addEventListener('click', function () { apply('denied'); });
+  var stored;
+  try { stored = localStorage.getItem(KEY); } catch (e) { stored = null; }
+  if (stored === 'granted') { if (window.__loadGA) window.__loadGA(); }
+  else if (stored !== 'denied') { show(); }
+})();
+</script>
 <x-dc>
 <helmet>
 <title>Sickle Cell Sense | Kwapong Health CIC</title>
@@ -496,7 +542,7 @@ window.__resources = {
         <p style="margin: 0 0 14px;">This website, Sickle Cell Sense, is run by Kwapong Health CIC, a Community Interest Company (company number 17271036). We are responsible for the personal data described here.</p>
 
         <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Browsing this website</h2>
-        <p style="margin: 0 0 14px;">This site uses Google Analytics to understand how many people visit and which pages they use. Google Analytics sets cookies and collects your IP address (truncated), device and browser type, and the pages you visit; Google's own <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="text-decoration: underline;">privacy policy</a> explains how it uses this data, and you can opt out using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" style="text-decoration: underline;">Google Analytics opt-out browser add-on</a>. Fonts and the rest of the site's code are still self-hosted — Google Analytics is currently the only script loaded from another company. Like any website, our hosting provider may also keep standard server logs, such as your IP address and the pages requested, to keep the site secure and running. We do not use these logs to identify you.</p>
+        <p style="margin: 0 0 14px;">We'd like to use Google Analytics to understand how many people visit and which pages they use, but it only runs if you say yes to the cookie banner shown on your first visit — it is off by default. If you accept, Google Analytics sets a cookie and collects your IP address (truncated), device and browser type, and the pages you visit; Google's own <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="text-decoration: underline;">privacy policy</a> explains how it uses this data. You can change your choice at any time using "Cookie preferences" in the footer of any page. Fonts and the rest of the site's code are self-hosted regardless of your choice — Google Analytics is the only script ever loaded from another company, and only once you've agreed to it. Like any website, our hosting provider may also keep standard server logs, such as your IP address and the pages requested, to keep the site secure and running. We do not use these logs to identify you.</p>
 
         <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Donations</h2>
         <p style="margin: 0 0 14px;">When you choose an amount and press the donate button, you leave this website and go to a payment page run by Stripe. Stripe collects your payment details, name and email address. We never see or store your card number.</p>
@@ -548,7 +594,10 @@ window.__resources = {
         </div>
       </sc-for>
     </div>
-    <div style="max-width: 1240px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,246,236,.2); font-size: 13px; opacity: .55;">© 2026 Kwapong Health CIC · Community Interest Company registered in England, company number 17271036 · Information here is not a substitute for medical advice</div>
+    <div style="max-width: 1240px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,246,236,.2); font-size: 13px; opacity: .55; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center;">
+      <span>© 2026 Kwapong Health CIC · Community Interest Company registered in England, company number 17271036 · Information here is not a substitute for medical advice</span>
+      <button type="button" id="sca-cookie-manage" style="font: inherit; background: none; border: 0; padding: 0; color: inherit; text-decoration: underline; cursor: pointer; opacity: 1;">Cookie preferences</button>
+    </div>
   </footer>
 </div>
 
