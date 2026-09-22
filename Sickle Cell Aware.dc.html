@@ -529,7 +529,7 @@ const PAGE_TITLES = {
   privacy: 'Privacy notice | Sickle Cell Sense'
 };
 const SUFFIX_ROUTES = Object.fromEntries(Object.entries(ROUTE_SUFFIXES).map(([k, v]) => [v, k]));
-// GitHub Pages serves this repo under /sickle-cell-aware/, Render serves it at /.
+// GitHub Pages serves this repo under /sicklecellsense/, Render serves it at /.
 // Detect which by resolving support.js's own script tag rather than hardcoding either.
 function detectBase() {
   const s = document.querySelector('script[src$="support.js"]');
