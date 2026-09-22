@@ -1,6 +1,6 @@
-# Sickle Cell Aware
+# Sickle Cell Sense
 
-A sickle cell awareness and support website for **Kwapong Health CIC** (Community Interest Company no. 17271036).
+A plain-English sickle cell education website for **Kwapong Health CIC** (Community Interest Company no. 17271036).
 
 ## Pages
 

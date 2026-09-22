@@ -16,13 +16,13 @@ window.__resources = {
 <body>
 <x-dc>
 <helmet>
-<title>Sickle Cell Aware | Kwapong Health CIC</title>
+<title>Sickle Cell Sense | Kwapong Health CIC</title>
 <meta name="description" content="Clear, honest answers about sickle cell for young people and families in the UK. Learn about sickle cell, check your trait, and support Kwapong Health CIC." />
 <meta name="theme-color" content="#FFF6EC" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_GB" />
-<meta property="og:site_name" content="Sickle Cell Aware" />
-<meta property="og:title" content="Sickle Cell Aware | Kwapong Health CIC" />
+<meta property="og:site_name" content="Sickle Cell Sense" />
+<meta property="og:title" content="Sickle Cell Sense | Kwapong Health CIC" />
 <meta property="og:description" content="Clear, honest answers about sickle cell for young people and families in the UK." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4a28 28 0 1 1-24.2 14.2A28 28 0 0 1 32 4z' fill='%23D6273F' stroke='%232A1220' stroke-width='4'/%3E%3Ccircle cx='24' cy='30' r='4' fill='%23FFF6EC'/%3E%3Ccircle cx='40' cy='30' r='4' fill='%23FFF6EC'/%3E%3C/svg%3E" />
 <link rel="preload" href="assets/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin="" />
@@ -73,7 +73,7 @@ window.__resources = {
           </div>
         </div>
         <div style="line-height: 1;">
-          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -.02em;">Sickle Cell Aware</div>
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -.02em;">Sickle Cell Sense</div>
           <div style="font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .72; margin-top: 3px;">by Kwapong Health CIC</div>
         </div>
       </a>
@@ -452,7 +452,7 @@ window.__resources = {
         <p style="margin: 0 0 30px; opacity: .74;">Last updated 21 September 2026</p>
 
         <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Who we are</h2>
-        <p style="margin: 0 0 14px;">This website, Sickle Cell Aware, is run by Kwapong Health CIC, a Community Interest Company (company number 17271036). We are responsible for the personal data described here. You can reach us at <a href="{{ mailHref }}" style="text-decoration: underline;">{{ contactEmail }}</a>.</p>
+        <p style="margin: 0 0 14px;">This website, Sickle Cell Sense, is run by Kwapong Health CIC, a Community Interest Company (company number 17271036). We are responsible for the personal data described here. You can reach us at <a href="{{ mailHref }}" style="text-decoration: underline;">{{ contactEmail }}</a>.</p>
 
         <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Browsing this website</h2>
         <p style="margin: 0 0 14px;">We do not use cookies, analytics or advertising trackers, and this site does not load fonts, scripts or images from other companies. Like any website, our hosting provider may keep standard server logs, such as your IP address and the pages requested, to keep the site secure and running. We do not use these logs to identify you.</p>
@@ -492,8 +492,8 @@ window.__resources = {
   <footer style="background: #2A1220; color: #FFF6EC; padding: clamp(38px, 5vw, 56px) clamp(18px, 3vw, 32px) 40px;">
     <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(175px, 100%), 1fr)); gap: 32px;">
       <div>
-        <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.02em; margin-bottom: 10px;">Sickle Cell Aware</div>
-        <div style="font-size: 15px; line-height: 1.6; opacity: .72;">A sickle cell awareness project by Kwapong Health CIC, a Community Interest Company.</div>
+        <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.02em; margin-bottom: 10px;">Sickle Cell Sense</div>
+        <div style="font-size: 15px; line-height: 1.6; opacity: .72;">Plain-English sickle cell education from Kwapong Health CIC, a Community Interest Company.</div>
       </div>
       <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
         <div>
@@ -518,13 +518,13 @@ const ROUTE_SUFFIXES = {
 };
 const CONTACT_EMAIL = 'hello@kwaponghealth.org'; // placeholder: replace with a monitored address
 const PAGE_TITLES = {
-  home: 'Sickle Cell Aware | Kwapong Health CIC',
-  about: 'About sickle cell | Sickle Cell Aware',
-  trait: 'Know your trait | Sickle Cell Aware',
-  donate: 'Donate | Sickle Cell Aware',
-  org: 'About us | Sickle Cell Aware',
-  contact: 'Contact | Sickle Cell Aware',
-  privacy: 'Privacy notice | Sickle Cell Aware'
+  home: 'Sickle Cell Sense | Kwapong Health CIC',
+  about: 'About sickle cell | Sickle Cell Sense',
+  trait: 'Know your trait | Sickle Cell Sense',
+  donate: 'Donate | Sickle Cell Sense',
+  org: 'About us | Sickle Cell Sense',
+  contact: 'Contact | Sickle Cell Sense',
+  privacy: 'Privacy notice | Sickle Cell Sense'
 };
 const SUFFIX_ROUTES = Object.fromEntries(Object.entries(ROUTE_SUFFIXES).map(([k, v]) => [v, k]));
 // GitHub Pages serves this repo under /sickle-cell-aware/, Render serves it at /.
