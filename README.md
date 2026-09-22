@@ -44,7 +44,7 @@ Settings → Pages → Deploy from branch → `main` / root.
 
 ## Still to replace before going live
 
-- `hello@kwaponghealth.org` is a placeholder email address (set `CONTACT_EMAIL` at the top of the script; the contact page and privacy notice both use it)
+- No contact email is live yet. `CONTACT_EMAIL` at the top of the script still holds a placeholder, but the contact page and privacy notice no longer display it — once there's a monitored address, set it there and reinstate the email card in the contact page and the "reach us" line in the privacy notice
 - Donation buttons now use **live-mode** Stripe Payment Links (as of 22 September 2026), so real charges are made — double-check amounts before promoting the donate page
 - Photography placeholders throughout
 
