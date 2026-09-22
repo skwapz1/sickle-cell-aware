@@ -66,12 +66,6 @@ window.__resources = {
   <header style="position: sticky; top: 0; z-index: 60; background: rgba(255,246,236,.94); backdrop-filter: blur(10px); border-bottom: 2px solid #2A1220;">
     <div style="max-width: 1240px; margin: 0 auto; padding: 14px clamp(18px, 3vw, 32px); display: flex; align-items: center; gap: 14px 26px; flex-wrap: wrap;">
       <a href="{{ hrefHome }}" onClick="{{ goHome }}" style="text-decoration: none; color: inherit; cursor: pointer; display: flex; align-items: center; gap: 12px;">
-        <div style="width: 40px; height: 40px; border-radius: 50% 50% 50% 8px; background: #D6273F; border: 2px solid #2A1220; display: grid; place-items: center; flex: none;">
-          <div style="display: flex; gap: 5px;">
-            <div style="width: 5px; height: 5px; border-radius: 50%; background: #FFF6EC;"></div>
-            <div style="width: 5px; height: 5px; border-radius: 50%; background: #FFF6EC;"></div>
-          </div>
-        </div>
         <div style="line-height: 1;">
           <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -.02em;">Sickle Cell Sense</div>
           <div style="font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .72; margin-top: 3px;">by Kwapong Health CIC</div>
@@ -101,7 +95,7 @@ window.__resources = {
             Sickle cell,<br />explained like<br />a <span style="color: #D6273F; position: relative;">human<span style="position: absolute; left: 0; right: 0; bottom: 6px; height: 12px; background: #FFB627; z-index: -1; border-radius: 3px;"></span></span> would.
           </h1>
           <p style="font-size: clamp(17px, 2vw, 19.5px); line-height: 1.55; max-width: 480px; margin: 0 0 32px; text-wrap: pretty; opacity: .82;">
-            Clear, honest answers about sickle cell, and a community we are building for young people living with it and the families beside them, across the UK. No jargon, no judgement.
+            Clear, honest answers about sickle cell, built for young people living with it and the families beside them, across the UK.
           </p>
           <div style="display: flex; gap: 14px; flex-wrap: wrap;">
             <a href="{{ hrefTrait }}" onClick="{{ goTrait }}" style="display: block; text-decoration: none; cursor: pointer; background: #D6273F; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 17px 30px; border-radius: 999px; border: 2px solid #2A1220; box-shadow: 4px 4px 0 #2A1220;">Do you know your trait?</a>
@@ -366,6 +360,12 @@ window.__resources = {
         <div style="text-align: center; font-size: 12.5px; opacity: .72; margin-top: 14px;">{{ donateFootnote }}</div>
       </div>
       <div style="max-width: 460px; margin: 16px auto 0; text-align: center; font-size: 13.5px; opacity: .74; line-height: 1.5;">Payments are processed securely by Stripe. Kwapong Health CIC is a Community Interest Company, so donations are not eligible for Gift Aid. Read our <a href="{{ hrefPrivacy }}" onClick="{{ goPrivacy }}" style="text-decoration: underline; color: inherit; font-weight: 700;">privacy notice</a>.</div>
+
+      <div style="max-width: 460px; margin: 26px auto 0; background: #FFE3C7; border: 2px solid #2A1220; border-radius: 20px; padding: 20px 22px; text-align: center;">
+        <div style="font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; opacity: .72; margin-bottom: 8px;">Prefer a direct bank transfer?</div>
+        <p style="margin: 0 0 14px; font-size: 14.5px; line-height: 1.5;">Pay straight into the Kwapong Health CIC bank account, with no card processor in between.</p>
+        <a href="https://paymentrequest.natwestpayit.com/reusable-link/53f331eb-fd4b-4145-b33d-f25b46ca47e9" target="_blank" rel="noopener" style="display: inline-block; text-decoration: none; cursor: pointer; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 15px; padding: 13px 26px; border-radius: 999px;">Pay by bank transfer →</a>
+      </div>
     </section>
 
   </div>
@@ -461,6 +461,7 @@ window.__resources = {
         <p style="margin: 0 0 14px;">When you choose an amount and press the donate button, you leave this website and go to a payment page run by Stripe. Stripe collects your payment details, name and email address. We never see or store your card number.</p>
         <p style="margin: 0 0 14px;">Stripe tells us your name, email address, the amount, the date and whether the gift is monthly. We use this to record and thank you for your donation and to keep our accounts. We keep financial records for six years, as the law requires. Stripe also uses your data for its own purposes, such as preventing fraud, and explains this in its <a href="https://stripe.com/gb/privacy" target="_blank" rel="noopener" style="text-decoration: underline;">privacy policy</a>. Stripe may process data outside the UK, with safeguards in place.</p>
         <p style="margin: 0 0 14px;">Donations to a Community Interest Company are not eligible for Gift Aid, so we do not collect the details Gift Aid needs.</p>
+        <p style="margin: 0 0 14px;">If you choose to pay by bank transfer instead, you leave this website and go to a payment page run by NatWest, which pays the money directly into our bank account. NatWest and your own bank handle that payment; we do not see your bank account details.</p>
 
         <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">If you email us</h2>
         <p style="margin: 0 0 14px;">We use your email address and what you tell us only to reply and to deal with your message. We keep it for as long as we need to do that, and then delete it. Please think before sending health details by email. If you choose to, we will treat them as sensitive and use them only to respond to you.</p>
@@ -469,7 +470,7 @@ window.__resources = {
         <p style="margin: 0 0 14px;">To process a donation we rely on contract, and on our legal duty to keep accounts. To answer your emails and keep the site secure we rely on our legitimate interests, which do not override your rights. We do not sell your data, and we will not use it for marketing unless you have clearly asked us to.</p>
 
         <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Who we share it with</h2>
-        <p style="margin: 0 0 14px;">Only the people who help us run the work: Stripe for payments, our email and hosting providers, and our accountants. We may also share data where the law requires it.</p>
+        <p style="margin: 0 0 14px;">Only the people who help us run the work: Stripe and NatWest for payments, our email and hosting providers, and our accountants. We may also share data where the law requires it.</p>
 
         <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Your rights</h2>
         <p style="margin: 0 0 14px;">You can ask us for a copy of your data, ask us to correct or delete it, ask us to limit how we use it, or object to how we use it. Email us at the address above and we will respond within one month. If you are unhappy with how we handle your data, you can complain to the Information Commissioner's Office at <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noopener" style="text-decoration: underline;">ico.org.uk</a> or on 0303 123 1113.</p>
