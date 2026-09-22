@@ -789,10 +789,10 @@ class Component extends DCLogic {
       ? 'These odds apply to every pregnancy independently. If both of you carry a sickle gene, ask your GP or midwife about genetic counselling.'
       : 'No chance of sickle cell disease with this combination, but a child may still carry the trait and pass it on. Testing is still worth doing.';
 
-    // Deliberately few, realistic options: a big one-off ask needs a bigger number
-    // than a sustainable monthly ask. Custom amounts are one-off only — Stripe
-    // doesn't support a donor-chosen amount on a recurring price.
-    const PRESETS = { once: [12, 25, 50], monthly: [5, 12, 25] };
+    // Deliberately few, modest options, so the ask never feels heavy.
+    // Custom amounts are one-off only — Stripe doesn't support a
+    // donor-chosen amount on a recurring price.
+    const PRESETS = { once: [5, 12, 25], monthly: [5, 12, 25] };
     const presets = PRESETS[this.state.freq] || PRESETS.once;
     const amt = this.state.amt;
     const amounts = presets.map(v => ({
