@@ -30,9 +30,13 @@ python3 -m http.server
 
 `index.html` is a copy of `Sickle Cell Aware.dc.html`. After editing the source, re-copy it over `index.html` (and `404.html`, if editing routes).
 
-## No third-party requests
+## Third-party requests
 
-The site loads nothing from other companies: fonts (Bricolage Grotesque and Outfit, SIL Open Font License) and React 18.3.1 are served from `assets/`. `window.__resources` in the page head points `support.js` at the local React files, whose hashes match the pinned SRI values in `support.js`. The privacy notice says the site makes no third-party requests, so keep that true: if you add analytics, embeds or a CDN, update the notice first.
+Fonts (Bricolage Grotesque and Outfit, SIL Open Font License) and React 18.3.1 are self-hosted from `assets/`. `window.__resources` in the page head points `support.js` at the local React files, whose hashes match the pinned SRI values in `support.js`.
+
+The one exception is **Google Analytics** (`gtag.js`, measurement ID `G-0GBTRDHRVG`), loaded in `<head>`. It sets cookies and sends visit data to Google — the privacy notice's "Browsing this website" section discloses this. If you add any further analytics, embeds or a CDN, update the privacy notice first, and see the note below on consent.
+
+**Compliance gap to close:** Google Analytics sets non-essential cookies, which under UK PECR/GDPR legally requires the user's consent *before* the cookies are set — a cookie banner with a real "reject" option, not just a disclosure in the privacy notice. That banner does not exist yet. Add one (or switch to a cookieless-by-default analytics tool) before treating this as compliant.
 
 ## Accessibility
 
