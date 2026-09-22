@@ -45,7 +45,7 @@ Settings → Pages → Deploy from branch → `main` / root.
 ## Still to replace before going live
 
 - `hello@kwaponghealth.org` is a placeholder email address (set `CONTACT_EMAIL` at the top of the script; the contact page and privacy notice both use it)
-- Donation buttons are wired to Stripe Payment Links in **test mode** — switch to live-mode Products/Prices/Payment Links before accepting real donations (see the donate footnote, which says "Test mode" until then)
+- Donation buttons now use **live-mode** Stripe Payment Links (as of 22 September 2026), so real charges are made — double-check amounts before promoting the donate page
 - Photography placeholders throughout
 
 ## Note on Gift Aid
