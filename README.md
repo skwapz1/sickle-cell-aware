@@ -20,15 +20,36 @@ python3 -m http.server
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | The site (entry point, for GitHub Pages) |
 | `Sickle Cell Aware.dc.html` | Source of truth — edit this |
-| `support.js` | Runtime required by both |
-| `assets/` | Images, self-hosted fonts (`fonts/`) and React (`vendor/`) |
+| `index.html`, `about-sickle-cell.html`, `know-your-trait.html`, `donate.html`, `about-us.html`, `contact.html`, `privacy.html` | One real file per route, generated from the source — see below |
+| `generate-routes.py` | Regenerates all seven files above, plus `sitemap.xml`, from the source. Run after every edit to the source. |
+| `support.js` | Runtime required by every route file |
+| `assets/` | Images, self-hosted fonts (`fonts/`), React (`vendor/`) and the favicon/app-icon set (`icons/`) |
+| `site.webmanifest` | Web app manifest (name, theme color, icons) — lets the site be "added to home screen" with a proper icon |
+| `robots.txt`, `sitemap.xml` | SEO basics. `sitemap.xml` is generated — don't hand-edit it. |
 | `Homepage A.dc.html`, `Homepage B.dc.html` | Early design explorations, kept for reference |
 | `404.html` | GitHub Pages only — has no server-side rewrite, so a direct hit on a deep route (e.g. `/donate`) 404s. This stashes the intended route and bounces back to `index.html`, which restores it. Not needed on Render. |
-| `_redirects` | Render only — rewrites every path to `index.html` (200) so the client-side router can take over. Not used by GitHub Pages. |
+| `_redirects` | Render only. Each real route maps to its own generated file (so crawlers get that route's actual title/description); anything else falls back to `index.html` for the client-side router. Not used by GitHub Pages. |
 
-`index.html` is a copy of `Sickle Cell Aware.dc.html`. After editing the source, re-copy it over `index.html` (and `404.html`, if editing routes).
+### Why seven files instead of one
+
+This is a client-routed single-page app — historically a single `index.html` served every URL, and JavaScript swapped the content after load. The problem: a crawler that doesn't run JavaScript (most search engines, and link-preview bots like WhatsApp's) only ever sees whatever the server handed it for that exact URL. Serving `index.html` for every route meant `/donate`, `/about-sickle-cell` etc. all showed the *homepage's* title, description and social-preview image to anything that didn't execute JS.
+
+`generate-routes.py` fixes this by producing one real HTML file per route — each is byte-identical to the source except for its `<head>`'s crawler-visible tags (title, meta description, canonical URL, Open Graph/Twitter tags, and JSON-LD) and `_redirects` routes each URL to its matching file. The app itself, and how people actually navigate the site, is completely unchanged — this only affects what a server-side crawler sees on the very first hit.
+
+**Never hand-edit any of the seven HTML files except the source.** After changing `Sickle Cell Aware.dc.html`, run:
+
+```
+python3 generate-routes.py
+```
+
+This overwrites `index.html`, the six route files, and `sitemap.xml`. Commit all of them together.
+
+## SEO / AEO
+
+- **Per-route metadata** (see above) — each route has its own accurate title, description, canonical URL and social-preview tags.
+- **JSON-LD structured data**: every page carries `NGO` (organisation) schema; the About sickle cell page additionally carries `FAQPage` schema for its six sourced FAQs. This helps both traditional search and AI answer engines (ChatGPT, Perplexity, Google AI Overviews) understand and accurately cite the site — note that Google's *rich-result* eligibility for FAQPage is currently restricted to certain site types, so this is about machine understanding generally, not a guaranteed search snippet.
+- **`robots.txt` / `sitemap.xml`**: both new — previously the site had neither, so crawlers had no guided discovery of the seven routes.
 
 ## Third-party requests
 
