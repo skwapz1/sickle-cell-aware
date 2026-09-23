@@ -193,7 +193,7 @@ window.__resources = {
               <div style="position: absolute; inset: 16%; border-radius: 50%; background: #B31A31;"></div>
             </div>
             <div style="text-align: center; max-width: 150px;">
-              <div style="font-size: 12px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; opacity: .55; margin-bottom: 4px;">Healthy cell</div>
+              <div style="font-size: 12px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; opacity: .65; margin-bottom: 4px;">Healthy cell</div>
               <div style="font-size: 13.5px; line-height: 1.4; opacity: .8;">Round and flexible</div>
             </div>
           </div>
@@ -202,7 +202,7 @@ window.__resources = {
               <path d="M96.2,18.7 A58,58 0 1,0 158.2,107.2 A58,58 0 0,1 96.2,18.7 Z" fill="#8B2635" stroke="#2A1220" stroke-width="3"/>
             </svg>
             <div style="text-align: center; max-width: 150px;">
-              <div style="font-size: 12px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; opacity: .55; margin-bottom: 4px;">Sickle cell</div>
+              <div style="font-size: 12px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; opacity: .65; margin-bottom: 4px;">Sickle cell</div>
               <div style="font-size: 13.5px; line-height: 1.4; opacity: .8;">Stiff, can block small vessels</div>
             </div>
           </div>
@@ -573,6 +573,51 @@ window.__resources = {
     </section>
   </div>
   </sc-if>
+
+  <sc-if value="{{ isTerms }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <section style="padding: clamp(38px, 5vw, 64px) clamp(18px, 3vw, 32px) clamp(52px, 7vw, 88px);">
+      <div style="max-width: 760px; margin: 0 auto; font-size: 17px; line-height: 1.65;">
+        <div style="font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #D6273F; margin-bottom: 16px;">Terms</div>
+        <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 6vw, 58px); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 14px;">Terms and conditions</h1>
+        <p style="margin: 0 0 30px; opacity: .74;">Last updated 23 September 2026</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Who we are</h2>
+        <p style="margin: 0 0 14px;">This website, Sickle Cell Sense, is run by Kwapong Health CIC, a Community Interest Company registered in England (company number 17271036). By using this website, you agree to these terms. If you don't agree with them, please don't use the site.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Not medical advice</h2>
+        <p style="margin: 0 0 14px;">Everything on this site is general awareness content, not medical advice, and is not a substitute for speaking to a doctor or specialist team. We source claims to the NHS, NHS England and NICE where we can, but sickle cell care is individual: always follow the advice of your own clinicians, and contact a healthcare professional or emergency services if you are worried about your health or someone else's.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Using this website</h2>
+        <p style="margin: 0 0 14px;">You're welcome to read, share and link to this site. Please don't try to disrupt it, copy it wholesale to present as your own, or use it in any way that's unlawful or could harm other visitors.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Content and accuracy</h2>
+        <p style="margin: 0 0 14px;">We try to keep this site accurate and up to date, sourced to the NHS and NICE wherever we make a health claim, but we can't guarantee it's complete, current or error-free, and medical guidance can change. We're not liable for decisions made based on this site's content, to the fullest extent the law allows.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Intellectual property</h2>
+        <p style="margin: 0 0 14px;">The text, design and illustrations on this site belong to Kwapong Health CIC unless stated otherwise. You can quote or share short excerpts with a link back to us; please don't reproduce the site's content wholesale without asking first.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Donations</h2>
+        <p style="margin: 0 0 14px;">Donations are processed by Stripe or, for bank transfers, NatWest &mdash; see our <a href="{{ hrefPrivacy }}" onClick="{{ goPrivacy }}" style="text-decoration: underline;">privacy notice</a> for how your payment data is handled. As a Community Interest Company, we cannot claim Gift Aid on donations. Donations are gifts and are generally non-refundable, but if you made a donation in error, contact us and we'll do our best to help.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Other websites we link to</h2>
+        <p style="margin: 0 0 14px;">We link to sites we don't control, such as the NHS, NICE, Stripe and social media platforms. We're not responsible for their content, availability or how they handle your data once you leave this site.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Liability</h2>
+        <p style="margin: 0 0 14px;">This site is provided as is. To the fullest extent the law allows, Kwapong Health CIC is not liable for any loss or damage arising from your use of this site, including from it being unavailable or containing an error. Nothing here limits liability that can't legally be excluded, such as for death or personal injury caused by our negligence.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Changes to these terms</h2>
+        <p style="margin: 0 0 14px;">We may update these terms as the site or our work changes. We'll update the date at the top when we do; continuing to use the site after a change means you accept the updated terms.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Governing law</h2>
+        <p style="margin: 0 0 14px;">These terms are governed by the law of England and Wales, and any dispute will be handled by the courts of England and Wales.</p>
+
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em; margin: 34px 0 10px;">Contact</h2>
+        <p style="margin: 0;">Questions about these terms? Get in touch via our <a href="{{ hrefContact }}" onClick="{{ goContact }}" style="text-decoration: underline;">contact page</a>.</p>
+      </div>
+    </section>
+  </div>
+  </sc-if>
   </main>
 
   <section aria-label="Support our work" style="background: #FFB627; border-top: 2.5px solid #2A1220; padding: clamp(30px, 4vw, 44px) clamp(18px, 3vw, 32px);">
@@ -586,11 +631,14 @@ window.__resources = {
     <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(175px, 100%), 1fr)); gap: 32px;">
       <div>
         <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.02em; margin-bottom: 10px;">Sickle Cell Sense</div>
-        <div style="font-size: 15px; line-height: 1.6; opacity: .72;">A Community Interest Company set up to support young people with sickle cell and their families across the UK. As a CIC, our assets are protected by an asset lock and must be used for the benefit of the community.</div>
+        <div style="font-size: 15px; line-height: 1.6; opacity: .72; margin-bottom: 18px;">A Community Interest Company set up to support young people with sickle cell and their families across the UK. As a CIC, our assets are protected by an asset lock and must be used for the benefit of the community.</div>
+        <a href="https://instagram.com/sicklecellsense" target="_blank" rel="noopener" aria-label="Sickle Cell Sense on Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 999px; border: 2px solid #FFF6EC; color: #FFF6EC;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
       </div>
       <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
         <div>
-          <div style="font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .55; margin-bottom: 14px;">{{ col.title }}</div>
+          <div style="font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .65; margin-bottom: 14px;">{{ col.title }}</div>
           <div style="display: flex; flex-direction: column; gap: 9px;">
             <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="4">
               <a href="{{ l.href }}" onClick="{{ l.go }}" style="display: block; text-decoration: none; color: inherit; cursor: pointer; font-size: 15px; opacity: .85;">{{ l.label }}</a>
@@ -610,7 +658,7 @@ window.__resources = {
 <script type="text/x-dc" data-dc-script data-props="{&quot;showQuiz&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Homepage&quot;},&quot;showTriggers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;About sickle cell&quot;}}">
 const ROUTE_SUFFIXES = {
   home: '/', about: '/about-sickle-cell', trait: '/know-your-trait',
-  donate: '/donate', org: '/about-us', contact: '/contact', privacy: '/privacy'
+  donate: '/donate', org: '/about-us', contact: '/contact', privacy: '/privacy', terms: '/terms'
 };
 const CONTACT_EMAIL = 'hello@kwaponghealth.org'; // placeholder: replace with a monitored address
 const PAGE_TITLES = {
@@ -620,7 +668,8 @@ const PAGE_TITLES = {
   donate: 'Donate | Sickle Cell Sense',
   org: 'About us | Sickle Cell Sense',
   contact: 'Contact | Sickle Cell Sense',
-  privacy: 'Privacy notice | Sickle Cell Sense'
+  privacy: 'Privacy notice | Sickle Cell Sense',
+  terms: 'Terms and conditions | Sickle Cell Sense'
 };
 const SUFFIX_ROUTES = Object.fromEntries(Object.entries(ROUTE_SUFFIXES).map(([k, v]) => [v, k]));
 // GitHub Pages serves this repo under /sicklecellsense/, Render serves it at /.
@@ -960,8 +1009,10 @@ class Component extends DCLogic {
       goHome: this.go('home'), goDonate: this.go('donate'), goTrait: this.go('trait'),
       goContact: this.go('contact'),
       goPrivacy: this.go('privacy'),
-      hrefHome: pageUrl('home'), hrefDonate: pageUrl('donate'), hrefTrait: pageUrl('trait'), hrefPrivacy: pageUrl('privacy'),
+      goTerms: this.go('terms'),
+      hrefHome: pageUrl('home'), hrefDonate: pageUrl('donate'), hrefTrait: pageUrl('trait'), hrefPrivacy: pageUrl('privacy'), hrefTerms: pageUrl('terms'), hrefContact: pageUrl('contact'),
       isPrivacy: p === 'privacy',
+      isTerms: p === 'terms',
 
       myths: this.state.myths,
       qActive: !this.state.quizDone, qDone: this.state.quizDone,
@@ -1061,7 +1112,7 @@ class Component extends DCLogic {
       footerCols: [
         { title: 'Explore', links: [
           ['about', 'About sickle cell'], ['trait', 'Know your trait'], ['org', 'About us'],
-          ['contact', 'Contact'], ['privacy', 'Privacy notice']
+          ['contact', 'Contact'], ['privacy', 'Privacy notice'], ['terms', 'Terms and conditions']
         ].map(([k, label]) => ({ label, go: this.go(k), href: pageUrl(k) })) }
       ]
     };

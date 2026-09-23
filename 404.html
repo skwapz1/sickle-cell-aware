@@ -1,30 +1,83 @@
 <!doctype html>
-<html>
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<title>Redirecting…</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex" />
+<title>Page not found | Sickle Cell Sense</title>
+<meta name="theme-color" content="#FFF6EC" />
+<style>
+  @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(assets/fonts/bricolage-latin.woff2) format('woff2'); }
+  @font-face { font-family: 'Outfit'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(assets/fonts/outfit-latin.woff2) format('woff2'); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #FFF6EC; font-family: 'Outfit', system-ui, sans-serif; color: #2A1220; padding: 24px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid #2A1220; outline-offset: 3px; border-radius: 6px; }
+  .card { max-width: 560px; width: 100%; background: #FFFFFF; border: 2.5px solid #2A1220; border-radius: 32px; box-shadow: 8px 8px 0 #2A1220; padding: clamp(32px, 5vw, 52px); text-align: center; }
+  .code { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(56px, 12vw, 84px); line-height: 1; letter-spacing: -.03em; color: #D6273F; margin: 0 0 8px; }
+  h1 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(24px, 4vw, 32px); letter-spacing: -.02em; line-height: 1.15; margin: 0 0 14px; }
+  p { font-size: 16px; line-height: 1.55; opacity: .8; margin: 0 0 28px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .btn { display: inline-block; text-decoration: none; font-weight: 700; font-size: 15px; padding: 14px 24px; border-radius: 999px; border: 2px solid #2A1220; }
+  .btn-primary { background: #D6273F; color: #FFF6EC; box-shadow: 4px 4px 0 #2A1220; }
+  .btn-secondary { background: #FFF6EC; color: #2A1220; }
+</style>
+</head>
+<body>
+<noscript>
+  <div class="card">
+    <p class="code">404</p>
+    <h1>This page doesn't exist</h1>
+    <p>The link you followed may be broken, or the page may have moved.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Go to the homepage</a>
+      <a class="btn btn-secondary" href="/contact">Let us know</a>
+    </div>
+  </div>
+</noscript>
+<div id="app-root" hidden>
+  <div class="card">
+    <p class="code">404</p>
+    <h1>This page doesn't exist</h1>
+    <p>The link you followed may be broken, or the page may have moved. Here's how to find what you were looking for.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Home</a>
+      <a class="btn btn-secondary" href="/about-sickle-cell">About sickle cell</a>
+      <a class="btn btn-secondary" href="/know-your-trait">Know your trait</a>
+      <a class="btn btn-secondary" href="/donate">Donate</a>
+      <a class="btn btn-secondary" href="/contact">Contact</a>
+    </div>
+  </div>
+</div>
 <script>
 (function () {
-  // GitHub Pages has no server-side rewrite: a direct hit or refresh on a deep
-  // route (e.g. /sicklecellsense/donate) 404s because no such file exists.
-  // Stash the intended route, bounce back to the real index.html, and let the
-  // app's own router (see the data-dc-script in Sickle Cell Aware.dc.html)
-  // restore it from sessionStorage on load.
+  // GitHub Pages has no server-side rewrite: a direct hit or refresh on a real
+  // deep route (e.g. /sicklecellsense/donate) 404s because no literal file
+  // exists there. For those KNOWN routes, silently bounce back to index.html
+  // and let the app's own router (see data-dc-script in Sickle Cell Aware.dc.html)
+  // restore it from sessionStorage. Render doesn't need this (its _redirects
+  // maps known routes to their own generated file) but it's harmless there too.
+  // For anything that ISN'T a known route, this is a genuinely broken link:
+  // show the branded 404 above instead of silently teleporting the visitor home.
   var SUFFIX_ROUTES = {
     '/about-sickle-cell': 'about',
     '/know-your-trait': 'trait',
     '/donate': 'donate',
     '/about-us': 'org',
     '/contact': 'contact',
-    '/privacy': 'privacy'
+    '/privacy': 'privacy',
+    '/terms': 'terms'
   };
   var path = window.location.pathname.replace(/\/$/, '');
   var suffix = Object.keys(SUFFIX_ROUTES).find(function (s) { return path.slice(-s.length) === s; });
-  var base = suffix ? path.slice(0, path.length - suffix.length) : path;
-  try { sessionStorage.setItem('sca_route', suffix ? SUFFIX_ROUTES[suffix] : 'home'); } catch (e) {}
-  window.location.replace((base || '/') + window.location.search + window.location.hash);
+  if (suffix) {
+    var base = path.slice(0, path.length - suffix.length);
+    try { sessionStorage.setItem('sca_route', SUFFIX_ROUTES[suffix]); } catch (e) {}
+    window.location.replace((base || '/') + window.location.search + window.location.hash);
+    return;
+  }
+  document.getElementById('app-root').hidden = false;
 })();
 </script>
-</head>
-<body></body>
+</body>
 </html>

@@ -86,6 +86,14 @@ ROUTES = [
         "desc": "How Sickle Cell Sense and Kwapong Health CIC collect, use and protect your personal data, including our use of Google Analytics and Stripe.",
         "og_desc": "How Sickle Cell Sense and Kwapong Health CIC collect, use and protect your personal data.",
     },
+    {
+        "key": "terms",
+        "file": "terms.html",
+        "path": "/terms",
+        "title": "Terms and conditions | Sickle Cell Sense",
+        "desc": "The terms and conditions for using the Sickle Cell Sense website and making a donation to Kwapong Health CIC.",
+        "og_desc": "The terms and conditions for using the Sickle Cell Sense website and making a donation to Kwapong Health CIC.",
+    },
 ]
 
 FAQS = [
