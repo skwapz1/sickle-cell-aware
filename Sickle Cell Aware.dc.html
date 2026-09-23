@@ -443,9 +443,9 @@ window.__resources = {
               <button type="button" onClick="{{ a.pick }}" aria-pressed="{{ a.pressed }}" style="display: block; width: 100%; cursor: pointer; text-align: center; padding: 14px 6px; border: 2px solid #2A1220; border-radius: 16px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 19px; background: {{ a.bg }};" style-hover="background: #FFE3C7;">{{ a.label }}</button>
             </sc-for>
           </div>
-          <a href="{{ donationUrl }}" target="_blank" rel="noopener" style="display: block; text-decoration: none; cursor: pointer; text-align: center; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 17px; padding: 18px; border-radius: 999px; box-shadow: 4px 4px 0 #FFB627;">{{ donateLabel }}</a>
+          <a href="{{ donationUrl }}" onClick="{{ donateClick }}" target="_blank" rel="noopener" style="display: block; text-decoration: none; cursor: pointer; text-align: center; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 17px; padding: 18px; border-radius: 999px; box-shadow: 4px 4px 0 #FFB627;">{{ donateLabel }}</a>
           <sc-if value="{{ showCustomLink }}" hint-placeholder-val="{{ true }}">
-          <a href="{{ customUrl }}" target="_blank" rel="noopener" style="display: block; text-decoration: none; cursor: pointer; text-align: center; font-size: 14.5px; font-weight: 700; color: #D6273F; margin-top: 16px;">Or choose your own amount →</a>
+          <a href="{{ customUrl }}" onClick="{{ customDonateClick }}" target="_blank" rel="noopener" style="display: block; text-decoration: none; cursor: pointer; text-align: center; font-size: 14.5px; font-weight: 700; color: #D6273F; margin-top: 16px;">Or choose your own amount →</a>
           </sc-if>
           <div style="text-align: center; font-size: 12.5px; opacity: .72; margin-top: 14px;">{{ donateFootnote }}</div>
         </div>
@@ -455,7 +455,7 @@ window.__resources = {
         <div style="height: 100%; box-sizing: border-box; background: #FFE3C7; border: 2.5px solid #2A1220; border-radius: 30px; box-shadow: 8px 8px 0 #2A1220; padding: clamp(24px, 4vw, 34px); text-align: center; display: flex; flex-direction: column; justify-content: center;">
           <div style="font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; opacity: .72; margin-bottom: 10px;">Prefer a direct bank transfer?</div>
           <p style="margin: 0 0 18px; font-size: 15px; line-height: 1.55;">Common practice for UK donors: pay straight into the Kwapong Health CIC bank account, with no card processor in between.</p>
-          <a href="https://paymentrequest.natwestpayit.com/reusable-link/53f331eb-fd4b-4145-b33d-f25b46ca47e9" target="_blank" rel="noopener" style="display: block; text-decoration: none; cursor: pointer; text-align: center; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 16px 26px; border-radius: 999px;">Pay by bank transfer →</a>
+          <a href="https://paymentrequest.natwestpayit.com/reusable-link/53f331eb-fd4b-4145-b33d-f25b46ca47e9" onClick="{{ bankTransferClick }}" target="_blank" rel="noopener" style="display: block; text-decoration: none; cursor: pointer; text-align: center; background: #2A1220; color: #FFF6EC; font-weight: 700; font-size: 16px; padding: 16px 26px; border-radius: 999px;">Pay by bank transfer →</a>
         </div>
 
       </div>
@@ -859,12 +859,17 @@ class Component extends DCLogic {
       const srState = picked === null ? '' : (right ? ', correct answer' : (isPicked ? ', your answer, incorrect' : ''));
       return { label, bg, dotBg, dotFg, mark, srState, pick: () => {
         if (this.state.picked !== null) return;
+        if (window.gtag) window.gtag('event', 'quiz_answer', { correct: i === q.correct });
         this.setState(s => ({ picked: i, score: s.score + (i === q.correct ? 1 : 0) }));
       } };
     });
-    const qNext = () => this.setState(s => s.qi + 1 >= s.deck.length
-      ? { quizDone: true }
-      : { qi: s.qi + 1, picked: null });
+    const qNext = () => this.setState(s => {
+      if (s.qi + 1 >= s.deck.length) {
+        if (window.gtag) window.gtag('event', 'quiz_complete', { score: s.score, total: s.deck.length });
+        return { quizDone: true };
+      }
+      return { qi: s.qi + 1, picked: null };
+    });
     const qRestart = () => this.setState({ deck: buildDeck(), qi: 0, picked: null, score: 0, quizDone: false });
     const score = this.state.score;
     const qResultNote = score === total
@@ -882,7 +887,10 @@ class Component extends DCLogic {
         bg: this.state[pr.key] === g.code ? '#2A1220' : '#FFF6EC',
         fg: this.state[pr.key] === g.code ? '#FFF6EC' : '#2A1220',
         pressed: String(this.state[pr.key] === g.code),
-        pick: () => this.setState({ [pr.key]: g.code })
+        pick: () => {
+          if (this.state[pr.key] !== g.code && window.gtag) window.gtag('event', 'trait_calculator_input', { parent: pr.key, genotype: g.code });
+          this.setState({ [pr.key]: g.code });
+        }
       }))
     }));
     const o = this.odds(this.state.pA, this.state.pB);
@@ -939,6 +947,9 @@ class Component extends DCLogic {
       customOnce: 'https://donate.stripe.com/eVq3cw3xbg0o0aygeJdAk06'
     };
     const donationUrl = (donationLinks[this.state.freq] || donationLinks.once)[amt];
+    const donateClick = () => { if (window.gtag) window.gtag('event', 'donate_click', { freq: this.state.freq, amount: amt }); };
+    const customDonateClick = () => { if (window.gtag) window.gtag('event', 'donate_click', { freq: 'once', amount: 'custom' }); };
+    const bankTransferClick = () => { if (window.gtag) window.gtag('event', 'donate_click', { freq: 'once', amount: 'bank_transfer' }); };
 
     return {
       navItems,
@@ -1014,7 +1025,10 @@ class Component extends DCLogic {
       showTriggers: this.props.showTriggers ?? true,
       freqTabs, amounts, showCustomLink,
       donationUrl: donationUrl || pageUrl('donate'),
+      donateClick,
       customUrl: donationLinks.customOnce,
+      customDonateClick,
+      bankTransferClick,
       donateLabel: amt > 0
         ? (this.state.freq === 'monthly' ? 'Give £' + amt + ' a month' : 'Give £' + amt + ' now')
         : 'Choose an amount',
